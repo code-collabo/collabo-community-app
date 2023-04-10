@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import ProjectCard from './project-card';
 
-
 const projTitles: string[] = [
   'code collabo project 1',
   'code collabo project 2',
@@ -10,13 +9,14 @@ const projTitles: string[] = [
 ];
 
 const projCard = projTitles.map((projTitle: string) => {
-  return <ProjectCard title={projTitle} />;
-})
+  return <ProjectCard key={1} title={projTitle} />;
+});
 
-interface PropType {
+interface QuatCardPropType {
+  key?: number;
   title: string;
 }
-export default function QuaterCard(props: PropType) {
+export default function QuaterCard(props: QuatCardPropType) {
   return (
     <>
       <div className="quater-section">

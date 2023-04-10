@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
-interface PropType {
+interface ProjCardPropType {
+  key?: number;
   title: string
 }
-
-export default function ProjectCard(props: PropType) {
+export default function ProjectCard(props: ProjCardPropType) {
   return (
     <>
       <div className="proj-card">
