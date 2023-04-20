@@ -9,4 +9,5 @@
 
 Replace this text with the testing checklist from the issue this pull request fixes.
 
-Ping @code-collabo/node-mongo
+Ping @code-collabo/web-app
+
