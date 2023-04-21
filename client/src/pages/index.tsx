@@ -13,6 +13,8 @@ export default function Home() {
       </Head>
       <div className={`${styles.boxTest} ${styles.color}`}>Box</div>
       <Card />
+      { /* TODO 2 of 3: Configure Page.js component and write one dummy sidebar and nav header to be reusable */}
+      { /* TODO 3 of 3: How to inject head in one place? Just like the sidebar and nav header */}
     </>
   );
 }
