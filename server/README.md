@@ -1,7 +1,3 @@
-# @code-collabo's node-mongo API boilerplate template (typescript)
-
-This project (@code-collabo/node-mongo-api-boilerplate-templates version 1.0.0) was generated with [@code-collabo/node-mongo-cli version 2.0.0](https://code-collabo.gitbook.io/node-mongo-v2.0.0).
-
 ## Connection option 1: Running the development server (mongoDB Atlas)
 #### Step 1
 Install dependencies:
@@ -71,17 +67,15 @@ A demo setup (i.e. collection, endpoints etc) already exists to help you get sta
 
 |METHOD /endpoint|Description|Request body|
 |--|--|:--:|
-|GET /demo|Get all demo items in the database| No Request Body |
-|POST /demo|Create/add new demo item to the database|name, age|
-|GET /demo/:demoId|Get a demo item stored in the database by its ID|No Request Body|
-|PATCH /demo/:demoId|Update the value of one property of an already existing demo item in the database, using the demo item's ID|propName, value|
-|PUT /demo/:id|Update all properties of an existing demo item in the database, using the demo item's ID|name, age|
-|DELETE /demo/:demoId|Delete a demo item from the database, using the demo item's ID|No request body|
+|GET /project|Get all project items in the database| No Request Body |
+|POST /project|Create/add a new project item to the database|title, url, numOfChild|
+|GET /project/:projectId|Get a project item stored in the database by its ID|No Request Body|
+|DELETE /project/:projectId|Delete a project item from the database by its ID|No request body|
 
 ## API call requests and responses
 
 <details>
-<summary>GET /demo</summary>
+<summary>GET /project</summary>
 <br/>
     <b>Request body shape</b>
     <br/><br/>
@@ -94,13 +88,14 @@ No request body
 <pre>
 {
     "count": number,
-    "items": [
+    "projects": [
         {
             "_id": "string",
-            "name": "string",
-            "age": number,
+            "title": "string",
+            "url": "string",
+            "numOfChild": string,
             "request": {
-                "type": "string",
+                "type": "GET",
                 "url": "string"
             }
         },
@@ -113,15 +108,17 @@ No request body
 
 
 <details>
-<summary>POST /demo</summary>
+<summary>POST /project</summary>
 <br/>
     <b>Request body shape</b>
     <br/><br/>
 <pre>
 {
-    "name": "string",
-    "age": number
+    "title": "string",
+    "url": "string", 
+    "numOfChild": number
 }
+NOTE: all three params are required.
 </pre>
 <br/>
      <b>Successful response shape</b>
@@ -129,12 +126,13 @@ No request body
 <pre>
 {
     "message": "string",
-    "newItem": {
+    "newProject": {
         "_id": "string",
-        "name": "string",
-        "age": number,
+        "title": "string",
+        "url": "string",
+        "numOfChild": number,
         "request": {
-            "type": "string",
+            "type": "POST",
             "url": "string"
         }
     }
@@ -145,7 +143,7 @@ No request body
 
 
 <details>
-<summary>GET /demo/:demoId</summary>
+<summary>GET /project/:projectId</summary>
 <br/>
     <b>Request body shape</b>
     <br/><br/>
@@ -158,11 +156,11 @@ No request body
 <pre>
 {
     "_id": "string",
-    "name": "string",
-    "age": number,
+    "title": "string",
+    "url": "string",
+    "numOfChild": number,
     "request": {
-        "type": "string",
-        "description": "string",
+        "type": "GET",
         "url": "string"
     }
 }
@@ -170,74 +168,8 @@ No request body
 </details>
 
 
-
 <details>
-<summary>PATCH /demo/:demoId</summary>
-<br/>
-    <b>Request body shape</b>
-    <br/><br/>
-<pre>
-[
-    { "propName": "string", "value": "string" }
-]
-</pre>
-
-OR
-
-<pre>
-[
-    { "propName": "string", "value": number }
-]
-</pre>
-i.e. propName can be string "name" or "age". Value is a string when name is the propName, while value is a number when age is the propName.
-<br/>
-<br/>
-     <b>Successful response shape</b>
-    <br/><br/>
-<pre>
-{
-    "message": "string",
-    "request": {
-        "type": "string",
-        "description": "string",
-        "url": "string"
-    }
-}
-</pre>
-</details>
-
-
-
-<details>
-<summary>PUT /demo/:id</summary>
-<br/>
-    <b>Request body shape</b>
-    <br/><br/>
-<pre>
-{
-    "name": "string",
-    "age": number
-}
-</pre>
-<br/>
-     <b>Successful response shape</b>
-    <br/><br/>
-<pre>
-{
-    "message": "string",
-    "request": {
-        "type": "string",
-        "description": "string",
-        "url": "string"
-    }
-}
-</pre>
-</details>
-
-
-
-<details>
-<summary>DELETE /demo/:demoId</summary>
+<summary>DELETE /project/:projectId</summary>
 <br/>
     <b>Request body shape</b>
     <br/><br/>
@@ -251,12 +183,12 @@ No request body
 {
     "message": "string",
     "request": {
-        "type": "string",
-        "description": "string",
+        "type": "DELETE",
         "url": "string",
         "body": {
-            "name": "string",
-            "age": "string"
+            "title": "string",
+            "url": "string",
+            "numOfChild": "number"
         }
     }
 }
