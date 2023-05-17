@@ -16,17 +16,6 @@ const item = `${routeName}-item`;
 let response: { [key: string]: unknown } = {};
 
 import { getUrl } from '../../helpers/methods';
-// const getUrl = (req: Request): string => {
-//   const protocol = req.protocol;
-//   const host = req.hostname;
-//   const url = req.originalUrl;
-//   const port = process.env.PORT_ATLAS || 3000;
-
-//   const fullUrl = `${protocol}://${host}:${port}${url}`
-
-//   return fullUrl;
-// }
-
 
 
 export const getAllProjectItemsController = async (req: Request, res: Response) => {
@@ -43,7 +32,6 @@ export const getAllProjectItemsController = async (req: Request, res: Response) 
           request: {
             type: 'GET',
             url: getUrl(req)
-            // url: `http://localhost:8070/${routeName}/${doc._id}`
           }
         }
       })
@@ -72,7 +60,6 @@ export const createOneProjectItemController = async (req: Request, res: Response
         request: {
           type: 'POST',
           url: getUrl(req),
-          // url: `http://localhost:8070/${routeName}/${doc._id}`,
         },
       },
     }
@@ -99,7 +86,6 @@ export const getOneProjectItemController = async (req: Request, res: Response) =
         request: {
           type: 'GET',
           url: getUrl(req),
-          // url: `http://localhost:8070/${routeName}/${doc._id}`,
         },
       }
       success(`GET request successful!`);
@@ -129,7 +115,6 @@ export const deleteOneProjectItemController = async (req: Request, res: Response
         request: {
           type: 'DELETE',
           url: getUrl(req),
-          // url: `http://localhost:8070/${routeName}/${doc._id}`,
           body: {
             title: 'string',
             url: 'string',
