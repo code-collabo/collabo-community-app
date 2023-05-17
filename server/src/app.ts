@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors';
 import { router as appRouter } from './api/routes/app.route';
-// import { router as demoRouter } from './api/routes/demo.route';
 import { router as projectRouter } from './api/routes/project.route';
 
 dotenv.config();
@@ -19,7 +18,6 @@ app.use(cors({ origin: [`http://localhost:${process.env.CLIENT_APP_PORT}`, `${pr
 
 //====== Use Routers =======
 app.use('/app', appRouter);
-// app.use('/demo', demoRouter);
 app.use('/project', projectRouter);
 //==========================
 
