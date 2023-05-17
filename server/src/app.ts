@@ -2,8 +2,8 @@ import express, { Express, NextFunction, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors';
-// import { router as demoRouter } from './api/routes/demo.route';
-import { router as projectRouter } from './api/routes/project.route';
+import { router as appRouter } from './api/routes/app.route';
+import { router as demoRouter } from './api/routes/demo.route';
 
 dotenv.config();
 
@@ -17,8 +17,8 @@ app.use(express.json());
 app.use(cors({ origin: [`http://localhost:${process.env.CLIENT_APP_PORT}`, `${process.env.CLIENT_APP_URL}`] }));
 
 //====== Use Routers =======
-// app.use('/demo', demoRouter);
-app.use('/project', projectRouter);
+app.use('/', appRouter);
+app.use('/demo', demoRouter);
 //==========================
 
 interface Error {

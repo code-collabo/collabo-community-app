@@ -14,7 +14,6 @@ const item = `${routeName}-item`;
 
 let response: { [key: string]: unknown } = {};
 
-
 export const getDemoItemsController = async (req: Request, res: Response) => {
   try {
     const docs = await getDemoItemsService();
