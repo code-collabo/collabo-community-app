@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors({ origin: [`http://localhost:${process.env.CLIENT_APP_PORT}`, `${process.env.CLIENT_APP_URL}`] }));
 
 //====== Use Routers =======
-app.use('/app', appRouter);
+app.use('/', appRouter);
 app.use('/project', projectRouter);
 //==========================
 
