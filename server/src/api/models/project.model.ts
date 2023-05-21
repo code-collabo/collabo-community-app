@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import { Schema, Document, model } from 'mongoose';
 
-export interface ProjectDocument extends mongoose.Document {
+export interface ProjectDocument extends Document {
   title: string;
   url: string;
   type: string;
@@ -24,9 +24,9 @@ const repoDetails = {
   url: { type: String, required: true },
 }
 
-const childRepoDetailsSchema = new mongoose.Schema(repoDetails);
+const childRepoDetailsSchema = new Schema(repoDetails);
 
-const ProjectSchema = new mongoose.Schema({
+const ProjectSchema = new Schema({
   ...repoDetails,
   type: { type: String, required: true },
   children: {
@@ -39,7 +39,7 @@ const ProjectSchema = new mongoose.Schema({
   }
 });
 
-const ProjectModel = mongoose.model<ProjectDocument>(collectionName, ProjectSchema); //declare collection name only once to allow mongoose to pluralize or add 's' to the collection name
+const ProjectModel = model<ProjectDocument>(collectionName, ProjectSchema); //declare collection name only once to allow mongoose to pluralize or add 's' to the collection name
 
 export { ProjectModel };
 
