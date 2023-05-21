@@ -8,13 +8,11 @@ import {
 } from '../services/projects.service';
 
 import { success, error } from '../../../node-mongo-helpers';
+import { useUrl } from '../../helpers/methods';
+import { res, items } from '../../helpers/variables';
 
-const item = 'project';
-
-let response: { [key: string]: unknown } = {};
-
-import { getUrl } from '../../helpers/methods';
-
+const { project } = items;
+let response = res;
 
 export const getAllProjectsController = async (req: Request, res: Response) => {
   try {
@@ -42,7 +40,7 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
           },
           request: {
             type: 'GET',
-            url: getUrl(req, doc._id)
+            url: useUrl(req, doc._id)
           }
         }
       })
@@ -50,7 +48,7 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
     success(`GET request successful!`);
     return res.status(200).json(response);
   } catch (err) {
-    error(`Error retriving ${item}s: ${err}`);
+    error(`Error retriving ${project}s: ${err}`);
     res.status(500).json({
       error: `${err}`
     });
@@ -62,8 +60,8 @@ export const createOneProjectController = async (req: Request, res: Response) =>
   try {
     const doc = await createOneProjectService(req.body);
     response = {
-      message: `${item} created successfully!`,
-      newItem: {
+      message: `${project} created successfully!`,
+      newProject: {
         _id: doc._id,
         title: doc.title,
         url: doc.url,
@@ -80,14 +78,14 @@ export const createOneProjectController = async (req: Request, res: Response) =>
         },
         request: {
           type: 'POST',
-          url: getUrl(req, doc._id),
+          url: useUrl(req, doc._id),
         },
       },
     }
-    success(`${item} CREATED successfully!`);
+    success(`${project} CREATED successfully!`);
     return res.status(201).json(response);
   } catch (err) {
-    error(`Error saving ${item}: ${err}`);
+    error(`Error saving ${project}: ${err}`);
     res.status(500).json({
       error: `${err}`,
     });
@@ -119,7 +117,7 @@ export const getOneProjectController = async (req: Request, res: Response) => {
         },
         request: {
           type: 'GET',
-          url: getUrl(req, doc._id),
+          url: useUrl(req, doc._id),
         },
       }
       success(`GET request successful!`);
@@ -131,7 +129,7 @@ export const getOneProjectController = async (req: Request, res: Response) => {
       });
     }
   } catch (err) {
-    error(`Error retriving ${item}: ${err}`);
+    error(`Error retriving ${project}: ${err}`);
     res.status(500).json({
       message: 'Invalid ID',
       error: `${err}`,
@@ -145,10 +143,10 @@ export const deleteOneProjectController = async (req: Request, res: Response) =>
     const doc = await deleteOneProjectService(req.params.projectId);
     if (doc) {
       response = {
-        message: `${item} deleted successfully!`,
+        message: `${project} deleted successfully!`,
         request: {
           type: 'DELETE',
-          url: getUrl(req, req.params.projectId),
+          url: useUrl(req, req.params.projectId),
           body: {
             title: 'string',
             url: 'string',
@@ -164,7 +162,7 @@ export const deleteOneProjectController = async (req: Request, res: Response) =>
           },
         },
       }
-      success(`${item} DELETED successfully!`);
+      success(`${project} DELETED successfully!`);
       return res.status(200).json(response);
     } else {
       error('No record found for provided ID');
@@ -173,9 +171,9 @@ export const deleteOneProjectController = async (req: Request, res: Response) =>
       });
     }
   } catch (err) {
-    error(`Error deleting ${item}: ${err}`);
+    error(`Error deleting ${project}: ${err}`);
     res.status(500).json({
-      message: `Error deleting ${item}`,
+      message: `Error deleting ${project}`,
       error: `${err}`,
     });
   }

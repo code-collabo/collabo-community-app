@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import { router as appRouter } from './api/routes/app.route';
 import { router as projectsRouter } from './api/routes/projects.route';
+import { router as requestsInfoRouter } from './info/info.route';
 
 dotenv.config();
 
@@ -16,10 +17,14 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(cors({ origin: [`http://localhost:${process.env.CLIENT_APP_PORT}`, `${process.env.CLIENT_APP_URL}`] }));
 
-//====== Use Routers =======
+//====== API Routers =============
 app.use('/', appRouter);
 app.use('/projects', projectsRouter);
-//==========================
+//================================
+
+//====== Request (help) info Router =======
+app.use('/requests/help/info', requestsInfoRouter);
+//==========================================
 
 interface Error {
   status?: number;
