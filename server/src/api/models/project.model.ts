@@ -5,12 +5,9 @@ export interface ProjectDocument extends Document {
   url: string;
   type: string;
   children: {
-    count: number;
-    list: {
-      title: string;
-      url: string;
-    }[],
-  },
+    title: string;
+    url: string;
+  }[];
   issues: {
     count: number;
     url: string;
@@ -29,10 +26,7 @@ const childRepoDetailsSchema = new Schema(repoDetails);
 const ProjectSchema = new Schema({
   ...repoDetails,
   type: { type: String, required: true },
-  children: {
-    count: { type: Number, required: true },
-    list: [childRepoDetailsSchema],
-  },
+  children: [childRepoDetailsSchema],
   issues: {
     count: { type: Number, required: true },
     url: { type: String, required: true },

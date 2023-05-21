@@ -28,8 +28,8 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
           url: doc.url,
           type: doc.type,
           children: {
-            count: doc.children.count,
-            list: doc.children.list.map((child) => {
+            count: doc.children.length,
+            list: doc.children.map((child) => {
               return {
                 title: child.title,
                 url: child.url,
@@ -68,15 +68,12 @@ export const createOneProjectController = async (req: Request, res: Response) =>
         title: doc.title,
         url: doc.url,
         type: doc.type,
-        children: {
-          count: doc.children.count,
-          list: doc.children.list.map((child) => {
-            return {
-              title: child.title,
-              url: child.url,
-            }
-          }),
-        },
+        children: doc.children.map((child) => {
+          return {
+            title: child.title,
+            url: child.url,
+          }
+        }),
         issues: {
           count: doc.issues.count,
           url: doc.issues.url,
@@ -108,8 +105,8 @@ export const getOneProjectController = async (req: Request, res: Response) => {
         url: doc.url,
         type: doc.type,
         children: {
-          count: doc.children.count,
-          list: doc.children.list.map((child) => {
+          count: doc.children.length,
+          list: doc.children.map((child) => {
             return {
               title: child.title,
               url: child.url,
@@ -156,13 +153,10 @@ export const deleteOneProjectController = async (req: Request, res: Response) =>
             title: 'string',
             url: 'string',
             type: 'string',
-            children: {
-              count: 'number',
-              list: [{
-                title: 'string',
-                url: 'string',
-              }]
-            },
+            children: [{
+              title: 'string',
+              url: 'string',
+            }],
             issues: {
               count: 'number',
               url: 'string',
