@@ -3,25 +3,9 @@ import { getOneProjectService } from '../api/services/projects.service';
 import { success, error } from '../../node-mongo-helpers';
 import { items } from '../helpers/variables';
 import { RequestsHelpInfo, requestsHelpInfo } from './info.requests';
+import { idDoesNotExist } from '../helpers/methods';
 
 let response: RequestsHelpInfo;
-
-const noRecordFound = ({ req, res, item, statusCode, message } : { req: Request; res: Response; item: string; statusCode: number; message: string; }) => {
-  const { requests } = requestsHelpInfo(req, item);
-  const all = (requests.GET.all as Record<string, unknown>);
-  delete requests.GET.all;
-  delete requests.DELETE;
-  return res.status(statusCode).json({
-    message,
-    requests: {
-      GET: {
-        method: requests.GET.method,
-        ...all
-      },
-      POST: requests.POST,
-    }
-  });
-}
 
 export const getOneProjectRequestsInfoController = async (req: Request, res: Response) => {
   const { project } = items;
@@ -33,7 +17,7 @@ export const getOneProjectRequestsInfoController = async (req: Request, res: Res
       return res.status(200).json(response);
     } else {
       error('No record found for provided ID');
-      noRecordFound({
+      idDoesNotExist({
         res,
         req,
         item: project,
@@ -43,7 +27,7 @@ export const getOneProjectRequestsInfoController = async (req: Request, res: Res
     }
   } catch (err) {
     error(`Error retriving ${project} request help info: ${err}`);
-    noRecordFound({
+    idDoesNotExist({
       res,
       req,
       item: project,

@@ -3,7 +3,7 @@ import { useUrl } from '../helpers/methods';
 
 // FUTURE TODO: e.g.another mongoose model will use different request body (adjust the requestsHelpInfo to accomodate different request body shapes when it's time);
 export interface RequestsHelpInfo {
-  info: string;
+  message: string;
   requests: {
     GET: Record<string, unknown>;
     POST: Record<string, unknown>;
@@ -13,7 +13,7 @@ export interface RequestsHelpInfo {
 
 export const requestsHelpInfo = (req: Request, item: string, id?: string): RequestsHelpInfo => {
   return {
-    info: `Info help for making requests to and accessing /${item}s endpoint and /${item}s/${id}`,
+    message: `Info help for making requests to and accessing /${item}s endpoint and /${item}s/${id}`,
     requests: {
       GET: {
         method: 'GET',

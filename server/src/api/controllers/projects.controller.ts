@@ -8,7 +8,7 @@ import {
 } from '../services/projects.service';
 
 import { success, error } from '../../../node-mongo-helpers';
-import { useUrl } from '../../helpers/methods';
+import { idDoesNotExist, useUrl } from '../../helpers/methods';
 import { res, items } from '../../helpers/variables';
 
 const { project } = items;
@@ -38,10 +38,7 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
             count: doc.issues.count,
             url: doc.issues.url,
           },
-          request: {
-            type: 'GET',
-            url: useUrl(req, doc._id)
-          }
+          requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
         }
       })
     };
@@ -76,10 +73,7 @@ export const createOneProjectController = async (req: Request, res: Response) =>
           count: doc.issues.count,
           url: doc.issues.url,
         },
-        request: {
-          type: 'POST',
-          url: useUrl(req, doc._id),
-        },
+        requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
       },
     }
     success(`${project} CREATED successfully!`);
@@ -115,10 +109,7 @@ export const getOneProjectController = async (req: Request, res: Response) => {
           count: doc.issues.count,
           url: doc.issues.url,
         },
-        request: {
-          type: 'GET',
-          url: useUrl(req, doc._id),
-        },
+        requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
       }
       success(`GET request successful!`);
       return res.status(200).json(response);
@@ -142,39 +133,31 @@ export const deleteOneProjectController = async (req: Request, res: Response) =>
   try {
     const doc = await deleteOneProjectService(req.params.projectId);
     if (doc) {
-      response = {
-        message: `${project} deleted successfully!`,
-        request: {
-          type: 'DELETE',
-          url: useUrl(req, req.params.projectId),
-          body: {
-            title: 'string',
-            url: 'string',
-            type: 'string',
-            children: [{
-              title: 'string',
-              url: 'string',
-            }],
-            issues: {
-              count: 'number',
-              url: 'string',
-            },
-          },
-        },
-      }
-      success(`${project} DELETED successfully!`);
-      return res.status(200).json(response);
+      idDoesNotExist({
+        res,
+        req,
+        item: project,
+        statusCode: 200,
+        message: `${project} deleted successfully! Get all ${project}s to find another ${project} id or create a new ${project}`,
+      });
     } else {
       error('No record found for provided ID');
-      return res.status(404).json({
-        message: 'No record found for provided ID',
+      idDoesNotExist({
+        res,
+        req,
+        item: project,
+        statusCode: 404,
+        message: `No record found for provided ID, try getting all ${project}s to find a correct ${project} id or create a new ${project}`,
       });
     }
   } catch (err) {
     error(`Error deleting ${project}: ${err}`);
-    res.status(500).json({
-      message: `Error deleting ${project}`,
-      error: `${err}`,
+    idDoesNotExist({
+      res,
+      req,
+      item: project,
+      statusCode: 500,
+      message: `Error deleting ${project}, try getting all ${project}s to find a valid ${project} id or create a new ${project}`,
     });
   }
 };
