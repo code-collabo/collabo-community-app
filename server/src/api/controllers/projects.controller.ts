@@ -42,7 +42,7 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
           },
           request: {
             type: 'GET',
-            url: getUrl(req)
+            url: getUrl(req, doc._id)
           }
         }
       })
@@ -83,7 +83,7 @@ export const createOneProjectController = async (req: Request, res: Response) =>
         },
         request: {
           type: 'POST',
-          url: getUrl(req),
+          url: getUrl(req, doc._id),
         },
       },
     }
@@ -122,7 +122,7 @@ export const getOneProjectController = async (req: Request, res: Response) => {
         },
         request: {
           type: 'GET',
-          url: getUrl(req),
+          url: getUrl(req, doc._id),
         },
       }
       success(`GET request successful!`);
@@ -151,7 +151,7 @@ export const deleteOneProjectController = async (req: Request, res: Response) =>
         message: `${item} deleted successfully!`,
         request: {
           type: 'DELETE',
-          url: getUrl(req),
+          url: getUrl(req, req.params.projectId),
           body: {
             title: 'string',
             url: 'string',
