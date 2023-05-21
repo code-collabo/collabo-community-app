@@ -6,10 +6,10 @@ export interface ProjectDocument extends mongoose.Document {
   type: string;
   children: {
     count: number;
-    // list: {
-    //   title: string;
-    //   url: string;
-    // }[],
+    list: {
+      title: string;
+      url: string;
+    }[],
   },
   issues: {
     count: number;
@@ -24,16 +24,14 @@ const repoDetails = {
   url: { type: String, required: true },
 }
 
-// const childRepoDetailsSchema = new mongoose.Schema({
-//   ...repoDetails
-// });
+const childRepoDetailsSchema = new mongoose.Schema(repoDetails);
 
 const ProjectSchema = new mongoose.Schema({
   ...repoDetails,
   type: { type: String, required: true },
   children: {
     count: { type: Number, required: true },
-    // list: [childRepoDetailsSchema]
+    list: [childRepoDetailsSchema],
   },
   issues: {
     count: { type: Number, required: true },

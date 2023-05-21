@@ -14,12 +14,12 @@ export const createOneProjectService = async (requestBody: ProjectDocument): Pro
     type: requestBody.type,
     children: {
       count: requestBody.children.count,
-      // list: requestBody.children.list.map((child) => {
-      //   return {
-      //     title: child.title,
-      //     url: child.url,
-      //   }
-      // }),
+      list: requestBody.children.list.map((child) => {
+        return {
+          title: child.title,
+          url: child.url,
+        }
+      }),
     },
     issues: {
       count: requestBody.issues.count,

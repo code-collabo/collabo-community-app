@@ -29,12 +29,12 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
           type: doc.type,
           children: {
             count: doc.children.count,
-            // list: doc.children.list.map((child) => {
-            //   return {
-            //     title: child.title,
-            //     url: child.url,
-            //   }
-            // }),
+            list: doc.children.list.map((child) => {
+              return {
+                title: child.title,
+                url: child.url,
+              }
+            }),
           },
           issues: {
             count: doc.issues.count,
@@ -70,12 +70,12 @@ export const createOneProjectController = async (req: Request, res: Response) =>
         type: doc.type,
         children: {
           count: doc.children.count,
-          // list: doc.children.list.map((child) => {
-          //   return {
-          //     title: child.title,
-          //     url: child.url,
-          //   }
-          // }),
+          list: doc.children.list.map((child) => {
+            return {
+              title: child.title,
+              url: child.url,
+            }
+          }),
         },
         issues: {
           count: doc.issues.count,
@@ -109,12 +109,12 @@ export const getOneProjectController = async (req: Request, res: Response) => {
         type: doc.type,
         children: {
           count: doc.children.count,
-          // list: doc.children.list.map((child) => {
-          //   return {
-          //     title: child.title,
-          //     url: child.url,
-          //   }
-          // }),
+          list: doc.children.list.map((child) => {
+            return {
+              title: child.title,
+              url: child.url,
+            }
+          }),
         },
         issues: {
           count: doc.issues.count,
@@ -158,13 +158,10 @@ export const deleteOneProjectController = async (req: Request, res: Response) =>
             type: 'string',
             children: {
               count: 'number',
-              // list: [
-              //   {
-              //     title: 'string',
-              //     url: 'string',
-              //   },
-              //   //etc.
-              // ]
+              list: [{
+                title: 'string',
+                url: 'string',
+              }]
             },
             issues: {
               count: 'number',
