@@ -1,6 +1,6 @@
 import { ProjectDocument, ProjectModel as Project } from '../models/project.model';
 
-const selectString = '_id title url numOfChild';
+const selectString = '_id title url type children issues';
 
 export const getAllProjectsService = async () => {
   const query = await Project.find().select(selectString).exec();
@@ -11,7 +11,20 @@ export const createOneProjectService = async (requestBody: ProjectDocument): Pro
   const project = new Project({
     title: requestBody.title,
     url: requestBody.url,
-    numOfChild: requestBody.numOfChild
+    type: requestBody.type,
+    children: {
+      count: requestBody.children.count,
+      // list: requestBody.children.list.map((child) => {
+      //   return {
+      //     title: child.title,
+      //     url: child.url,
+      //   }
+      // }),
+    },
+    issues: {
+      count: requestBody.issues.count,
+      url: requestBody.issues.url,
+    },
   });
   const save = await project.save();
   return save;

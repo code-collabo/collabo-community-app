@@ -26,7 +26,20 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
           _id: doc._id,
           title: doc.title,
           url: doc.url,
-          numOfChild: doc.numOfChild,
+          type: doc.type,
+          children: {
+            count: doc.children.count,
+            // list: doc.children.list.map((child) => {
+            //   return {
+            //     title: child.title,
+            //     url: child.url,
+            //   }
+            // }),
+          },
+          issues: {
+            count: doc.issues.count,
+            url: doc.issues.url,
+          },
           request: {
             type: 'GET',
             url: getUrl(req)
@@ -54,7 +67,20 @@ export const createOneProjectController = async (req: Request, res: Response) =>
         _id: doc._id,
         title: doc.title,
         url: doc.url,
-        numOfChild: doc.numOfChild,
+        type: doc.type,
+        children: {
+          count: doc.children.count,
+          // list: doc.children.list.map((child) => {
+          //   return {
+          //     title: child.title,
+          //     url: child.url,
+          //   }
+          // }),
+        },
+        issues: {
+          count: doc.issues.count,
+          url: doc.issues.url,
+        },
         request: {
           type: 'POST',
           url: getUrl(req),
@@ -80,7 +106,20 @@ export const getOneProjectController = async (req: Request, res: Response) => {
         _id: doc._id,
         title: doc.title,
         url: doc.url,
-        numOfChild: doc.numOfChild,
+        type: doc.type,
+        children: {
+          count: doc.children.count,
+          // list: doc.children.list.map((child) => {
+          //   return {
+          //     title: child.title,
+          //     url: child.url,
+          //   }
+          // }),
+        },
+        issues: {
+          count: doc.issues.count,
+          url: doc.issues.url,
+        },
         request: {
           type: 'GET',
           url: getUrl(req),
@@ -116,7 +155,21 @@ export const deleteOneProjectController = async (req: Request, res: Response) =>
           body: {
             title: 'string',
             url: 'string',
-            numOfChild: 'number',
+            type: 'string',
+            children: {
+              count: 'number',
+              // list: [
+              //   {
+              //     title: 'string',
+              //     url: 'string',
+              //   },
+              //   //etc.
+              // ]
+            },
+            issues: {
+              count: 'number',
+              url: 'string',
+            },
           },
         },
       }
