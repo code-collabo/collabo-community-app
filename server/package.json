@@ -1,8 +1,8 @@
 {
-  "name": "server",
+  "name": "collabo-web-app-api-server",
   "version": "1.0.0",
-  "description": "@code-collabo node-mongo API boilerplate template - typescript",
-  "main": "src/server.[atlas/local].ts",
+  "description": "Collabo web app API server built with @code-collabo node-mongo API boilerplate template - typescript",
+  "main": "src/server.atlas.ts",
   "scripts": {
     "dev": "node -r esm node-mongo.js",
     "dev:local": "nodemon --exec ts-node src/server.local.ts",
@@ -12,7 +12,7 @@
     "dev:restore": "node -r esm node-mongo.js",
     "dev:change": "node -r esm node-mongo.js"
   },
-  "author": "Author Name",
+  "author": "Code Collabo",
   "license": "ISC",
   "dependencies": {
     "@code-collabo/node-mongo-scripts": "^1.2.0",
