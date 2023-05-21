@@ -42,7 +42,6 @@ export const requestsHelpInfo = (req: Request, item: string, id?: string): Reque
             'Note: add as many objects (having title and url properties) as you like in this children array'
           ],
           issues: {
-            count: 'number',
             url: 'string',
           },
         },

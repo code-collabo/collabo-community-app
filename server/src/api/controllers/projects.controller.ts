@@ -35,7 +35,6 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
             }),
           },
           issues: {
-            count: doc.issues.count,
             url: doc.issues.url,
           },
           requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
@@ -70,7 +69,6 @@ export const createOneProjectController = async (req: Request, res: Response) =>
           }
         }),
         issues: {
-          count: doc.issues.count,
           url: doc.issues.url,
         },
         requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
@@ -106,7 +104,6 @@ export const getOneProjectController = async (req: Request, res: Response) => {
           }),
         },
         issues: {
-          count: doc.issues.count,
           url: doc.issues.url,
         },
         requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`

@@ -14,7 +14,6 @@ export const createOneProjectService = async (requestBody: ProjectDocument): Pro
     type: requestBody.type,
     children: requestBody.children,
     issues: {
-      count: requestBody.issues.count,
       url: requestBody.issues.url,
     },
   });
