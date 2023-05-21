@@ -1,26 +1,24 @@
 import { Request, Response } from 'express';
 
 import {
-  getAllProjectItemsService,
-  createOneProjectItemService,
-  getOneProjectItemService,
-  deleteOneProjectItemService
-} from '../services/project.service';
+  getAllProjectsService,
+  createOneProjectService,
+  getOneProjectService,
+  deleteOneProjectService
+} from '../services/projects.service';
 
 import { success, error } from '../../../node-mongo-helpers';
 
-
-const routeName = 'project';
-const item = `${routeName}-item`;
+const item = 'project';
 
 let response: { [key: string]: unknown } = {};
 
 import { getUrl } from '../../helpers/methods';
 
 
-export const getAllProjectItemsController = async (req: Request, res: Response) => {
+export const getAllProjectsController = async (req: Request, res: Response) => {
   try {
-    const docs = await getAllProjectItemsService();
+    const docs = await getAllProjectsService();
     response = {
       count: docs.length,
       projects: docs.map(doc => {
@@ -47,9 +45,9 @@ export const getAllProjectItemsController = async (req: Request, res: Response) 
 }
 
 
-export const createOneProjectItemController = async (req: Request, res: Response) => {
+export const createOneProjectController = async (req: Request, res: Response) => {
   try {
-    const doc = await createOneProjectItemService(req.body);
+    const doc = await createOneProjectService(req.body);
     response = {
       message: `${item} created successfully!`,
       newItem: {
@@ -74,9 +72,9 @@ export const createOneProjectItemController = async (req: Request, res: Response
 }
 
 
-export const getOneProjectItemController = async (req: Request, res: Response) => {
+export const getOneProjectController = async (req: Request, res: Response) => {
   try {
-    const doc = await getOneProjectItemService(req.params.projectId);
+    const doc = await getOneProjectService(req.params.projectId);
     if (doc) {
       response = {
         _id: doc._id,
@@ -106,9 +104,9 @@ export const getOneProjectItemController = async (req: Request, res: Response) =
 }
 
 
-export const deleteOneProjectItemController = async (req: Request, res: Response) => {
+export const deleteOneProjectController = async (req: Request, res: Response) => {
   try {
-    const doc = await deleteOneProjectItemService(req.params.projectId);
+    const doc = await deleteOneProjectService(req.params.projectId);
     if (doc) {
       response = {
         message: `${item} deleted successfully!`,
