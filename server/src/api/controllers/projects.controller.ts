@@ -175,23 +175,23 @@ export const updateOneProjectController = async (req: Request, res: Response) =>
     const doc = await updateOneProjectService(req.params.projectId, req.body);
     if (doc) {
       response = {
-        _id: doc._id,
-        title: doc.title,
-        url: doc.url,
-        isStandAlone: doc.isStandAlone,
-        children: {
-          count: doc.children.length,
-          list: doc.children.map((child) => {
+        message: `${project} upated successfully!`,
+        newProject: {
+          _id: doc._id,
+          title: doc.title,
+          url: doc.url,
+          isStandAlone: doc.isStandAlone,
+          children: doc.children.map((child) => {
             return {
               title: child.title,
               url: child.url,
             }
           }),
+          issues: {
+            url: doc.issues.url,
+          },
+          requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
         },
-        issues: {
-          url: doc.issues.url,
-        },
-        requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make update requests`
       }
       success(`PATCH request successful!`);
       return res.status(200).json(response);
