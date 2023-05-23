@@ -375,8 +375,10 @@ and false when 'children' array is not empty.
   },
 }
 
-NOTE:'isStandAlone' property is automatically
-updated on the backend based on the 'children' property.
+NOTE:'isStandAlone' property is automatically updated on the backend
+based on the 'children' property.
+Hence, it is not required during creating (POST) and updating (PATCH)
+
 it is true when 'children' array is empty 
 and false when 'children' array is not empty.
 </pre>
