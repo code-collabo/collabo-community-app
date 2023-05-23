@@ -8,6 +8,7 @@ Work is ongoing in the following areas:
 
 #
 **Progress:** Follow the development progress through the [Q2 Project Board](https://github.com/orgs/code-collabo/projects/1/views/6).
+#
 
 # Server and API
 
@@ -86,9 +87,9 @@ npm run dev:local
 |METHOD /endpoint|Description|Request body|
 |--|--|:--:|
 |GET /projects|Get all project items in the database| No Request Body |
-|POST /projects|Create/add a new project item to the database|title, url, numOfChild|
+|POST /projects|Create/add a new project item to the database|title, url, children, issues (all are required)|
 |DELETE /projects/:projectId|Delete a project item from the database by its ID|No request body|
-|PATCH /projects/:projectId|Update a project item stored in the database by its ID|No Request Body|
+|PATCH /projects/:projectId|Update a project item stored in the database by its ID|title, url, children, issues (all are not necessarily required)|
 
 ## API call requests and responses
 
