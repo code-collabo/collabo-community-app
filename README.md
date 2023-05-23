@@ -88,6 +88,7 @@ npm run dev:local
 |--|--|:--:|
 |GET /projects|Get all project items in the database| No Request Body |
 |POST /projects|Create/add a new project item to the database|title, url, children, issues (all are required)|
+|GET /projects/:projectId|Get a project item from the database by its ID|No request body|
 |DELETE /projects/:projectId|Delete a project item from the database by its ID|No request body|
 |PATCH /projects/:projectId|Update a project item stored in the database by its ID|title, url, children, issues (all are not necessarily required)|
 
@@ -202,6 +203,48 @@ and false when 'children' array is not empty.
 
 
 
+
+<details>
+<summary>GET /projects/:projectId</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+No request body
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "_id": "string",
+    "title": "string",
+    "url": "string",
+    "isStandAlone": boolean,
+    "children": {
+        "count": number,
+        "list": [
+            {
+                "title": "string",
+                "url": "string"
+            }
+            // etc ...
+        ]
+    },
+    "issues": {
+        "url": "string"
+    },
+    "requests": "string"
+}
+
+NOTE: 'isStandAlone' property is true when 'children' array is empty 
+and false when 'children' array is not empty.
+</pre>
+</details>
+
+
+
+
 <details>
 <summary>DELETE /projects/:projectId</summary>
 <br/>
@@ -306,6 +349,35 @@ NOTE: you will notice that 'isStandAlone' property is automatically
 updated on the backend based on the 'children' property
 
 NOTE: 'isStandAlone' is true when 'children' array is empty 
+and false when 'children' array is not empty.
+</pre>
+</details>
+
+#
+
+## Schema Structures
+<details>
+<summary>Project Schema</summary>
+<pre>
+{
+  "title": "string",
+  "url": "string",
+  "isStandAlone": boolean,
+  "children": [
+      {
+          "title": "string",
+          "url": "string"
+      },
+      // etc ...
+  ],
+  "issues": {
+      "url": "string"
+  },
+}
+
+NOTE:'isStandAlone' property is automatically
+updated on the backend based on the 'children' property.
+it is true when 'children' array is empty 
 and false when 'children' array is not empty.
 </pre>
 </details>
