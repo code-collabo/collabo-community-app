@@ -24,7 +24,7 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
           _id: doc._id,
           title: doc.title,
           url: doc.url,
-          type: doc.type,
+          isStandAlone: doc.isStandAlone,
           children: {
             count: doc.children.length,
             list: doc.children.map((child) => {
@@ -61,7 +61,7 @@ export const createOneProjectController = async (req: Request, res: Response) =>
         _id: doc._id,
         title: doc.title,
         url: doc.url,
-        type: doc.type,
+        isStandAlone: doc.isStandAlone,
         children: doc.children.map((child) => {
           return {
             title: child.title,
@@ -93,7 +93,7 @@ export const getOneProjectController = async (req: Request, res: Response) => {
         _id: doc._id,
         title: doc.title,
         url: doc.url,
-        type: doc.type,
+        isStandAlone: doc.isStandAlone,
         children: {
           count: doc.children.length,
           list: doc.children.map((child) => {
@@ -158,3 +158,55 @@ export const deleteOneProjectController = async (req: Request, res: Response) =>
     });
   }
 };
+
+
+
+
+
+
+
+
+
+
+///////////////////////// EXAMPLE FOR UPDATE /////////////////////////////////
+import { updateOneProjectService } from '../services/projects.service';
+export const updateOneProjectController = async (req: Request, res: Response) => {
+  try {
+    const doc = await updateOneProjectService(req.params.projectId, req.body);
+    if (doc) {
+      response = {
+        _id: doc._id,
+        title: doc.title,
+        url: doc.url,
+        isStandAlone: doc.isStandAlone,
+        children: {
+          count: doc.children.length,
+          list: doc.children.map((child) => {
+            return {
+              title: child.title,
+              url: child.url,
+            }
+          }),
+        },
+        issues: {
+          url: doc.issues.url,
+        },
+        requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make update requests`
+      }
+      success(`PATCH request successful!`);
+      return res.status(200).json(response);
+    } else {
+      error('No record found for provided ID');
+      return res.status(404).json({
+        message: 'No record found for provided ID',
+      });
+    }
+  } catch (err) {
+    error(`Error retriving ${project}: ${err}`);
+    res.status(500).json({
+      message: 'Invalid ID',
+      error: `${err}`,
+    });
+  }
+}
+//////////////////////////////////////////////////////////////////////////////

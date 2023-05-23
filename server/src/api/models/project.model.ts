@@ -3,7 +3,7 @@ import { Schema, Document, model } from 'mongoose';
 export interface ProjectDocument extends Document {
   title: string;
   url: string;
-  type: string;
+  isStandAlone?: boolean;
   children: {
     title: string;
     url: string;
@@ -24,7 +24,7 @@ const childRepoDetailsSchema = new Schema(repoDetails);
 
 const ProjectSchema = new Schema({
   ...repoDetails,
-  type: { type: String, required: true },
+  isStandAlone: { type: Boolean, required: true },
   children: [childRepoDetailsSchema],
   issues: {
     url: { type: String, required: true },
