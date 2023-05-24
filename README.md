@@ -360,11 +360,13 @@ and false when 'children' array is not empty.
 <summary>Project Schema</summary>
 <pre>
 {
+  "_id": "string"
   "title": "string",
   "url": "string",
   "isStandAlone": boolean,
   "children": [
       {
+          "_id": "string"
           "title": "string",
           "url": "string"
       },
