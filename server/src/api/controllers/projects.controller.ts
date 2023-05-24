@@ -29,6 +29,7 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
             count: doc.children.length,
             list: doc.children.map((child) => {
               return {
+                _id: child._id,
                 title: child.title,
                 url: child.url,
               }
@@ -38,6 +39,54 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
             url: doc.issues.url,
           },
           requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
+        }
+      })
+    };
+    success(`GET request successful!`);
+    return res.status(200).json(response);
+  } catch (err) {
+    error(`Error retriving ${project}s: ${err}`);
+    res.status(500).json({
+      error: `${err}`
+    });
+  }
+}
+
+
+export const getAllChildrenProjectsController = async (req: Request, res: Response) => {
+  try {
+    const docs = await getAllProjectsService();
+    const allChildrenProjects : {
+      _id: string;
+      title: string;
+      url: string;
+    }[] = [];
+    docs.forEach(parentProj => {
+      if(parentProj.isStandAlone){
+        allChildrenProjects.push({
+          _id: parentProj._id,
+          title: parentProj.title,
+          url: parentProj.url
+        });
+      }
+      else{
+        parentProj.children.forEach(childProj => {
+          allChildrenProjects.push({
+            _id: childProj._id,
+            title: childProj.title,
+            url: childProj.url
+          });
+        })
+      }
+    })
+
+    response = {
+      count: allChildrenProjects.length,
+      projects: allChildrenProjects.map(childProject => {
+        return {
+          _id: childProject._id,
+          title: childProject.title,
+          url: childProject.url,
         }
       })
     };
@@ -64,6 +113,7 @@ export const createOneProjectController = async (req: Request, res: Response) =>
         isStandAlone: doc.isStandAlone,
         children: doc.children.map((child) => {
           return {
+            _id: child._id,
             title: child.title,
             url: child.url,
           }
@@ -98,6 +148,7 @@ export const getOneProjectController = async (req: Request, res: Response) => {
           count: doc.children.length,
           list: doc.children.map((child) => {
             return {
+              _id: child._id,
               title: child.title,
               url: child.url,
             }
@@ -183,6 +234,7 @@ export const updateOneProjectController = async (req: Request, res: Response) =>
           isStandAlone: doc.isStandAlone,
           children: doc.children.map((child) => {
             return {
+              _id: child._id,
               title: child.title,
               url: child.url,
             }

@@ -87,6 +87,7 @@ npm run dev:local
 |METHOD /endpoint|Description|Request body|
 |--|--|:--:|
 |GET /projects|Get all project items in the database| No Request Body |
+|GET /projects/children|Get all child and stand alone projects together |No request body|
 |POST /projects|Create/add a new project item to the database|title, url, children, issues (all are required)|
 |GET /projects/:projectId|Get a project item from the database by its ID|No request body|
 |DELETE /projects/:projectId|Delete a project item from the database by its ID|No request body|
@@ -118,6 +119,7 @@ No request body
                 "count": number,
                 "list": [
                   {
+                    "_id": "string",
                     "title": "string",
                     "url": "string",
                   },
@@ -138,6 +140,32 @@ and false when 'children' array is not empty.
 </pre>
 </details>
 
+
+<details>
+<summary>GET /projects/children</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+No request body
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "count": number,
+    "projects": [
+        {
+            "_id": "string",
+            "title": "string",
+            "url": "string"
+        },
+        //etc ...
+    ]
+}
+</pre>
+</details>
 
 
 <details>
@@ -181,8 +209,9 @@ on the backend based on the 'children' property
         "isStandAlone": boolean,
         "children": [
             {
-                "title": "string",
-                "url": "string"
+              "_id": "string",
+              "title": "string",
+              "url": "string"
             },
             // etc ...
         ],
@@ -225,8 +254,9 @@ No request body
         "count": number,
         "list": [
             {
-                "title": "string",
-                "url": "string"
+              "_id": "string",
+              "title": "string",
+              "url": "string"
             }
             // etc ...
         ]
@@ -333,8 +363,9 @@ on the backend based on the 'children' property
         "isStandAlone": boolean,
         "children": [
             {
-                "title": "string",
-                "url": "string"
+              "_id": "string",
+              "title": "string",
+              "url": "string"
             },
             // etc ...
         ],

@@ -1,10 +1,11 @@
-import { Schema, Document, model } from 'mongoose';
+import { Schema, Document, model} from 'mongoose';
 
 export interface ProjectDocument extends Document {
   title: string;
   url: string;
   isStandAlone?: boolean;
   children: {
+    _id: string;
     title: string;
     url: string;
   }[];
