@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import { router as appRouter } from './api/routes/app.route';
 import { router as projectsRouter } from './api/routes/projects.route';
+import { router as usersRouter } from './api/routes/users.route';
 import { router as requestsInfoRouter } from './info/info.route';
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(cors({ origin: [`http://localhost:${process.env.CLIENT_APP_PORT}`, `${pr
 //====== API Routers =============
 app.use('/', appRouter);
 app.use('/projects', projectsRouter);
+app.use('/users', usersRouter);
 //================================
 
 //====== Request (help) info Router =======
