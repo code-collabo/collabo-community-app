@@ -17,7 +17,7 @@ const collectionName = 'user';
 const UserSchema = new Schema({
   name: {type: String, required: true},
   email: {type: String, required: true, unique: true},
-  password: {type: String, required: true}
+  password: {type: String, required: true},
 },{
   timestamps: true,
 });
@@ -44,7 +44,7 @@ UserSchema.methods.generateToken = function (): string {
   const token = jwt.sign(
     {_id: this._id, name: this.name},
     "my_jwt_secret",
-    {expiresIn: '30d'});
+    {expiresIn: '1h'});
   return token;
 }
 

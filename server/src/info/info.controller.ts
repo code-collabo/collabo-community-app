@@ -10,7 +10,7 @@ let response: RequestsHelpInfo;
 export const getOneProjectRequestsInfoController = async (req: Request, res: Response) => {
   const { project } = items;
   try {
-    const doc = await getOneProjectService(req.params.projectId);
+    const doc = await getOneProjectService(req.params.projectId, req.body);
     if (doc) {
       response = requestsHelpInfo(req, project, doc._id);
       success(`GET request successful!`);

@@ -1,4 +1,4 @@
-import { Schema, Document, model } from 'mongoose';
+import mongoose, { Schema, Document, model } from 'mongoose';
 
 export interface ProjectDocument extends Document {
   title: string;
@@ -10,7 +10,8 @@ export interface ProjectDocument extends Document {
   }[];
   issues: {
     url: string;
-  }
+  };
+  createdBy: string;
 }
 
 const collectionName = 'project';
@@ -28,7 +29,8 @@ const ProjectSchema = new Schema({
   children: [childRepoDetailsSchema],
   issues: {
     url: { type: String, required: true },
-  }
+  },
+  createdBy: {type: mongoose.Types.ObjectId, ref: "user", required: true},
 });
 
 const ProjectModel = model<ProjectDocument>(collectionName, ProjectSchema); //declare collection name only once to allow mongoose to pluralize or add 's' to the collection name

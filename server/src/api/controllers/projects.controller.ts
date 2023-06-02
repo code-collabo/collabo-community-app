@@ -14,9 +14,11 @@ import { res, items } from '../../helpers/variables';
 const { project } = items;
 let response = res;
 
+
+
 export const getAllProjectsController = async (req: Request, res: Response) => {
   try {
-    const docs = await getAllProjectsService();
+    const docs = await getAllProjectsService(req.user);
     response = {
       count: docs.length,
       projects: docs.map(doc => {
@@ -37,6 +39,7 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
           issues: {
             url: doc.issues.url,
           },
+          createdBy: doc.createdBy,
           requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
         }
       })
@@ -54,7 +57,7 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
 
 export const createOneProjectController = async (req: Request, res: Response) => {
   try {
-    const doc = await createOneProjectService(req.body);
+    const doc = await createOneProjectService(req.body, req.user);
     response = {
       message: `${project} created successfully!`,
       newProject: {
@@ -71,6 +74,7 @@ export const createOneProjectController = async (req: Request, res: Response) =>
         issues: {
           url: doc.issues.url,
         },
+        createdBy: doc.createdBy,
         requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
       },
     }
@@ -87,7 +91,7 @@ export const createOneProjectController = async (req: Request, res: Response) =>
 
 export const getOneProjectController = async (req: Request, res: Response) => {
   try {
-    const doc = await getOneProjectService(req.params.projectId);
+    const doc = await getOneProjectService(req.params.projectId, req.user);
     if (doc) {
       response = {
         _id: doc._id,
@@ -106,6 +110,7 @@ export const getOneProjectController = async (req: Request, res: Response) => {
         issues: {
           url: doc.issues.url,
         },
+        createdBy: doc.createdBy,
         requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
       }
       success(`GET request successful!`);
@@ -128,7 +133,7 @@ export const getOneProjectController = async (req: Request, res: Response) => {
 
 export const deleteOneProjectController = async (req: Request, res: Response) => {
   try {
-    const doc = await deleteOneProjectService(req.params.projectId);
+    const doc = await deleteOneProjectService(req.params.projectId, req.user);
     if (doc) {
       idDoesNotExist({
         res,

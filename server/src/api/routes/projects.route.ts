@@ -6,11 +6,15 @@ import {
   deleteOneProjectController
 } from '../controllers/projects.controller';
 
+import {
+  authenticateMiddleware,
+} from '../middleware/authenticate'
+
 const router: IRouter = express.Router();
 
-router.get('/', getAllProjectsController);
-router.post('/', createOneProjectController);
-router.get('/:projectId', getOneProjectController);
-router.delete('/:projectId', deleteOneProjectController);
+router.get('/', authenticateMiddleware, getAllProjectsController);
+router.post('/', authenticateMiddleware, createOneProjectController);
+router.get('/:projectId', authenticateMiddleware, getOneProjectController);
+router.delete('/:projectId', authenticateMiddleware, deleteOneProjectController);
 
 export { router };
