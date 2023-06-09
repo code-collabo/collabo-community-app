@@ -1,0 +1,16 @@
+.header{
+  display: flex; 
+   width: 500px;
+   margin: 50px;
+}
+
+.projects{
+  display: flex;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.filter{
+    display: flex;
+     
+}
