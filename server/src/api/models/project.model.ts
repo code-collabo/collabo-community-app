@@ -35,7 +35,7 @@ export interface ProjectDocument extends Document {
 const collectionName = 'project';
 
 const repoDetails = {
-  title: { type: String, required: true, unique: true },
+  title: { type: String, required: true, unique: true, sparse:true },
   url: { type: String, required: true },
   interest: {type: [String], required: true},
   skills: {type: [String], required: true},
