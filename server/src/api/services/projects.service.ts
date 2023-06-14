@@ -35,58 +35,29 @@ export const getOneProjectService = async (paramsId: string) => {
 }
 
 export const updateOneProjectService = async (paramsId: string, requestBody: ProjectDocument) => {
-
-  // const query = await Project.findOneAndUpdate({ _id: paramsId }, { $set: requestBody }, { new: true, runValidators: true }).exec();
   const query = await Project.findOne({ _id: paramsId }).exec();
   const project = query as ProjectDocument;
 
-  // interface objDoc {
-  //   name: string;
-  //   age: number;
-  //   class: string;
-  // }
-  // const obj: objDoc = {
-  //   name: "samuko",
-  //   age: 23,
-  //   class: "level4"
-  // }
+  if(requestBody.title) project.title = requestBody.title;
+  if(requestBody.url) project.url = requestBody.url;
+  if(requestBody.issue) project.issue = requestBody.issue;
+  if(requestBody.img) project.img = requestBody.img;
+  if(requestBody.interest) project.interest = requestBody.interest;
+  if(requestBody.skills) project.skills = requestBody.skills;
+  if(requestBody.children) project.children = requestBody.children;
 
-  // const obj2: objDoc = {
-  //   name: "",
-  //   age: 0,
-  //   class: ""
-  // }
-
-  // Object.keys(obj).forEach(key => {
-  //   const prop = key as keyof objDoc;
-  //   obj2[prop] = obj[prop];
-  // });
-
-  // console.log(obj2);
-
-  // let prop: keyof ProjectDocument;
-  // // type T = keyof typeof requestBody;
-  // Object.keys(requestBody).forEach(key => {
-  //   if (key){
-  //     const prop = key as keyof ProjectDocument;
-  //     project[prop] = requestBody[prop];
-  //   }
-  // });
-
-  
-  project.title = requestBody.title;
-  project.url = requestBody.url;
-  project.issue = requestBody.issue;
-  project.img = requestBody.img;
-  project.interest = requestBody.interest;
-  project.skills = requestBody.skills;
-  project.children = requestBody.children;
-
-  const save = await project.save();
+  const save = project.save();
   return save;
-}
+};
 
 export const deleteOneProjectService = async (paramsId: string) => {
   const query = await Project.findOneAndDelete({ _id: paramsId }).exec();
   return query;
 }
+
+////////////////////////////////////////////////////////////
+export const deleteAllProjectService = async () => {
+  const query = await Project.deleteMany().exec();
+  return query;
+}
+////////////////////////////////////////////////////////////

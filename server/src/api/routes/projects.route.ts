@@ -15,4 +15,11 @@ router.post('/', createOneProjectController);
 router.patch('/:projectId', updateOneProjectController);
 router.delete('/:projectId', deleteOneProjectController);
 
+///////////////////////////////////////////////////////////
+import {
+  deleteAllProjectController,
+} from '../controllers/projects.controller';
+router.delete('/', deleteAllProjectController);
+//////////////////////////////////////////////////////////
+
 export { router };

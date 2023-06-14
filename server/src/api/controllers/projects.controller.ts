@@ -72,8 +72,6 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
       queryObj.skills = {$all: (skills as string).split(',')};
     }
 
-    // console.log(queryObj);
-
     const docs = await getAllProjectsService(queryObj);
     response = {
       count: docs.length,
@@ -158,38 +156,30 @@ export const getOneProjectController = async (req: Request, res: Response) => {
 export const updateOneProjectController = async (req: Request, res: Response) => {
   try {
     const doc = await updateOneProjectService(req.params.projectId, req.body);
-  
-    if (doc) {
-      response = {
-        message: `${project} upated successfully!`,
-        project: {
-          _id: doc._id,
-          title: doc.title,
-          url: doc.url,
-          issue: doc.issue,
-          img: doc.img,
-          interest: doc.interest,
-          skills: doc.skills,
-          children: doc.children.map((child) => {
-            return {
-              _id: child._id,
-              title: child.title,
-              url: child.url,
-              interest: child.interest,
-              skills: child.skills,
-            }
-          }),
-          requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
-        },
-      }
-      success(`PATCH request successful!`);
-      return res.status(200).json(response);
-    } else {
-      error('No record found for provided ID');
-      return res.status(404).json({
-        message: 'No record found for provided ID',
-      });
-    }
+    response = {
+      message: `${project} created successfully!`,
+      project: {
+        _id: doc._id,
+        title: doc.title,
+        url: doc.url,
+        issue: doc.issue,
+        img: doc.img,
+        interest: doc.interest,
+        skills: doc.skills,
+        children: doc.children.map((child) => {
+          return {
+            _id: child._id,
+            title: child.title,
+            url: child.url,
+            interest: child.interest,
+            skills: child.skills,
+          }
+        }),
+        requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
+      },
+    };
+    success(`${project} UPDATED successfully!`);
+    return res.status(201).json(response);
   } catch (err) {
     error(`Error retriving ${project}: ${err}`);
     res.status(500).json({
@@ -233,3 +223,27 @@ export const deleteOneProjectController = async (req: Request, res: Response) =>
     });
   }
 };
+
+
+/////////////////////////////////////////////////////
+import {
+  deleteAllProjectService,
+} from '../services/projects.service';
+
+export const deleteAllProjectController = async (req: Request, res: Response) => {
+  try {
+    const doc = await deleteAllProjectService();
+    response = {
+      message: `All ${doc.deletedCount} ${project} deleted successfully!`,
+    };
+    success(`All ${doc.deletedCount} ${project} deleted successfully!`);
+    return res.status(201).json(response);
+  } catch (err) {
+    error(`Error Deleting All ${project}: ${err}`);
+    res.status(500).json({
+      message: `Error Deleting All ${project}`,
+      error: `${err}`,
+    });
+  }
+};
+////////////////////////////////////////////////////////

@@ -15,7 +15,6 @@ export const checkInclude = (arrToCheckAgainst: string[], arr: string[]): boolea
 }
 ///////////////////////////////////////////////////////////
 
-
 export interface ProjectDocument extends Document {
   _id: string;
   title: string;
@@ -57,31 +56,34 @@ ProjectSchema.pre("save", function(next){
 
   // check if data in the doc interest array is included in the interest filter array
   if (!checkInclude(interestFilterArr, this.interest)){
-    throw new Error('VALUE(S) provided is not supported for the interest property');
+    throw new Error('VALUE(S) provided is not supported for the parent interest property');
   }
 
   // check if data in the doc skillset array is included in the skillset filter array
   if (!checkInclude(skillSetFilterArr, this.skills)){
-    throw new Error('VALUE(S) provided is not supported for the skills property');
+    throw new Error('VALUE(S) provided is not supported for the parent skills property');
   }
 
   if (this.children.length != 0){
+    let idx = 0;
     this.children.forEach(child => {
-
       // check if data in the child interest array is included in the parent interest array
       if (!checkInclude(this.interest, child.interest)){
-        throw new Error('VALUE(S) provided is not supported for the child interest property');
+        throw new Error(`VALUE(S) provided is not supported for the child[${idx}] interest property`);
       }
 
       // check if data in the child skillset array is included in the parent skillset array
       if (!checkInclude(this.skills, child.skills)){
-        throw new Error('VALUE(S) provided is not supported for the child skills property');
+        throw new Error(`VALUE(S) provided is not supported for the child[${idx}] skills property`);
       }
+
+      idx += 1;
     });
   }
 
   return next(); // proceeds to saving the document
 })
+
 
 const ProjectModel = model<ProjectDocument>(collectionName, ProjectSchema); //declare collection name only once to allow mongoose to pluralize or add 's' to the collection name
 
