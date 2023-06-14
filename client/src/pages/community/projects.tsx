@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { app } from '@/helpers/common';
 import Head from 'next/head';
-import { Button } from "react-bootstrap";
 import { Project } from './../../model/project';
 import ProjectCard from "../../components/ProjectCard";
-import styles from "../../styles/modules/project.module.css"
+import styles from "../../styles/modules/project.module.css";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -40,8 +39,7 @@ useEffect(() => {
         <h1 className={styles.header}>Projects</h1>
         <div className={styles.options}>
          <div className={styles.btns}>
-        <Button>Parent projects</Button>
-        <Button>Child Projects</Button>
+        
         </div>
         <div className={styles.filters}>
          <h3>Filter By:</h3> 
@@ -61,27 +59,3 @@ useEffect(() => {
 
 
 
-
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   
-
-
-//   console.log("Users state:", users);
-
-//   return (
-//     <>
-//       <div className="App">
-      
-//         <p>teryueihhj</p>
-//         {users.map(user => {
-//           return <UserCard user={user} key={user._id} />;
-//         })}
-//       </div>
-//     </>
-//   );
-// }
-
-// export default App;
