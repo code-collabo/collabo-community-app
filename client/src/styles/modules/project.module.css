@@ -8,7 +8,7 @@
   border-radius: 30px;
   margin: 20px;   
   box-shadow: 9px 9px 20px rgba(0, 0, 0, 0.15);
-}  */
+/* }  
 .projectContainer {
     height: 100vh;
     width: 147vh;
@@ -46,17 +46,16 @@
     padding: 17px 13px;
     margin-top: 50px;
     gap: 8px;
-    width: 350px; /* Adjust the width based on your design */
-    height: 150px; /* Adjust the height based on your design */
+    width: 350px; /* Adjust the width based on your design 
+    height: 150px; /* Adjust the height based on your design 
     border: 1px solid grey;
     border-radius: 20px;
     background: rgb(252, 250, 250);
-    /* Add any other necessary styles */
+    /* Add any other necessary styles 
     transition: all ease-out 0.5s;
   }
 
   .btns{
-  
     display: flex;
     justify-content: space-between;
     gap: 60px;
@@ -103,7 +102,7 @@
 .img{
     width: 150px;
     height: 150px;
-    /* background: url(../../images/picturetwo.png); */
+
     border-radius: 10px;    
     
 }
@@ -124,17 +123,16 @@
 
 .userTitle{
     width: 240px;
-    height: 24px;
-    
+    height: 24px;    
 
-    /* Sub Header/2/B */
+    /* Sub Header/2/B 
     
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 20px;
-    /* Neutral/500 */
+    /* Neutral/500 
     
     color: #080808;
 }
@@ -143,7 +141,7 @@
     width: 90px;
     height: 34px;
     
-    /* Small Text/R */
+    /* Small Text/R 
     top: 100px;
     bottom: 90px;
     font-family: 'Open Sans';
@@ -151,10 +149,10 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 19px;
-    /* identical to box height */
+    /* identical to box height 
     text-decoration-line: underline;
 
-/* Primary/150 */
+/* Primary/150 
 
 color: #0275D8;
 
@@ -165,7 +163,7 @@ color: #0275D8;
     width: 63px;
     height: 18px;
     text-decoration: none;
-    /* Small Text/SB */
+    /* Small Text/SB 
     
     font-family: 'Open Sans';
     font-style: normal;
@@ -173,7 +171,7 @@ color: #0275D8;
     font-size: 14px;
     line-height: 16px;
     
-    /* Neutral/500 */
+    /* Neutral/500 
     
     color: #080808;
 }
@@ -204,50 +202,10 @@ color: #0275D8;
     font-size: 14px;
   font-size: 10px;
   text-decoration: none;
-}
-
-
-
-.Button{ 
-    width: 190px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  
-}
-
-/* .btn{
-    display: flex;
-    border: 5px solid;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 18px;
-    gap: 8px;
-    width: 80px;
-    height: 80px;
-    
-    
-    background: #171717;
-    border-radius: 40px;
-    
-
-    
-    flex: none;
-    order: 1;
-    flex-grow: 0;
 } */
 
-.arrow{
-padding: 17px;
-width: 17px;
-height: 20px;
 
-border-radius: 50%;
-/* Shades/white */
 
-background: black;
-/* transform: rotate(180deg); */
-}
 
 
 /* C:\Users\user\Documents\Dev(frontend)\Web-app\web-app\client\src\ */

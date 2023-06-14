@@ -1,4 +1,4 @@
-
+/* 
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
 
 .container{
@@ -38,7 +38,7 @@
    
    text-align: center;
    padding: 3%;
-   border-radius: 10px; */
+   border-radius: 10px; 
 
 display: flex;
 flex-direction: row;
@@ -57,10 +57,10 @@ font-weight: 700;
 
 /* Primary/150 */
 
-/* background: #0275D8; */
+/* background: #0275D8; 
 border-radius: 10px;
 background-color: white;
-/* Inside auto layout */
+/* Inside auto layout 
 
 flex: none;
 order: 0;
@@ -72,4 +72,4 @@ flex-grow: 0;
   color: white;
 }
 
-
+ */
