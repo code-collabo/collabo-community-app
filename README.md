@@ -86,17 +86,120 @@ npm run dev:local
 
 |METHOD /endpoint|Description|Request body|
 |--|--|:--:|
-|GET /projects|Get all project items in the database| No Request Body |
-|GET /projects/children|Get all child and stand alone projects together |No request body|
-|POST /projects|Create/add a new project item to the database|title, url, children, issues (all are required)|
+|POST /projects|Create/add a new project item to the database|title, url, img, children, issues, interest, skills (all are required)|
+|GET /projects|Get all project items in the database (you can also filter by interest and(or) by skills)| No Request Body |
 |GET /projects/:projectId|Get a project item from the database by its ID|No request body|
+|PATCH /projects/:projectId|Update a project item stored in the database by its ID|title, url, img, children, issues, interest, skills (all are not necessarily required)|
 |DELETE /projects/:projectId|Delete a project item from the database by its ID|No request body|
-|PATCH /projects/:projectId|Update a project item stored in the database by its ID|title, url, children, issues (all are not necessarily required)|
+|DELETE /projects|Delete all projects in the database|No request body|
+
+<br/>
+
+## Filter Data
+
+<details>
+<summary>Filter Data Options (By interest or By skills)</summary>
+<br/>
+<pre>
+{
+  "interests":[
+    "Coding",
+    "UI/UX Design",
+    "Technical Writing"
+  ],
+  "skillset":[
+    "Github",
+    "Gitbook",
+    "Figma",
+    "Javascript",
+    "Typescript",
+    "React(Nextjs)",
+    "MongoDB",
+    "Nodejs",
+    "Angular"
+  ]
+}
+</pre>
+</details>
+
+<br/>
 
 ## API call requests and responses
 
 <details>
-<summary>GET /projects</summary>
+<summary>POST /projects</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+  {
+    "title": "string",
+    "url": "string",
+    "issue": "string",
+    "img": "string",
+    "interest": ["string", ...],
+    "skills": ["string", ...],
+    "children": [
+        {
+          "title": "string",
+          "url": "string",
+          "interest": ["string", ...],
+          "skills": ["string", ...]
+        },
+        // etc.
+    ]
+  }
+
+NOTE: all properties are required.
+
+NOTE: 'children' array can be empty or not.
+
+NOTE: values of interest and skills must match values 
+of that of the interest an skillSet filterData.
+
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "message": "string",
+    "project": {
+        "_id": "string",
+        "title": "string",
+        "url": "string",
+        "issue": "string",
+        "img": "string",
+        "interest": [
+            "string",
+            ...
+        ],
+        "skills": [
+            "string",
+            ...
+        ],
+        "children": [
+            "title": "string",
+            "url": "string",
+            "interest": [
+                "string",
+                ...
+            ],
+            "skills": [
+                "string",
+                ...
+            ],
+        ],
+        "requests": "string"
+    }
+}
+</pre>
+</details>
+
+
+
+<details>
+<summary>GET /projects   or   GET /projects?interest=Coding,UI/UX Design, ...&skills=Github,Javascript, ...</summary>
 <br/>
     <b>Request body shape</b>
     <br/><br/>
@@ -114,119 +217,43 @@ No request body
             "_id": "string",
             "title": "string",
             "url": "string",
-            "isStandAlone": boolean,
+            "issue": "string",
+            "img": "string",
+            "interest": [
+                "string",
+                ...
+            ],
+            "skills": [
+                "String",
+                ...
+            ],
             "children": {
                 "count": number,
                 "list": [
-                  {
-                    "_id": "string",
-                    "title": "string",
-                    "url": "string",
-                  },
-                  // etc ...
+                    {
+                        "_id": "string",
+                        "title": "string",
+                        "url": "string",
+                        "interest": [
+                            "string",
+                            ...
+                        ],
+                        "skills": [
+                            "string",
+                            ...
+                        ]
+                    },
+
+                    // etc.
                 ]
-            },
-            "issues": {
-                "url": "string"
             },
             "requests": "string"
         },
-        // etc ...
+        
+        // etc.
     ]
 }
 
-NOTE: 'isStandAlone' property is true when 'children' array is empty 
-and false when 'children' array is not empty.
-</pre>
-</details>
-
-
-<details>
-<summary>GET /projects/children</summary>
-<br/>
-    <b>Request body shape</b>
-    <br/><br/>
-<pre>
-No request body
-</pre>
-<br/>
-     <b>Successful response shape</b>
-    <br/><br/>
-<pre>
-{
-    "count": number,
-    "projects": [
-        {
-            "_id": "string",
-            "title": "string",
-            "url": "string"
-        },
-        //etc ...
-    ]
-}
-</pre>
-</details>
-
-
-<details>
-<summary>POST /projects</summary>
-<br/>
-    <b>Request body shape</b>
-    <br/><br/>
-<pre>
-{
-    "title": "string",
-    "url": "string",
-    "children": [
-        {
-            "title": "string",
-            "url": "string"
-        },
-        // etc ...
-    ],
-    "issues": {
-        "url": "string"
-    }
-}
-
-NOTE: all properties are required.
-
-NOTE: 'children' array can be empty or not.
-
-NOTE: 'isStandAlone' property is automatically updated 
-on the backend based on the 'children' property
-</pre>
-<br/>
-     <b>Successful response shape</b>
-    <br/><br/>
-<pre>
-{
-    "message": "string",
-    "newProject": {
-        "_id": "string",
-        "title": "string",
-        "url": "string",
-        "isStandAlone": boolean,
-        "children": [
-            {
-              "_id": "string",
-              "title": "string",
-              "url": "string"
-            },
-            // etc ...
-        ],
-        "issues": {
-            "url": "string"
-        },
-        "requests": "string"
-    }
-}
-
-NOTE: you will notice that 'isStandAlone' property is automatically
-updated on the backend based on the 'children' property
-
-NOTE: 'isStandAlone' is true when 'children' array is empty 
-and false when 'children' array is not empty.
 </pre>
 </details>
 
@@ -249,29 +276,109 @@ No request body
     "_id": "string",
     "title": "string",
     "url": "string",
-    "isStandAlone": boolean,
-    "children": {
-        "count": number,
-        "list": [
-            {
-              "_id": "string",
-              "title": "string",
-              "url": "string"
-            }
-            // etc ...
-        ]
-    },
-    "issues": {
-        "url": "string"
-    },
+    "issue": "string",
+    "img": "string",
+    "interest": [
+        "string",
+        ...
+    ],
+    "skills": [
+        "string",
+        ...
+    ],
+    "children": [
+        {
+            "_id": "string",
+            "title": "string",
+            "url": "string",
+            "interest": [
+                "string",
+                ...
+            ],
+            "skills": [
+                "string",
+                ...
+            ]
+        },
+        
+        // etc.
+    ],
     "requests": "string"
 }
 
-NOTE: 'isStandAlone' property is true when 'children' array is empty 
-and false when 'children' array is not empty.
 </pre>
 </details>
 
+
+
+<details>
+<summary>PATCH /projects/:projectId</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+{
+    "title": "string",
+    "url": "string",
+    "issue": "string",
+    "img": "string",
+    "interest": ["string", ...],
+    "skills": ["string", ...],
+    "children": [
+        {
+          "title": "string",
+          "url": "string",
+          "interest": ["string", ...],
+          "skills": ["string", ...]
+        },
+        // etc.
+    ]
+  }
+
+NOTE: all properties are not required during update.
+you can choose to update all or any preferred property.
+
+NOTE: values of interest and skills must match values 
+of that of the interest an skillSet filterData.
+
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "message": "string",
+    "project": {
+        "_id": "string",
+        "title": "string",
+        "url": "string",
+        "issue": "string",
+        "img": "string",
+        "interest": [
+            "string",
+            ...
+        ],
+        "skills": [
+            "string",
+            ...
+        ],
+        "children": [
+            "title": "string",
+            "url": "string",
+            "interest": [
+                "string",
+                ...
+            ],
+            "skills": [
+                "string",
+                ...
+            ],
+        ],
+        "requests": "string"
+    }
+}
+</pre>
+</details>
 
 
 
@@ -321,98 +428,20 @@ No request body
 </details>
 
 
-
-
 <details>
-<summary>PATCH /projects/:projectId</summary>
+<summary>DELETE /projects</summary>
 <br/>
     <b>Request body shape</b>
     <br/><br/>
 <pre>
-{
-    "title": "string",
-    "url": "string",
-    "children": [
-        {
-            "title": "string",
-            "url": "string"
-        },
-        // etc ...
-    ],
-    "issues": {
-        "url": "string"
-    }
-}
-
-NOTE: all properties are not required during update.
-you can choose to update all or any preferred property.
-
-NOTE: 'isStandAlone' property is automatically updated 
-on the backend based on the 'children' property
+No request body
 </pre>
 <br/>
      <b>Successful response shape</b>
     <br/><br/>
 <pre>
 {
-    "message": "string",
-    "newProject": {
-        "_id": "string",
-        "title": "string",
-        "url": "string",
-        "isStandAlone": boolean,
-        "children": [
-            {
-              "_id": "string",
-              "title": "string",
-              "url": "string"
-            },
-            // etc ...
-        ],
-        "issues": {
-            "url": "string"
-        },
-        "requests": "string"
-    }
+    "message": "string"
 }
-
-NOTE: you will notice that 'isStandAlone' property is automatically
-updated on the backend based on the 'children' property
-
-NOTE: 'isStandAlone' is true when 'children' array is empty 
-and false when 'children' array is not empty.
-</pre>
-</details>
-
-#
-
-## Schema Structures
-<details>
-<summary>Project Schema</summary>
-<pre>
-{
-  "_id": "string"
-  "title": "string",
-  "url": "string",
-  "isStandAlone": boolean,
-  "children": [
-      {
-          "_id": "string"
-          "title": "string",
-          "url": "string"
-      },
-      // etc ...
-  ],
-  "issues": {
-      "url": "string"
-  },
-}
-
-NOTE:'isStandAlone' property is automatically updated on the backend
-based on the 'children' property.
-Hence, it is not required during creating (POST) and updating (PATCH)
-
-it is true when 'children' array is empty 
-and false when 'children' array is not empty.
 </pre>
 </details>

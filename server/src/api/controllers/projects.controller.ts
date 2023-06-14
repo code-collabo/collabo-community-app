@@ -157,7 +157,7 @@ export const updateOneProjectController = async (req: Request, res: Response) =>
   try {
     const doc = await updateOneProjectService(req.params.projectId, req.body);
     response = {
-      message: `${project} created successfully!`,
+      message: `${project} updated successfully!`,
       project: {
         _id: doc._id,
         title: doc.title,
