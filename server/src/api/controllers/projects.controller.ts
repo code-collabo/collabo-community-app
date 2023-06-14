@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
 
+
 import {
-  getAllProjectsService,
   createOneProjectService,
+  getAllProjectsService,
   getOneProjectService,
-  deleteOneProjectService
+  updateOneProjectService,
+  deleteOneProjectService,
 } from '../services/projects.service';
 
 import { success, error } from '../../../node-mongo-helpers';
@@ -14,9 +16,65 @@ import { res, items } from '../../helpers/variables';
 const { project } = items;
 let response = res;
 
+
+
+export const createOneProjectController = async (req: Request, res: Response) => {
+  try {
+    const doc = await createOneProjectService(req.body);
+    response = {
+      message: `${project} created successfully!`,
+      project: {
+        _id: doc._id,
+        title: doc.title,
+        url: doc.url,
+        issue: doc.issue,
+        img: doc.img,
+        interest: doc.interest,
+        skills: doc.skills,
+        children: doc.children.map((child) => {
+          return {
+            _id: child._id,
+            title: child.title,
+            url: child.url,
+            interest: child.interest,
+            skills: child.skills,
+          }
+        }),
+        requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
+      },
+    };
+    success(`${project} CREATED successfully!`);
+    return res.status(201).json(response);
+  } catch (err) {
+    error(`Error saving ${project}: ${err}`);
+    res.status(500).json({
+      error: `${err}`,
+    });
+  }
+}
+
+
+
+interface QueryObj {
+  interest?: {$all: string[]};
+  skills?: {$all: string[]};
+}
+
 export const getAllProjectsController = async (req: Request, res: Response) => {
   try {
-    const docs = await getAllProjectsService();
+    const {interest, skills} = req.query
+    const queryObj : QueryObj = {};
+
+    if(interest){
+      queryObj.interest = {$all: (interest as string).split(',')};
+    }
+    if(skills){
+      queryObj.skills = {$all: (skills as string).split(',')};
+    }
+
+    // console.log(queryObj);
+
+    const docs = await getAllProjectsService(queryObj);
     response = {
       count: docs.length,
       projects: docs.map(doc => {
@@ -24,7 +82,10 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
           _id: doc._id,
           title: doc.title,
           url: doc.url,
-          isStandAlone: doc.isStandAlone,
+          issue: doc.issue,
+          img: doc.img,
+          interest: doc.interest,
+          skills: doc.skills,
           children: {
             count: doc.children.length,
             list: doc.children.map((child) => {
@@ -32,11 +93,10 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
                 _id: child._id,
                 title: child.title,
                 url: child.url,
+                interest: doc.interest,
+                skills: doc.skills,
               }
             }),
-          },
-          issues: {
-            url: doc.issues.url,
           },
           requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
         }
@@ -53,87 +113,6 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
 }
 
 
-export const getAllChildrenProjectsController = async (req: Request, res: Response) => {
-  try {
-    const docs = await getAllProjectsService();
-    const allChildrenProjects : {
-      _id: string;
-      title: string;
-      url: string;
-    }[] = [];
-    docs.forEach(parentProj => {
-      if(parentProj.isStandAlone){
-        allChildrenProjects.push({
-          _id: parentProj._id,
-          title: parentProj.title,
-          url: parentProj.url
-        });
-      }
-      else{
-        parentProj.children.forEach(childProj => {
-          allChildrenProjects.push({
-            _id: childProj._id,
-            title: childProj.title,
-            url: childProj.url
-          });
-        })
-      }
-    })
-
-    response = {
-      count: allChildrenProjects.length,
-      projects: allChildrenProjects.map(childProject => {
-        return {
-          _id: childProject._id,
-          title: childProject.title,
-          url: childProject.url,
-        }
-      })
-    };
-    success(`GET request successful!`);
-    return res.status(200).json(response);
-  } catch (err) {
-    error(`Error retriving ${project}s: ${err}`);
-    res.status(500).json({
-      error: `${err}`
-    });
-  }
-}
-
-
-export const createOneProjectController = async (req: Request, res: Response) => {
-  try {
-    const doc = await createOneProjectService(req.body);
-    response = {
-      message: `${project} created successfully!`,
-      newProject: {
-        _id: doc._id,
-        title: doc.title,
-        url: doc.url,
-        isStandAlone: doc.isStandAlone,
-        children: doc.children.map((child) => {
-          return {
-            _id: child._id,
-            title: child.title,
-            url: child.url,
-          }
-        }),
-        issues: {
-          url: doc.issues.url,
-        },
-        requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
-      },
-    }
-    success(`${project} CREATED successfully!`);
-    return res.status(201).json(response);
-  } catch (err) {
-    error(`Error saving ${project}: ${err}`);
-    res.status(500).json({
-      error: `${err}`,
-    });
-  }
-}
-
 
 export const getOneProjectController = async (req: Request, res: Response) => {
   try {
@@ -143,23 +122,67 @@ export const getOneProjectController = async (req: Request, res: Response) => {
         _id: doc._id,
         title: doc.title,
         url: doc.url,
-        isStandAlone: doc.isStandAlone,
-        children: {
-          count: doc.children.length,
-          list: doc.children.map((child) => {
+        issue: doc.issue,
+        img: doc.img,
+        interest: doc.interest,
+        skills: doc.skills,
+        children: doc.children.map((child) => {
+          return {
+            _id: child._id,
+            title: child.title,
+            url: child.url,
+            interest: child.interest,
+            skills: child.skills,
+          }
+        }),
+        requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`,
+      };
+      success(`GET request successful!`);
+      return res.status(200).json(response);
+    } else {
+      error('No record found for provided ID');
+      return res.status(404).json({
+        message: 'No record found for provided ID',
+      });
+    }
+  } catch (err) {
+    error(`Error retriving ${project}s: ${err}`);
+    res.status(500).json({
+      error: `${err}`
+    });
+  }
+}
+
+
+
+export const updateOneProjectController = async (req: Request, res: Response) => {
+  try {
+    const doc = await updateOneProjectService(req.params.projectId, req.body);
+  
+    if (doc) {
+      response = {
+        message: `${project} upated successfully!`,
+        project: {
+          _id: doc._id,
+          title: doc.title,
+          url: doc.url,
+          issue: doc.issue,
+          img: doc.img,
+          interest: doc.interest,
+          skills: doc.skills,
+          children: doc.children.map((child) => {
             return {
               _id: child._id,
               title: child.title,
               url: child.url,
+              interest: child.interest,
+              skills: child.skills,
             }
           }),
+          requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
         },
-        issues: {
-          url: doc.issues.url,
-        },
-        requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
       }
-      success(`GET request successful!`);
+      success(`PATCH request successful!`);
       return res.status(200).json(response);
     } else {
       error('No record found for provided ID');
@@ -175,6 +198,7 @@ export const getOneProjectController = async (req: Request, res: Response) => {
     });
   }
 }
+
 
 
 export const deleteOneProjectController = async (req: Request, res: Response) => {
@@ -209,56 +233,3 @@ export const deleteOneProjectController = async (req: Request, res: Response) =>
     });
   }
 };
-
-
-
-
-
-
-
-
-
-
-///////////////////////// EXAMPLE FOR UPDATE /////////////////////////////////
-import { updateOneProjectService } from '../services/projects.service';
-export const updateOneProjectController = async (req: Request, res: Response) => {
-  try {
-    const doc = await updateOneProjectService(req.params.projectId, req.body);
-    if (doc) {
-      response = {
-        message: `${project} upated successfully!`,
-        newProject: {
-          _id: doc._id,
-          title: doc.title,
-          url: doc.url,
-          isStandAlone: doc.isStandAlone,
-          children: doc.children.map((child) => {
-            return {
-              _id: child._id,
-              title: child.title,
-              url: child.url,
-            }
-          }),
-          issues: {
-            url: doc.issues.url,
-          },
-          requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
-        },
-      }
-      success(`PATCH request successful!`);
-      return res.status(200).json(response);
-    } else {
-      error('No record found for provided ID');
-      return res.status(404).json({
-        message: 'No record found for provided ID',
-      });
-    }
-  } catch (err) {
-    error(`Error retriving ${project}: ${err}`);
-    res.status(500).json({
-      message: 'Invalid ID',
-      error: `${err}`,
-    });
-  }
-}
-//////////////////////////////////////////////////////////////////////////////
