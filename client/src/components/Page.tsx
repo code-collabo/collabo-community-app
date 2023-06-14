@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { useState } from "react";
 //import SideBar from "./SideBar";
-import NavBar from "./NavHeader";
+//import NavBar from "./NavHeader";
 import styles from "../styles/modules/Page.module.css";
 import Overview from "../pages/community/index";
 import Projects from "../pages/community/projects";
