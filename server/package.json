@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "@code-collabo/node-mongo-scripts": "^1.2.0",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "esm": "^3.2.25",
