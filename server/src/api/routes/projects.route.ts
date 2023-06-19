@@ -1,16 +1,25 @@
 import express, { IRouter } from 'express';
 import {
   getAllProjectsController,
-  createOneProjectController,
   getOneProjectController,
-  deleteOneProjectController
+  createOneProjectController,
+  updateOneProjectController,
+  deleteOneProjectController,
 } from '../controllers/projects.controller';
 
 const router: IRouter = express.Router();
 
 router.get('/', getAllProjectsController);
-router.post('/', createOneProjectController);
 router.get('/:projectId', getOneProjectController);
+router.post('/', createOneProjectController);
+router.patch('/:projectId', updateOneProjectController);
 router.delete('/:projectId', deleteOneProjectController);
+
+///////////////////////////////////////////////////////////
+import {
+  deleteAllProjectController,
+} from '../controllers/projects.controller';
+router.delete('/', deleteAllProjectController);
+//////////////////////////////////////////////////////////
 
 export { router };
