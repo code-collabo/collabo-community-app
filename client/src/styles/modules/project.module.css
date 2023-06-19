@@ -1,0 +1,321 @@
+ @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
+
+
+.backgroundImage{
+  width: 140vh;
+  height: 30px;
+   display: flex;
+   justify-content: center;
+}
+
+.image{
+  width: 100vh;
+  height: 44vh;
+  padding-top: 50px;
+}
+/* 
+position: absolute;
+
+left: calc(50% - 312px/2);
+top: calc(50% - 383px/2 - 0.5px); */
+
+
+ .ProjectCard{
+  border: 3px solid grey;
+  padding: 20px;
+  display: flex;
+  border-radius: 30px;
+  margin: 20px;   
+  box-shadow: 9px 9px 20px rgba(0, 0, 0, 0.15);
+ }  
+
+.projectContainer {
+    height: 10vh;
+    width: 147vh;
+    gap: 20px;
+    padding: 10px;
+   background-color: white;
+  }
+
+  .header{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    color: #3B3B3B;
+    font-size: 22px;
+    
+    padding-top: 10px;
+    padding-left: 10px;
+  }
+
+  .Cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 20px;
+  }
+  .options{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  
+    width: 100%;
+  }
+  
+  
+  .ProjectCard {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 17px 13px;
+    margin-top: 50px;
+    gap: 8px;
+    width: 350px; /* Adjust the width based on your design */
+    height: 150px; /* Adjust the height based on your design */
+    border: 1px solid grey;
+    border-radius: 20px;
+    background: rgb(252, 250, 250);
+    /* Add any other necessary styles */
+    transition: all ease-out 0.5s;
+  }
+
+  .btns{
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  .btns Button{
+    width: 160px;
+    border-radius: 10px;
+    color: #525050;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+   .btns Button:hover{
+    color: rgb(46, 149, 209);
+    border: 3px solid rgb(28, 115, 247);
+    background-color: white; 
+  }
+
+  .filters{
+    display: flex;
+    gap: 20px;
+  }
+
+ 
+.filters h3{
+  padding-top: 10px;
+  width: 80px;
+  height: 25px;
+
+/* Body Text/1/B */
+
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 18px;
+line-height: 25px;
+/* identical to box height */
+
+
+color: #000000;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+  }
+
+  .filters ul{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    gap: 10px;
+    padding: 10px 15px;
+    background: gainsboro;
+    background: #FAFAFA;
+    border-radius: 10px; 
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0px;
+     
+     width: 90px;
+     height: 24px;
+
+/* Body Text/2/SB */
+
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 150%;
+/* identical to box height, or 24px */
+
+
+/* Neutral/400 */
+
+   color: #3B3B3B;
+
+
+/* Inside auto layout */
+
+   flex: none;
+   order: 0;
+   flex-grow: 0;
+}
+  
+
+.ProjectCard:hover{
+    box-shadow: 9px 9px 20px rgba(0, 0, 0, 0.15);
+    border: none;
+    background: #FFFFFF;
+    border: 1px solid white;
+}
+
+.img{
+    width: 150px;
+    height: 150px;
+
+    border-radius: 10px;    
+    
+}
+
+
+
+.text{
+  font-size: 10px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   gap: 20px;
+  width: 100px;
+  height: 0%;
+  border: 0px solid lightslategrey;
+  padding: 0 0 10px 10px;
+}
+
+.userTitle{
+    width: 240px;
+    height: 24px;    
+
+    /* Sub Header/2/B */
+    
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    /* Neutral/500  */
+    
+    color: #080808;
+}
+
+.userText{
+    width: 90px;
+    height: 34px;
+    
+    /* Small Text/R  */
+    top: 100px;
+    bottom: 90px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */ 
+    text-decoration-line: underline;
+
+/* Primary/150  */
+
+color: #0275D8;
+
+    
+}
+
+.link{
+    width: 63px;
+    height: 18px;
+    text-decoration: none;
+    /* Small Text/SB  */ 
+    
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    
+    /* Neutral/500  */
+    
+    color: #080808;
+}
+
+.issues{
+   border: 2px solid rgb(66, 66, 66);
+   padding: 10px 14px;
+   border-radius: 7px;
+   font-size: 14px;
+   font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+   text-decoration: none;
+   color: black;
+
+}
+
+
+.readme{
+  border: 2px solid rgba(0, 0, 0, 0.199);
+  color: white;
+  background-color: rgba(7, 7, 7, 0.877);;
+  padding: 12px 24px;
+  border-radius: 7px;
+  font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+  font-size: 10px;
+  text-decoration: none;
+} 
+
+
+
+
+
+/* C:\Users\user\Documents\Dev(frontend)\Web-app\web-app\client\src\ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
