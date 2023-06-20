@@ -48,9 +48,9 @@ useEffect(() => {
         </div>
         </div>
         <div className={styles.Cards}>
-        {projects.map((project) => ( 
+        {/* {projects.map((project) => ( 
         <ProjectCard  project={project} key={project._id}  />
-        ))}
+        ))} */}
         </div>
         </div>
         </>
