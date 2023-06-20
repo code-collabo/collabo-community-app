@@ -1,4 +1,125 @@
-/* 
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
+
+.container{
+   width: 300px;
+   height: 500px;
+   text-align: center;
+   display: flex;
+   align-items: center;
+   align-self: center;
+   align-content: center;
+   flex-direction: column;
+   gap: 259px;
+   margin-top: 20px;
+   border-right: 1px solid gray;
+   align-items:flex-start;
+   padding-top: 100px;
+}
+
+.container .login{
+    text-decoration: none;    
+  width: 90px;
+  font-size: 13px;
+width: 299px;
+height: 19px;
+left: calc(50% - 112px/2 + 0.5px);
+top: 909px;
+
+/* Link/SB */
+
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 14px;
+line-height: 19px;
+/* identical to box height */
+
+text-decoration-line: underline;
+
+/* Primary/150 */
+
+color: #0275D8;
+}
+
+.icon{
+   width: 20px;
+   height: 20px;
+   color: #A1A1A1;
+}
+
+.icontag{
+   width: 18px;
+   height: 18px;
+   margin-left: 10px;
+   color: white;
+   
+}
+
+.iconbar{
+   width: 17px;
+   height: 18px;
+   margin-right: 0px;
+   color: black;
+   
+}
+
+.box{
+   list-style: none;
+   width: 300px;
+   padding: 8px 18px;
+   display: flex;
+   flex-direction: column;
+   gap: 2px;
+
+}
+
+.item{
+    list-style-type: none;
+   
+   text-align: center;
+   padding: 3%;
+   border-radius: 10px; 
+
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+align-items: center;
+padding: 10px 20px;
+gap: 0px;
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 700;
+isolation: isolate;
+color: #A1A1A1;
+width: 250px;
+height: 50px;
+font-weight: 700;
+
+/* Primary/150 */
+
+ background: #0275D8; 
+border-radius: 10px;
+background-color: white;
+/* Inside auto layout  */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+.item:hover{
+  background-color: #0275D8;
+  color: white;
+}
+
+.item:hover .iconbar {
+   color: white;
+   background-color: white;
+   background-color: transparent;
+ }
+
+.item p{
+   margin-right: 9px;
+}
 
