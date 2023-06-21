@@ -2,10 +2,9 @@ import express, { Express, NextFunction, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors';
-import { router as appRouter, router } from './api/routes/app.route';
 import { router as projectsRouter } from './api/routes/projects.route';
+import { router as usersRouter } from './api/routes/users.route';
 import { router as requestsInfoRouter } from './info/info.route';
-import bodyParser from 'body-parser';
 
 
 dotenv.config();
@@ -20,9 +19,8 @@ app.use(express.json());
 app.use(cors({ origin: [`http://localhost:${process.env.CLIENT_APP_PORT}`, `${process.env.CLIENT_APP_URL}`] }));
 
 //====== API Routers =============
-app.use('/', appRouter);
 app.use('/projects', projectsRouter);
-router.use(bodyParser.json());
+app.use('/users', usersRouter);
 //================================
 
 //====== Request (help) info Router =======

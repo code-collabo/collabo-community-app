@@ -20,7 +20,7 @@ let response = res;
 
 export const createOneProjectController = async (req: Request, res: Response) => {
   try {
-    const doc = await createOneProjectService(req.body);
+    const doc = await createOneProjectService(req.body, req.user);
     response = {
       message: `${project} created successfully!`,
       project: {
@@ -40,6 +40,10 @@ export const createOneProjectController = async (req: Request, res: Response) =>
             skills: child.skills,
           }
         }),
+        createdBy: doc.createdBy,
+        createdAt: doc.createdAt,
+        updatedBy: doc.updatedBy,
+        updatedAt: doc.updatedAt,
         requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
       },
     };
@@ -96,6 +100,10 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
               }
             }),
           },
+          createdBy: doc.createdBy,
+          createdAt: doc.createdAt,
+          updatedBy: doc.updatedBy,
+          updatedAt: doc.updatedAt,
           requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
         }
       })
@@ -133,6 +141,10 @@ export const getOneProjectController = async (req: Request, res: Response) => {
             skills: child.skills,
           }
         }),
+        createdBy: doc.createdBy,
+        createdAt: doc.createdAt,
+        updatedBy: doc.updatedBy,
+        updatedAt: doc.updatedAt,
         requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`,
       };
       success(`GET request successful!`);
@@ -155,7 +167,7 @@ export const getOneProjectController = async (req: Request, res: Response) => {
 
 export const updateOneProjectController = async (req: Request, res: Response) => {
   try {
-    const doc = await updateOneProjectService(req.params.projectId, req.body);
+    const doc = await updateOneProjectService(req.params.projectId, req.body, req.user);
     response = {
       message: `${project} updated successfully!`,
       project: {
@@ -175,6 +187,10 @@ export const updateOneProjectController = async (req: Request, res: Response) =>
             skills: child.skills,
           }
         }),
+        createdBy: doc.createdBy,
+        createdAt: doc.createdAt,
+        updatedBy: doc.updatedBy,
+        updatedAt: doc.updatedAt,
         requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
       },
     };

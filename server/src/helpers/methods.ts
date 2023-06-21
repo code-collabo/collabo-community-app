@@ -1,6 +1,9 @@
 import { Request, Response } from 'express';
 import { port } from './variables';
 import { requestsHelpInfo } from '../info/info.requests';
+import { UserDocument } from '../api/models/user.model';
+import { adminData } from './variables';
+import { createOneUserService, getAdminUserService } from '../api/services/users.service';
 
 interface URLs {
   api: {
@@ -41,4 +44,24 @@ export const idDoesNotExist = ({ req, res, item, statusCode, message } : { req: 
       POST: requests.POST,
     }
   });
+}
+
+
+export const checkSubset = (parentArray: string[], subsetArray: string[]) => {
+  return subsetArray.every((subsetElement) => {
+      return parentArray.includes(subsetElement)
+  })
+}
+
+
+export const createAdmin = async () => {
+  const doc = await getAdminUserService();
+  if(!doc){
+    const adminDoc = await createOneUserService(adminData as UserDocument);
+    if(adminDoc) console.log("admin user created successfully");
+    else console.log("error creating admin user");
+  }
+  else {
+    console.log("admin user already exists in the database");
+  }
 }

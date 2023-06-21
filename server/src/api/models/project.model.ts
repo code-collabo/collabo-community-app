@@ -1,19 +1,10 @@
 import { Schema, Document, model} from 'mongoose';
-import filterData from './filterData.json';
 
+import { checkSubset } from '../../helpers/methods';
 
-////////////////////////////////////////////////////////
-const interestFilterArr: string[] = filterData.interests;
+import { filterData } from '../../helpers/variables';
+const {interests, skillset} = filterData
 
-const skillSetFilterArr: string[] = filterData.skillset;
-
-export const checkInclude = (arrToCheckAgainst: string[], arr: string[]): boolean => {
-  const check = arr.every(element => {
-    return arrToCheckAgainst.includes(element);
-  });
-  return check;
-}
-///////////////////////////////////////////////////////////
 
 export interface ProjectDocument extends Document {
   _id: string;
@@ -30,6 +21,11 @@ export interface ProjectDocument extends Document {
     interest: string[];
     skills: string[];
   }[];
+  createdBy?: string;
+  createdAt?: Date;
+  updatedBy?: string;
+  updatedAt?: Date;
+
 }
 
 const collectionName = 'project';
@@ -48,6 +44,11 @@ const ProjectSchema = new Schema({
   children: [childRepoDetailsSchema],
   img: { type: String },
   issue: { type: String, required: true },
+  createdBy: {type: Schema.Types.ObjectId, ref: "user", required: true},
+  updatedBy: {type: Schema.Types.ObjectId, ref: "user", required: true},
+},
+{
+  timestamps: true,
 });
 
 
@@ -55,12 +56,11 @@ const ProjectSchema = new Schema({
 ProjectSchema.pre("save", function(next){
 
   // check if data in the doc interest array is included in the interest filter array
-  if (!checkInclude(interestFilterArr, this.interest)){
+  if (!checkSubset(interests, this.interest)){
     throw new Error('VALUE(S) provided is not supported for the parent interest property');
   }
-
   // check if data in the doc skillset array is included in the skillset filter array
-  if (!checkInclude(skillSetFilterArr, this.skills)){
+  if (!checkSubset(skillset, this.skills)){
     throw new Error('VALUE(S) provided is not supported for the parent skills property');
   }
 
@@ -68,15 +68,13 @@ ProjectSchema.pre("save", function(next){
     let idx = 0;
     this.children.forEach(child => {
       // check if data in the child interest array is included in the parent interest array
-      if (!checkInclude(this.interest, child.interest)){
+      if (!checkSubset(this.interest, child.interest)){
         throw new Error(`VALUE(S) provided is not supported for the child[${idx}] interest property`);
       }
-
       // check if data in the child skillset array is included in the parent skillset array
-      if (!checkInclude(this.skills, child.skills)){
+      if (!checkSubset(this.skills, child.skills)){
         throw new Error(`VALUE(S) provided is not supported for the child[${idx}] skills property`);
       }
-
       idx += 1;
     });
   }
