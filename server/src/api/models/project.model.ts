@@ -44,8 +44,8 @@ const ProjectSchema = new Schema({
   children: [childRepoDetailsSchema],
   img: { type: String },
   issue: { type: String, required: true },
-  createdBy: {type: Schema.Types.ObjectId, ref: "user", required: true},
-  updatedBy: {type: Schema.Types.ObjectId, ref: "user", required: true},
+  createdBy: {type: String, ref: "user", required: true},
+  updatedBy: {type: String, ref: "user", required: true},
 },
 {
   timestamps: true,

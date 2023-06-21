@@ -13,15 +13,15 @@ const router: IRouter = express.Router();
 
 router.get('/', getAllProjectsController);
 router.get('/:projectId', getOneProjectController);
-router.post('/', verifyUserWithJWT, verifyUserRoles(["admin"]), createOneProjectController);
-router.patch('/:projectId', verifyUserWithJWT, verifyUserRoles(["admin"]), updateOneProjectController);
-router.delete('/:projectId', verifyUserWithJWT, verifyUserRoles(["admin"]), deleteOneProjectController);
+router.post('/create', verifyUserWithJWT, verifyUserRoles(["admin"]), createOneProjectController);
+router.patch('/update/:projectId', verifyUserWithJWT, verifyUserRoles(["admin", "moderator"]), updateOneProjectController);
+router.delete('/delete/:projectId', verifyUserWithJWT, verifyUserRoles(["admin"]), deleteOneProjectController);
 
 ///////////////////////////////////////////////////////////
 import {
   deleteAllProjectController,
 } from '../controllers/projects.controller';
-router.delete('/', verifyUserWithJWT, verifyUserRoles(["admin"]), deleteAllProjectController);
+router.delete('/delete', verifyUserWithJWT, verifyUserRoles(["admin"]), deleteAllProjectController);
 //////////////////////////////////////////////////////////
 
 export { router };

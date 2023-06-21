@@ -7,23 +7,17 @@ export const verifyUserWithJWT = async (req: Request, res: Response, next:NextFu
   const reqAuthorizationHeader = req.headers.authorization;
 
   if(!reqAuthorizationHeader || !reqAuthorizationHeader.startsWith("Bearer ")) {
-    throw new Error ("AUTHORIZATION ERROR: User could not be verified because authorization header bearer not found");
+    throw new Error ("User could not be verified because authorization header bearer not found");
   }
 
   const userToken = reqAuthorizationHeader.split(" ")[1];
 
   try {
     const decoded = jwt.verify(userToken, "my_jwt_secret");
-
     const payload = decoded as JwtPayload;
+    const {_id, username, roles} = payload;
 
-    console.log(payload);
-
-    req.user._id = payload._id as string;
-    req.user.username = payload.username as string;
-    req.user.roles = payload.roles as string[];
-
-    console.log(req.user);
+    req.user = {_id: _id, username: username, roles: roles};
 
     return next();
 
@@ -40,8 +34,8 @@ export const verifyUserWithJWT = async (req: Request, res: Response, next:NextFu
 
 export const verifyUserRoles = (allowedRoles: string[]) => {
   return (req: Request, res: Response, next:NextFunction) => {
+    try {
       const {roles} = req.user;
-      console.log(req.user)
 
       const roleIsVerified = allowedRoles.some(allowedRole => {
         return roles.includes(allowedRole);
@@ -51,7 +45,15 @@ export const verifyUserRoles = (allowedRoles: string[]) => {
         return next();
       }
       
-      throw new Error (`AUTHORIZATION ERROR: only ${allowedRoles} have access to this route`);
-
+      throw new Error (`only ${allowedRoles} have access to this route`);
+      
+    } catch (err) {
+      error(`AUTHORIZATION ERROR: ${err}`);
+      res.status(500).json({
+        message: 'AUTHORIZATION ERROR',
+        error: `${err}`,
+      });
+    }
+      
   }
 }

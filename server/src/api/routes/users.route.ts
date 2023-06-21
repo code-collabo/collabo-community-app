@@ -8,20 +8,22 @@ import {
   deleteOneUserController
 } from '../controllers/users.controller';
 
+import { verifyUserWithJWT, verifyUserRoles } from '../middleware/authorization.middleware';
+
 const router: IRouter = express.Router();
 
 router.get('/', getAllUsersController);
 router.get('/:userId', getOneUserController);
-router.post('/', createOneUserController);
-router.post('/signin', signInOneUserController);
-router.patch('/:userId', updateOneUserController);
-router.delete('/:userId', deleteOneUserController);
+router.post('/sign-up', createOneUserController);
+router.post('/sign-in', signInOneUserController);
+router.patch('/update/:userId', updateOneUserController);
+router.delete('/delete/:userId', verifyUserWithJWT, verifyUserRoles(["admin"]), deleteOneUserController);
 
 ///////////////////////////////////////////////////////////
 import {
   deleteAllUserController,
 } from '../controllers/users.controller';
-router.delete('/', deleteAllUserController);
+router.delete('/delete', verifyUserWithJWT, verifyUserRoles(["admin"]), deleteAllUserController);
 //////////////////////////////////////////////////////////
 
 export { router };
