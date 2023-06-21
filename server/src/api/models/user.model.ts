@@ -57,7 +57,7 @@ UserSchema.methods.comparePassword = async function (candidatePassword: string):
 // generating token during registration and logging in
 UserSchema.methods.generateToken = function (): string {
   const token = jwt.sign(
-    {_id: this._id, username: this.username},
+    {_id: this._id, username: this.username, roles: this.roles},
     "my_jwt_secret",
     {expiresIn: '1h'});
   return token;

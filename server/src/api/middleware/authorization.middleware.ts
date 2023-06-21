@@ -17,7 +17,13 @@ export const verifyUserWithJWT = async (req: Request, res: Response, next:NextFu
 
     const payload = decoded as JwtPayload;
 
-    req.user = payload._id;
+    console.log(payload);
+
+    req.user._id = payload._id as string;
+    req.user.username = payload.username as string;
+    req.user.roles = payload.roles as string[];
+
+    console.log(req.user);
 
     return next();
 
@@ -34,7 +40,8 @@ export const verifyUserWithJWT = async (req: Request, res: Response, next:NextFu
 
 export const verifyUserRoles = (allowedRoles: string[]) => {
   return (req: Request, res: Response, next:NextFunction) => {
-      const {roles} = req.body.roles;
+      const {roles} = req.user;
+      console.log(req.user)
 
       const roleIsVerified = allowedRoles.some(allowedRole => {
         return roles.includes(allowedRole);
