@@ -1,0 +1,29 @@
+{
+    "interests":[
+       "All", 
+      "Coding",
+      "UI/UX Design",
+      "Technical Writing"
+    ],
+    "skillset":[
+      "Github",
+      "Gitbook",
+      "Figma",
+      "Javascript",
+      "Typescript",
+      "React(Nextjs)",
+      "MongoDB",
+      "Nodejs",
+      "Angular"
+    ],
+    "Project":[
+       "All",
+       "Multiple Project Involved",
+       "Blog",
+       "CSS",
+       "Docs",
+       "Git and Github Collabo",
+       "Node Mongo",
+       "Web App"
+    ]
+  }

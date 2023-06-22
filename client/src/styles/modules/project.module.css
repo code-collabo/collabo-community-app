@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
 
 
 .backgroundImage{
@@ -132,7 +132,9 @@ flex-grow: 0;
 
   .filters ul{
     display: flex;
+    position: relative;
     justify-content: space-evenly;
+    border: 2px solid white;
     padding: 10px;
     gap: 10px;
     padding: 10px 15px;
@@ -168,7 +170,172 @@ flex-grow: 0;
    order: 0;
    flex-grow: 0;
 }
+
   
+.filters ul:hover{
+  border: 2px solid #0275D8;
+  cursor: pointer;
+  color: #0275D8;
+}
+
+.filters button{
+  display: flex;
+  justify-content: space-evenly;
+  border: 2px solid white;
+  padding: 10px;
+  gap: 10px;
+  padding: 10px 15px;
+  background: gainsboro;
+  background: #FAFAFA;
+  border-radius: 10px; 
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0px;
+   
+   width: 90px;
+   height: 24px;
+
+/* Body Text/2/SB */
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 150%;
+/* identical to box height, or 24px */
+
+
+/* Neutral/400 */
+
+ color: #3B3B3B;
+
+
+/* Inside auto layout */
+
+ flex: none;
+ order: 0;
+ flex-grow: 0;
+}
+
+
+.filters .dropdownMenu {
+   border: 2px solid whitesmoke; 
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 140px;
+  gap: 15px;
+  border: 2px solid rgb(245, 238, 238);
+  border-radius: 10px;
+  background: #FFFFFF;
+/* Shadow 3 */
+
+box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.12);
+border-radius: 10px;
+}
+
+.filters .dropdownMenu label{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px 10px 5px;
+   color: #03A203; 
+   gap: 20px;
+   border-bottom: 1px solid gainsboro;
+}
+
+
+.filters .dropdownMenu label h3{
+  display: flex;
+  gap: 15px;
+  width: 240px;
+  border-bottom: 1px solid grey;
+  border: 1px solid white;
+/* Body Text/2/SB */
+
+padding: 0px 0px 0px 0px;
+
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 150%;
+/* identical to box height, or 24px */
+
+
+/* Neutral/500 */
+color: #080808;
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+
+
+.filters .dropdownMenuproj{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 140px;
+  padding: 10px;
+  left: 980px;
+  gap: 15px;
+  border: 2px solid rgb(247, 247, 247);
+  border-radius: 10px;
+  background: #FFFFFF;
+/* Shadow 3 */
+
+box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.12);
+border-radius: 10px;
+}
+  
+.filters .dropdownMenuproj label{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px 10px 5px;
+   color: #03A203; 
+   gap: 20px;
+   border-bottom: 1px solid gainsboro;
+}
+
+
+.filters .dropdownMenuproj label h3{
+  display: flex;
+  gap: 15px;
+  width: 240px;
+  border-bottom: 1px solid grey;
+  border: 1px solid white;
+
+padding: 0px 0px 0px 0px;
+
+font-family: 'Open Sans';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 150%;
+
+color: #080808;
+/* Inside auto layout */
+}
+
+.filters .dropdownMenuproj label h3:last-child{
+  border: none;
+}
+
+.filters .dropdownMenu label input{
+  color: #03A203;
+  background-color: red;
+  border: 1px solid red;
+}
+
+.filters .dropdownMenu label input[type=radio]{
+color: #03A203;
+accent-color:  #03A203; 
+border: 2px solid red;
+}
+
+
 
 .ProjectCard:hover{
     box-shadow: 9px 9px 20px rgba(0, 0, 0, 0.15);
@@ -180,7 +347,6 @@ flex-grow: 0;
 .img{
     width: 150px;
     height: 150px;
-
     border-radius: 10px;    
     
 }
@@ -282,9 +448,6 @@ color: #0275D8;
   font-size: 10px;
   text-decoration: none;
 } 
-
-
-
 
 
 

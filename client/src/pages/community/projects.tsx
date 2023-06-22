@@ -7,7 +7,8 @@ import styles from "../../styles/modules/project.module.css";
 import Image from 'next/image';
 import Imageframe from "../../../public/Frame.svg";
 import arrowdown from "../../../public/Vectordown.svg";
-
+import DropdownIn from '@/components/Interestsdropdown';
+import Dropdown from '@/components/Skilldropdown';
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -46,9 +47,11 @@ useEffect(() => {
         
         </div>
         <div className={styles.filters}>
-         <h3>Filter by:</h3> 
-         <ul>Interest <Image src={arrowdown} width={0} height={0} alt='down button' />   </ul>
-         <ul>Skill Set <Image src={arrowdown} width={0} height={0} alt='down button' />  </ul>
+         <h3>Filter by:</h3>
+          <DropdownIn options={[]} />
+          <Dropdown options={[]} />
+         {/* <ul>Interest <Image src={arrowdown} width={0} height={0} alt='down button' />   </ul>
+         <ul>Skill Set <Image src={arrowdown} width={0} height={0} alt='down button' />  </ul> */}
         </div>
         </div>
 

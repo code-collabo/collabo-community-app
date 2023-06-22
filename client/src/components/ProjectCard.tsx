@@ -8,13 +8,12 @@ interface ProjectProps {
 }
 
 const ProjectCard = ({ project }: ProjectProps) => {
-  const { title, type, url } = project;
+  const { title, url } = project;
 
   return (
      <div>
        <ul>
         <li>{title}</li>
-        <li>{type}</li>
         <li>{url}</li>
        </ul>
      </div>
