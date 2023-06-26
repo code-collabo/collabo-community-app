@@ -1,6 +1,7 @@
 import express, { IRouter } from 'express';
 import {
   getAllProjectsController,
+  getAllUnArchivedProjectsController,
   getOneProjectController,
   createOneProjectController,
   updateOneProjectController,
@@ -11,8 +12,8 @@ import { verifyUserWithJWT, verifyUserRoles } from '../middleware/authorization.
 
 const router: IRouter = express.Router();
 
-router.get('/', getAllProjectsController);
-router.get('/:projectId', getOneProjectController);
+router.get('/unarchived', getAllUnArchivedProjectsController);
+router.get('/all', verifyUserWithJWT, verifyUserRoles(["admin", "moderator"]), getAllProjectsController);
 router.post('/create', verifyUserWithJWT, verifyUserRoles(["admin"]), createOneProjectController);
 router.patch('/update/:projectId', verifyUserWithJWT, verifyUserRoles(["admin", "moderator"]), updateOneProjectController);
 router.delete('/delete/:projectId', verifyUserWithJWT, verifyUserRoles(["admin"]), deleteOneProjectController);
