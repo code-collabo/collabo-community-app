@@ -40,7 +40,6 @@ export const createOneProjectController = async (req: Request, res: Response) =>
             skills: child.skills,
           }
         }),
-        isArchived: doc.isArchived,
         createdBy: doc.createdBy,
         createdAt: doc.createdAt,
         updatedBy: doc.updatedBy,
@@ -63,67 +62,11 @@ export const createOneProjectController = async (req: Request, res: Response) =>
 interface QueryObj {
   interest?: {$all: string[]};
   skills?: {$all: string[]};
-  isArchived?: boolean;
-}
-
-export const getAllUnArchivedProjectsController = async (req: Request, res: Response) => {
-  try {
-    const {interest, skills} = req.query
-    const queryObj : QueryObj = {isArchived: false};
-
-    if(interest){
-      queryObj.interest = {$all: (interest as string).split(',')};
-    }
-    if(skills){
-      queryObj.skills = {$all: (skills as string).split(',')};
-    }
-
-    const docs = await getAllProjectsService(queryObj);
-    response = {
-      count: docs.length,
-      projects: docs.map(doc => {
-        return {
-          _id: doc._id,
-          title: doc.title,
-          url: doc.url,
-          issue: doc.issue,
-          img: doc.img,
-          interest: doc.interest,
-          skills: doc.skills,
-          children: {
-            count: doc.children.length,
-            list: doc.children.map((child) => {
-              return {
-                _id: child._id,
-                title: child.title,
-                url: child.url,
-                interest: doc.interest,
-                skills: doc.skills,
-              }
-            }),
-          },
-          isArchived: doc.isArchived,
-          createdBy: doc.createdBy,
-          createdAt: doc.createdAt,
-          updatedBy: doc.updatedBy,
-          updatedAt: doc.updatedAt,
-          requests: `Visit ${useUrl(req, doc._id, project).helpInfo} for help on how to make requests`
-        }
-      })
-    };
-    success(`GET request successful!`);
-    return res.status(200).json(response);
-  } catch (err) {
-    error(`Error retriving ${project}s: ${err}`);
-    res.status(500).json({
-      error: `${err}`
-    });
-  }
 }
 
 export const getAllProjectsController = async (req: Request, res: Response) => {
   try {
-    const {interest, skills, isArchived} = req.query
+    const {interest, skills} = req.query
     const queryObj : QueryObj = {};
 
     if(interest){
@@ -132,9 +75,6 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
     if(skills){
       queryObj.skills = {$all: (skills as string).split(',')};
     }
-    if(isArchived){
-      queryObj.isArchived = (isArchived === 'true' ? true:false);
-    }
 
     const docs = await getAllProjectsService(queryObj);
     response = {
@@ -160,7 +100,6 @@ export const getAllProjectsController = async (req: Request, res: Response) => {
               }
             }),
           },
-          isArchived: doc.isArchived,
           createdBy: doc.createdBy,
           createdAt: doc.createdAt,
           updatedBy: doc.updatedBy,
@@ -202,7 +141,6 @@ export const getOneProjectController = async (req: Request, res: Response) => {
             skills: child.skills,
           }
         }),
-        isArchived: doc.isArchived,
         createdBy: doc.createdBy,
         createdAt: doc.createdAt,
         updatedBy: doc.updatedBy,
@@ -249,7 +187,6 @@ export const updateOneProjectController = async (req: Request, res: Response) =>
             skills: child.skills,
           }
         }),
-        isArchived: doc.isArchived,
         createdBy: doc.createdBy,
         createdAt: doc.createdAt,
         updatedBy: doc.updatedBy,

@@ -32,7 +32,7 @@ export const adminData = {
   firstname: "Admin",
   lastname: "Admin",
   username: "admin",
-  email: "admin",
+  email: "admin@codecollabo.com",
   password: "admin",
   roles: ["admin"],
 }

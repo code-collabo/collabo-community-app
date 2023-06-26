@@ -13,7 +13,6 @@ export const createOneProjectService = async (requestBody: ProjectDocument, user
     interest: requestBody.interest,
     skills: requestBody.skills,
     children: requestBody.children,
-    isArchived: requestBody.isArchived,
     createdBy: user,
     updatedBy: user,
   });
@@ -25,7 +24,6 @@ export const createOneProjectService = async (requestBody: ProjectDocument, user
 interface QueryObj {
   interest?: {$all: (string | string[])};
   skills?: {$all: (string | string[])};
-  isArchived?: boolean;
 }
 
 export const getAllProjectsService = async (queryObj: QueryObj) => {
@@ -49,7 +47,6 @@ export const updateOneProjectService = async (paramsId: string, requestBody: Pro
   if(requestBody.interest) project.interest = requestBody.interest;
   if(requestBody.skills) project.skills = requestBody.skills;
   if(requestBody.children) project.children = requestBody.children;
-  if(requestBody.isArchived) project.isArchived = requestBody.isArchived;
   project.updatedBy = user;
 
   const save = project.save();

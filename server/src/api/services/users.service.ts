@@ -5,7 +5,7 @@ const selectString = '_id firstname lastname username email password roles creat
 type SignInDocument = Pick<UserDocument, "email" | "password">
 
 
-export const createOneUserService = async (requestBody: UserDocument): Promise<UserDocument> => {
+export const signUpOneUserService = async (requestBody: UserDocument): Promise<UserDocument> => {
 
   const user = new User({
     firstname: requestBody.firstname,
@@ -82,7 +82,7 @@ export const deleteOneUserService = async (paramsId: string) => {
 
 ////////////////////////////////////////////////////////////
 export const deleteAllUserService = async () => {
-  const query = await User.deleteMany().exec();
+  const query = await User.deleteMany({ username: { $nin: ["admin"] } }).exec();
   return query;
 }
 ////////////////////////////////////////////////////////////

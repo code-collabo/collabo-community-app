@@ -1,6 +1,6 @@
 import express, { IRouter } from 'express';
 import {
-  createOneUserController,
+  signUpOneUserController,
   signInOneUserController,
   getAllUsersController,
   getOneUserController,
@@ -14,16 +14,16 @@ const router: IRouter = express.Router();
 
 router.get('/', getAllUsersController);
 router.get('/:userId', getOneUserController);
-router.post('/sign-up', createOneUserController);
-router.post('/sign-in', signInOneUserController);
-router.patch('/update/:userId', updateOneUserController);
-router.delete('/delete/:userId', verifyUserWithJWT, verifyUserRoles(["admin"]), deleteOneUserController);
+router.post('/auth/signup', signUpOneUserController);
+router.post('/auth/signin', signInOneUserController);
+router.patch('/:userId', updateOneUserController);
+router.delete('/:userId', verifyUserWithJWT, verifyUserRoles(["admin"]), deleteOneUserController);
 
 ///////////////////////////////////////////////////////////
 import {
   deleteAllUserController,
 } from '../controllers/users.controller';
-router.delete('/delete', verifyUserWithJWT, verifyUserRoles(["admin"]), deleteAllUserController);
+router.delete('/', verifyUserWithJWT, verifyUserRoles(["admin"]), deleteAllUserController);
 //////////////////////////////////////////////////////////
 
 export { router };

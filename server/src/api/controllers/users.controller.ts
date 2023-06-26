@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 
 import {
-  createOneUserService,
+  signUpOneUserService,
   signInOneUserService,
   getAllUsersService,
   getOneUserService,
@@ -19,9 +19,9 @@ let response = res;
 
 
 
-export const createOneUserController = async (req: Request, res: Response) => {
+export const signUpOneUserController = async (req: Request, res: Response) => {
   try {
-    const doc = await createOneUserService(req.body);
+    const doc = await signUpOneUserService(req.body);
     const token = doc.generateToken();
 
     response = {

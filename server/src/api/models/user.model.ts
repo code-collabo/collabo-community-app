@@ -15,7 +15,6 @@ export interface UserDocument extends Document {
   email: string;
   password: string;
   roles: string[];
-  token?: string;
   createdAt?: Date;
   updatedAt?: Date;
   comparePassword(candidatePassword: string): Promise<boolean>;

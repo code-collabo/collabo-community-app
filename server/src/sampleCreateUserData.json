@@ -1,0 +1,43 @@
+[
+  {
+    "firstname": "Sam",
+    "lastname": "Ade",
+    "username": "samade",
+    "email": "samade@gmail.com",
+    "password": "12345",
+    "roles": ["moderator"]
+  },
+  {
+    "firstname": "Mary",
+    "lastname": "Obi",
+    "username": "maryobi",
+    "email": "maryobi@gmail.com",
+    "password": "12345",
+    "roles": ["moderator"]
+  },
+  {
+    "firstname": "Wale",
+    "lastname": "Ojo",
+    "username": "waleojo",
+    "email": "wale@gmail.com",
+    "password": "12345",
+    "roles": ["moderator"]
+  },
+  {
+    "firstname": "David",
+    "lastname": "Ola",
+    "username": "davidola",
+    "email": "davidola@gmail.com",
+    "password": "12345",
+    "roles": ["moderator"]
+  },
+  {
+    "firstname": "Isa",
+    "lastname": "Momodu",
+    "username": "isamomodu",
+    "email": "isamomodu@gmail.com",
+    "password": "12345",
+    "roles": ["moderator"]
+  }
+
+]

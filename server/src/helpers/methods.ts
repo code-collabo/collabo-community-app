@@ -3,7 +3,7 @@ import { port } from './variables';
 import { requestsHelpInfo } from '../info/info.requests';
 import { UserDocument } from '../api/models/user.model';
 import { adminData } from './variables';
-import { createOneUserService, getAdminUserService } from '../api/services/users.service';
+import { signUpOneUserService, getAdminUserService } from '../api/services/users.service';
 
 interface URLs {
   api: {
@@ -57,7 +57,7 @@ export const checkSubset = (parentArray: string[], subsetArray: string[]) => {
 export const createAdmin = async () => {
   const doc = await getAdminUserService();
   if(!doc){
-    const adminDoc = await createOneUserService(adminData as UserDocument);
+    const adminDoc = await signUpOneUserService(adminData as UserDocument);
     if(adminDoc) console.log("admin user created successfully");
     else console.log("error creating admin user");
   }

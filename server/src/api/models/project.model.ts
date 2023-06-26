@@ -21,7 +21,6 @@ export interface ProjectDocument extends Document {
     interest: string[];
     skills: string[];
   }[];
-  isArchived: boolean;
   createdBy?: string;
   createdAt?: Date;
   updatedBy?: string;
@@ -45,7 +44,6 @@ const ProjectSchema = new Schema({
   children: [childRepoDetailsSchema],
   img: { type: String },
   issue: { type: String, required: true },
-  isArchived: { type: Boolean, required: true},
   createdBy: {type: String, ref: "user", required: true},
   updatedBy: {type: String, ref: "user", required: true},
 },
