@@ -1,7 +1,7 @@
 // import mongoose from 'mongoose';
 // import dotenv from 'dotenv';
 // import { afterAtlasDBconnectSuccessful, connectToDBunsuccessful } from '../node-mongo-helpers';
-// import { createAdmin } from './helpers/methods';
+// import { createSuperAdmin } from './helpers/methods';
 
 // dotenv.config();
 
@@ -9,7 +9,7 @@
 //   try {
 //     await mongoose.connect(`${process.env.MONGODB_ATLAS_URI}`);
 //     afterAtlasDBconnectSuccessful(port);
-//     createAdmin();
+//     createSuperAdmin();
 //   } catch (err) {
 //     connectToDBunsuccessful(err);
 //   }

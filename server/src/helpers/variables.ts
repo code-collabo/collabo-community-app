@@ -23,16 +23,17 @@ export const filterData = {
     "Angular"
   ],
   roles:[
-    "admin",
+    "super-admin",
     "moderator"
   ]
 }
 
-export const adminData = {
-  firstname: "Admin",
+
+export const superAdminData = {
+  firstname: "Super",
   lastname: "Admin",
-  username: "admin",
-  email: "admin@codecollabo.com",
-  password: "admin",
-  roles: ["admin"],
+  username: "super-admin",
+  email: "superadmin@codecollabo.com",
+  password: "12345",
+  roles: ["super-admin"],
 }

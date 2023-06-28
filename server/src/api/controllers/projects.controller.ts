@@ -10,7 +10,7 @@ import {
 } from '../services/projects.service';
 
 import { success, error } from '../../../node-mongo-helpers';
-import { idDoesNotExist, useUrl } from '../../helpers/methods';
+import { useUrl } from '../../helpers/methods';
 import { res, items } from '../../helpers/variables';
 
 const { project } = items;
@@ -211,32 +211,24 @@ export const deleteOneProjectController = async (req: Request, res: Response) =>
   try {
     const doc = await deleteOneProjectService(req.params.projectId);
     if (doc) {
-      idDoesNotExist({
-        res,
-        req,
-        item: project,
-        statusCode: 200,
-        message: `${project} deleted successfully! Get all ${project}s to find another ${project} id or create a new ${project}`,
-      });
+      response = {
+        message: `${project} deleted successfully!`,
+      };
+      success(`${project} deleted successfully!`);
+      return res.status(201).json(response);
     } else {
-      error('No record found for provided ID');
-      idDoesNotExist({
-        res,
-        req,
-        item: project,
-        statusCode: 404,
-        message: `No record found for provided ID, try getting all ${project}s to find a correct ${project} id or create a new ${project}`,
-      });
+      response = {
+        message: `no record found privided by id`,
+      };
+      error(`no record found provided by id`);
+      return res.status(400).json(response);
     }
   } catch (err) {
+    response = {
+      message: `Error deleting ${project}: ${err}`,
+    };
     error(`Error deleting ${project}: ${err}`);
-    idDoesNotExist({
-      res,
-      req,
-      item: project,
-      statusCode: 500,
-      message: `Error deleting ${project}, try getting all ${project}s to find a valid ${project} id or create a new ${project}`,
-    });
+    return res.status(500).json(response);
   }
 };
 

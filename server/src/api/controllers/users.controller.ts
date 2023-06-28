@@ -6,12 +6,15 @@ import {
   signInOneUserService,
   getAllUsersService,
   getOneUserService,
+  getSuperAdminUserService,
   updateOneUserService,
+  updateOneUserRoleService,
+  updateSuperAdminUserService,
   deleteOneUserService,
 } from '../services/users.service';
 
 import { success, error } from '../../../node-mongo-helpers';
-import { idDoesNotExist,useUrl } from '../../helpers/methods';
+import { useUrl } from '../../helpers/methods';
 import { res, items } from '../../helpers/variables';
 
 const { user } = items;
@@ -22,19 +25,16 @@ let response = res;
 export const signUpOneUserController = async (req: Request, res: Response) => {
   try {
     const doc = await signUpOneUserService(req.body);
-    const token = doc.generateToken();
-
     response = {
-      message: `${user} created successfully!`,
+      message: `${user} updated successfully!`,
       user: {
         _id: doc._id,
         firstname: doc.firstname,
         lastname: doc.lastname,
         username: doc.username,
         email: doc.email,
-        password: doc.password,
         roles: doc.roles,
-        token: token,
+        img: doc.img,
         createdAt: doc.createdAt,
         updatedAt: doc.updatedAt,
         requests: `Visit ${useUrl(req, doc._id, user).helpInfo} for help on how to make requests`
@@ -59,16 +59,7 @@ export const signInOneUserController = async (req: Request, res: Response) => {
     response = {
       message: `${user} signed in successfully!`,
       user: {
-        _id: doc._id,
-        firstname: doc.firstname,
-        lastname: doc.lastname,
-        username: doc.username,
-        email: doc.email,
-        password: doc.password,
-        roles: doc.roles,
         token: token,
-        createdAt: doc.createdAt,
-        updatedAt: doc.updatedAt,
         requests: `Visit ${useUrl(req, doc._id, user).helpInfo} for help on how to make requests`
       },
     };
@@ -96,8 +87,8 @@ export const getAllUsersController = async (req: Request, res: Response) => {
           lastname: doc.lastname,
           username: doc.username,
           email: doc.email,
-          password: doc.password,
           roles: doc.roles,
+          img: doc.img,
           createdAt: doc.createdAt,
           updatedAt: doc.updatedAt,
           requests: `Visit ${useUrl(req, doc._id, user).helpInfo} for help on how to make requests`
@@ -118,6 +109,7 @@ export const getAllUsersController = async (req: Request, res: Response) => {
 export const getOneUserController = async (req: Request, res: Response) => {
   try {
     const doc = await getOneUserService(req.params.userId);
+    
     if (doc) {
       response = {
         _id: doc._id,
@@ -125,8 +117,8 @@ export const getOneUserController = async (req: Request, res: Response) => {
         lastname: doc.lastname,
         username: doc.username,
         email: doc.email,
-        password: doc.password,
         roles: doc.roles,
+        img: doc.img,
         createdAt: doc.createdAt,
         updatedAt: doc.updatedAt,
         requests: `Visit ${useUrl(req, doc._id, user).helpInfo} for help on how to make requests`,
@@ -149,9 +141,53 @@ export const getOneUserController = async (req: Request, res: Response) => {
 
 
 
-export const updateOneUserController = async (req: Request, res: Response) => {
+export const getSuperAdminUserController = async (req: Request, res: Response) => {
   try {
-    const doc = await updateOneUserService(req.params.userId, req.body);
+    const doc = await getSuperAdminUserService();
+    
+    if (doc) {
+      response = {
+        _id: doc._id,
+        firstname: doc.firstname,
+        lastname: doc.lastname,
+        username: doc.username,
+        email: doc.email,
+        roles: doc.roles,
+        img: doc.img,
+        createdAt: doc.createdAt,
+        updatedAt: doc.updatedAt,
+        requests: `Visit ${useUrl(req, doc._id, user).helpInfo} for help on how to make requests`,
+      };
+      success(`super-adminGET request successful!`);
+      return res.status(200).json(response);
+    } else {
+      error('No record found for provided ID');
+      return res.status(404).json({
+        message: 'No record found for provided ID',
+      });
+    }
+  } catch (err) {
+    error(`Error retriving ${user}s: ${err}`);
+    res.status(500).json({
+      error: `${err}`
+    });
+  }
+}
+
+
+
+export const updateOneUserController = async (req: Request, res: Response) => {
+  let doc;
+  try {
+    if(req.user.roles[0] == "super-admin"){
+      doc = await updateOneUserRoleService(req.params.userId, req.body);
+    }
+    else if (req.user._id == req.params.userId) {
+      doc = await updateOneUserService(req.params.userId, req.body);
+    }
+    else {
+      throw new Error("Not Authorized to Access this route");
+    }
     response = {
       message: `${user} updated successfully!`,
       user: {
@@ -160,8 +196,8 @@ export const updateOneUserController = async (req: Request, res: Response) => {
         lastname: doc.lastname,
         username: doc.username,
         email: doc.email,
-        password: doc.password,
         roles: doc.roles,
+        img: doc.img,
         createdAt: doc.createdAt,
         updatedAt: doc.updatedAt,
         requests: `Visit ${useUrl(req, doc._id, user).helpInfo} for help on how to make requests`
@@ -179,37 +215,59 @@ export const updateOneUserController = async (req: Request, res: Response) => {
 }
 
 
+export const updateSuperAdminUserController = async (req: Request, res: Response) => {
+  try {
+    const doc = await updateSuperAdminUserService(req.body);
+    response = {
+      message: `${user} updated successfully!`,
+      user: {
+        _id: doc._id,
+        firstname: doc.firstname,
+        lastname: doc.lastname,
+        username: doc.username,
+        email: doc.email,
+        roles: doc.roles,
+        img: doc.img,
+        createdAt: doc.createdAt,
+        updatedAt: doc.updatedAt,
+        requests: `Visit ${useUrl(req, doc._id, user).helpInfo} for help on how to make requests`
+      },
+    };
+    success(`super-admin UPDATED successfully!`);
+    return res.status(201).json(response);
+  } catch (err) {
+    error(`Error retriving ${user}: ${err}`);
+    res.status(500).json({
+      message: 'Invalid ID',
+      error: `${err}`,
+    });
+  }
+}
+
+
 
 export const deleteOneUserController = async (req: Request, res: Response) => {
   try {
-    const doc = await deleteOneUserService(req.params.projectId);
+    const doc = await deleteOneUserService(req.params.userId);
     if (doc) {
-      idDoesNotExist({
-        res,
-        req,
-        item: user,
-        statusCode: 200,
-        message: `${user} deleted successfully! Get all ${user}s to find another ${user} id or create a new ${user}`,
-      });
+      response = {
+        message: `${user} deleted successfully!`,
+      };
+      success(`${user} deleted successfully!`);
+      return res.status(201).json(response);
     } else {
-      error('No record found for provided ID');
-      idDoesNotExist({
-        res,
-        req,
-        item: user,
-        statusCode: 404,
-        message: `No record found for provided ID, try getting all ${user}s to find a correct ${user} id or create a new ${user}`,
-      });
+      response = {
+        message: `no record found privided by id`,
+      };
+      error(`no record found provided by id`);
+      return res.status(400).json(response);
     }
   } catch (err) {
+    response = {
+      message: `Error deleting ${user}: ${err}`,
+    };
     error(`Error deleting ${user}: ${err}`);
-    idDoesNotExist({
-      res,
-      req,
-      item: user,
-      statusCode: 500,
-      message: `Error deleting ${user}, try getting all ${user}s to find a valid ${user} id or create a new ${user}`,
-    });
+    return res.status(500).json(response);
   }
 };
 

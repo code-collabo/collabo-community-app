@@ -82,16 +82,363 @@ npm run dev:local
 
 #
 
-## API design
+<br/>
+<br/>
+
+## API DESIGN (Basic Authentication Setup and Test)
+
+<br/>
+
+## User Authentication Summary
 
 |METHOD /endpoint|Description|Request body|
 |--|--|:--:|
-|POST /projects|Create/add a new project item to the database|title, url, img, children, issues, interest, skills (all are required)|
-|GET /projects|Get all project items in the database (you can also filter by interest and(or) by skills)| No Request Body |
-|GET /projects/:projectId|Get a project item from the database by its ID|No request body|
-|PATCH /projects/:projectId|Update a project item stored in the database by its ID|title, url, img, children, issues, interest, skills (all are not necessarily required)|
-|DELETE /projects/:projectId|Delete a project item from the database by its ID|No request body|
-|DELETE /projects|Delete all projects in the database|No request body|
+|POST users/auth/signup|Create/register a new user (requires super-admin privilege)|firstname, lastname, username, img, email, password|
+|POST users/auth/signin|authenticate and signs in an existing user|email, password|
+|GET /users|Get all users in the database (requires super-admin and moderator privileges)|No Request Body|
+|GET /users/super-admin|Gets the super-admin info (requires super-admin privilege)|No Request Body|
+|GET /users/:userId|Gets a user info in the database by id (requires super-admin and moderator privileges)|No Request Body|
+|PATCH /users/super-admin|updates the super-admin info (requires super-admin privilege) - roles and username properties cannot be updated|firstname, lastname, img, email, password|
+|PATCH /users/:userId|updates a user info in the database by id (requires super-admin and moderator privileges) - roles and username properties cannot be updated|firstname, lastname, img, email, password|
+|PATCH /users/:userId|updates a user role property info in the database by the user id (requires super-admin privilege) - only roles properties can be updated by super-admin for any user|roles|
+|DELETE /users/:userId|Delete a user from the database by ID (requires super-admin priviledge)|No request body|
+
+<br/>
+
+## Super Admin default value
+
+<details>
+<summary>super-admin default value (automatically created)</summary>
+<br/>
+<pre>
+{
+  firstname: "Super",
+  lastname: "Admin",
+  username: "super-admin",
+  email: "superadmin@codecollabo.com",
+  password: "12345",
+  roles: ["super-admin"],
+}
+</pre>
+</details>
+
+<br/>
+
+## User Authentication API call requests and responses
+
+<details>
+<summary>POST /users/auth/signup</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+{
+  "firstname": "string",
+  "lastname": "string",
+  "username": "string",
+  "email": "string",
+  "password": "string",
+  "img": "string" (not required)
+}
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "message": "string",
+    "user": {
+        "_id": "string",
+        "firstname": "string",
+        "lastname": "string",
+        "username": "string",
+        "email": "string",
+        "roles": [
+            "moderator"
+        ],
+        "img": "string",
+        "createdAt": "string - date",
+        "updatedAt": "string - date",
+        "requests": "string"
+    }
+}
+</pre>
+</details>
+
+
+
+
+<details>
+<summary>POST /users/auth/signin</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+{
+    "email": "string (required)", 
+    "password": "string (required)"
+}
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "message": "string",
+    "user": {
+        "token": "string(JWT-carries info about the user's {_id, username, roles})",
+        "requests": "string"
+    }
+}
+</pre>
+</details>
+
+
+
+<details>
+<summary>GET /users</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+No request body
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "count": number,
+    "users": [
+        {
+            "_id": "string",
+            "firstname": "string",
+            "lastname": "string",
+            "username": "string",
+            "email": "string",
+            "roles": [
+                "moderator"
+            ],
+            "createdAt": "string - date",
+            "updatedAt": "string - date",
+            "requests": "string"
+        },
+        // etc.
+    ]
+}
+</pre>
+</details>
+
+
+
+<details>
+<summary>GET /users/super-admin</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+No request body
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "_id": "string",
+    "firstname": "string",
+    "lastname": "string",
+    "username": "super-admin",
+    "email": "string",
+    "roles": [
+        "super-admin"
+    ],
+    "createdAt": "string - date",
+    "updatedAt": "string - date",
+    "requests": "string"
+}
+</pre>
+</details>
+
+
+<details>
+<summary>GET /users/:userId</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+No request body
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "_id": "string",
+    "firstname": "string",
+    "lastname": "string",
+    "username": "string",
+    "email": "string",
+    "roles": [
+        "moderator"
+    ],
+    "createdAt": "string - date",
+    "updatedAt": "string - date",
+    "requests": "string"
+}
+</pre>
+</details>
+
+
+<details>
+<summary>PATCH /users/super-admin</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+{
+  "firstname": "string",
+  "lastname": "string",
+  "username": "string",
+  "email": "string",
+  "password": "string",
+  "img": "string"
+}
+NOTE: any property can be ommited or updated
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "message": "string",
+    "user": {
+        "_id": "string",
+        "firstname": "string",
+        "lastname": "string",
+        "username": "super-admin",
+        "email": "string",
+        "roles": [
+            "super-admin"
+        ],
+        "img": "string",
+        "createdAt": "string - date",
+        "updatedAt": "string - date",
+        "requests": "string"
+    }
+}
+</pre>
+</details>
+
+
+<details>
+<summary>PATCH /users/:userId</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+{
+  "firstname": "string",
+  "lastname": "string",
+  "username": "string",
+  "email": "string",
+  "password": "string",
+  "img": "string"
+}
+NOTE: any property can be ommited or updated
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "message": "string",
+    "user": {
+        "_id": "string",
+        "firstname": "string",
+        "lastname": "string",
+        "username": "string",
+        "email": "string",
+        "roles": [
+            "moderator"
+        ],
+        "img": "string",
+        "createdAt": "string - date",
+        "updatedAt": "string - date",
+        "requests": "string"
+    }
+}
+</pre>
+</details>
+
+
+<details>
+<summary>PATCH /users/:userId</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+{
+  "roles": ["moderator", .... etc.]
+}
+NOTE: only moderator role is allowed for now
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "message": "string",
+    "user": {
+        "_id": "string",
+        "firstname": "string",
+        "lastname": "string",
+        "username": "string",
+        "email": "string",
+        "roles": [
+            "moderator"
+        ],
+        "img": "string",
+        "createdAt": "string - date",
+        "updatedAt": "string - date",
+        "requests": "string"
+    }
+}
+</pre>
+</details>
+
+
+<details>
+<summary>DELETE /users/:userId</summary>
+<br/>
+    <b>Request body shape</b>
+    <br/><br/>
+<pre>
+No request body
+</pre>
+<br/>
+     <b>Successful response shape</b>
+    <br/><br/>
+<pre>
+{
+    "message": "string",
+}
+</pre>
+</details>
+
+</br>
+<br/>
+
+## Project Access Summary
+
+
+|METHOD /endpoint|Description|Request body|
+|--|--|:--:|
+|POST /projects|Create/add a new project to the database (requires authentication and super-admin privilege)|title, url, img, children, issues, interest, skills (all are required)|
+|GET /projects|Get all project items in the database (you can also filter by interest and(or) by skills). (requires no authentication or authorization)| No Request Body |
+|GET /projects/:projectId|Get a project item from the database by its ID (requires no authentication or authorization)|No request body|
+|PATCH /projects/:projectId|Update a project item stored in the database by its ID (requires authentication with super-admin and moderator privileges)|title, url, img, children, issues, interest, skills (all are not necessarily required)|
+|DELETE /projects/:projectId|Delete a project item from the database by its ID (requires authentication and super-admin privilege)|No request body|
+|DELETE /projects|Delete all projects in the database (requires authentication and super-admin privilege)|No request body|
 
 <br/>
 
@@ -172,24 +519,32 @@ of that of the interest an skillSet filterData.
         "img": "string",
         "interest": [
             "string",
-            ...
+            // etc.
         ],
         "skills": [
             "string",
-            ...
+            // etc.
         ],
         "children": [
-            "title": "string",
-            "url": "string",
-            "interest": [
-                "string",
-                ...
-            ],
-            "skills": [
-                "string",
-                ...
-            ],
+            {
+                "_id": "string",
+                "title": "string",
+                "url": "string",
+                "interest": [
+                    "string",
+                    // etc.
+                ],
+                "skills": [
+                    "string",
+                    // etc
+                ]
+            },
+            // etc.
         ],
+        "createdBy": "string - username",
+        "createdAt": "string - date",
+        "updatedBy": "string - username",
+        "updatedAt": "string - date",
         "requests": "string"
     }
 }
@@ -247,6 +602,11 @@ No request body
                     // etc.
                 ]
             },
+            "createdBy": "string - username",
+            "createdAt": "string - date",
+            "updatedBy": "string - username",
+            "updatedAt": "string - date",
+            "requests": "string"
             "requests": "string"
         },
         
@@ -303,6 +663,11 @@ No request body
         
         // etc.
     ],
+    "createdBy": "string - username",
+    "createdAt": "string - date",
+    "updatedBy": "string - username",
+    "updatedAt": "string - date",
+    "requests": "string"
     "requests": "string"
 }
 
@@ -374,6 +739,11 @@ of that of the interest an skillSet filterData.
                 ...
             ],
         ],
+        "createdBy": "string - username",
+        "createdAt": "string - date",
+        "updatedBy": "string - username",
+        "updatedAt": "string - date",
+        "requests": "string"
         "requests": "string"
     }
 }
@@ -396,33 +766,6 @@ No request body
 <pre>
 {
     "message": "string",
-    "requests": {
-        "GET": {
-            "method": "GET",
-            "description": "Get all projects",
-            "url": "string"
-        },
-        "POST": {
-            "method": "POST",
-            "description": "Create a new project",
-            "url": "string",
-            "body": {
-                "title": "string",
-                "url": "string",
-                "type": "string",
-                "children": [
-                    {
-                        "title": "string",
-                        "url": "string"
-                    },
-                    "string"
-                ],
-                "issues": {
-                    "url": "string"
-                }
-            }
-        }
-    }
 }
 </pre>
 </details>

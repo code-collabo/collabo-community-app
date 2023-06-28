@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import { port } from './variables';
 import { requestsHelpInfo } from '../info/info.requests';
 import { UserDocument } from '../api/models/user.model';
-import { adminData } from './variables';
-import { signUpOneUserService, getAdminUserService } from '../api/services/users.service';
+import { superAdminData } from './variables';
+import { createSuperAdminService, getSuperAdminUserService } from '../api/services/users.service';
 
 interface URLs {
   api: {
@@ -53,15 +53,22 @@ export const checkSubset = (parentArray: string[], subsetArray: string[]) => {
   })
 }
 
-
-export const createAdmin = async () => {
-  const doc = await getAdminUserService();
-  if(!doc){
-    const adminDoc = await signUpOneUserService(adminData as UserDocument);
-    if(adminDoc) console.log("admin user created successfully");
-    else console.log("error creating admin user");
+export let superAdminExists = false;
+export const createSuperAdmin = async () => {
+  try{
+    const doc = await getSuperAdminUserService();
+    if(!doc){
+      const superAdminDoc = await createSuperAdminService(superAdminData as UserDocument);
+      if(superAdminDoc) console.log("admin user created successfully");
+      else console.log("error creating admin user");
+    }
+    else {
+      console.log("admin user already exists in the database");
+    }
+    superAdminExists = true;
   }
-  else {
-    console.log("admin user already exists in the database");
+  catch(err) {
+    throw new Error(err);
   }
+  
 }

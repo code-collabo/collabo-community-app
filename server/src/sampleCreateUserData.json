@@ -5,7 +5,7 @@
     "username": "samade",
     "email": "samade@gmail.com",
     "password": "12345",
-    "roles": ["moderator"]
+    "img": ""
   },
   {
     "firstname": "Mary",
@@ -13,7 +13,7 @@
     "username": "maryobi",
     "email": "maryobi@gmail.com",
     "password": "12345",
-    "roles": ["moderator"]
+    "img": ""
   },
   {
     "firstname": "Wale",
@@ -21,7 +21,7 @@
     "username": "waleojo",
     "email": "wale@gmail.com",
     "password": "12345",
-    "roles": ["moderator"]
+    "img": ""
   },
   {
     "firstname": "David",
@@ -29,7 +29,7 @@
     "username": "davidola",
     "email": "davidola@gmail.com",
     "password": "12345",
-    "roles": ["moderator"]
+    "img": ""
   },
   {
     "firstname": "Isa",
@@ -37,7 +37,7 @@
     "username": "isamomodu",
     "email": "isamomodu@gmail.com",
     "password": "12345",
-    "roles": ["moderator"]
+    "img": ""
   }
 
 ]
