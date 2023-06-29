@@ -18,7 +18,7 @@ interface IDropdownProps {
 	tabIndex?: number;
 	className?: string;
 	type?: string;
-	placeHolder?: string;
+	placeholder?: string;
 	labelName?: string;
 }
 
@@ -26,30 +26,44 @@ function Dropdown({
 	labelName,
 	name,
 	options,
-	placeHolder,
+	placeholder,
 	type,
 	required,
 	className,
 	tabIndex,
-}: IDropdownProps) {
+}: IDropdownProps, selectedSKills: string, props: object) {
     const [isOpen, setIsOpen] = useState(false);
     const toggleDropdown = () => setIsOpen(prevState => !prevState);
+    const [selectedOption, setSelectedOption] = useState('');
+    // const handleselect = () => {
+    //     setSelectedNav(Nav);
+    // }
+    // const handleOptionClick = (option: any) => {
+    //    setSelectedOption('skill');
+    //    handleClick(); // Call the handleCLick function passed from the parent
+    // }
+
     //const [selectedInterest, setSelectedInterest] = useState('');
-    const [selectedSkills, setSelectedSkills] = useState([]);
+    
     //const [selectedProjects, setSelectedProjects] = useState([]);
   
     // const handleInterestChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     //   setSelectedInterest(event.target.value);
     // };
   
-    const handleSkillsChange = (event: { target: { value: any; checked: any; }; }) => {
-      const { value, checked } = event.target;
-      if (checked) {
-        setSelectedSkills(prevState => [...prevState, value]);
-      } else {
-        setSelectedSkills(prevState => prevState.filter(skill => skill !== value));
-      }
-    };
+    const handleClick = (filter: string) => {
+        if(filter === "Interests"){
+         // setInterestDropdownOpen(true);
+        }
+        if(filter === "Skill"){
+          // setInterestDropdownOpen(false);
+          // setSkillDropdownOpen(true);
+        }else{
+         //  setInterestDropdownOpen(false);
+        }
+     }
+   
+    
   
     // const handleProjectChange = (event: { target: { value: any; checked: any; }; }) => {
     //   const { value, checked } = event.target;
@@ -62,24 +76,25 @@ function Dropdown({
   
     return (
       <div className={styles.filters}>
-        <div className={styles.dropdownContainer}>
-          <ul className={styles.dropdownToggle} onClick={toggleDropdown}>
+        <div className={styles.dropdownContainer}>  
+          <ul className={styles.dropdownToggle} onClick={toggleDropdown}   style={{ borderColor: isOpen ? '#0275D8' : 'white' }}>
             Skill Set <Image src={arrowdown} width={0} height={0} alt='down button' />
           </ul>
           {isOpen && (
             <div className={styles.dropdownMenu}>
               <div>
                 {/* <ul>Interest:</ul> */}
-                {List.skillset.map((skill) => (
-                  <label>
+                {List.skillset.map((skill, index) => (
+                  <label key={index}>
                   <h3>{skill}</h3>
                   <input
+                    key={index}
                     type="checkbox"
                     id="setColor"
                     name="color"
                     value={skill}
-                    checked={selectedSkills.includes(skill)}
-                    onChange={handleSkillsChange}
+                
+                    onClick={() => console.log(skill)}
                   />
                   
                 </label>

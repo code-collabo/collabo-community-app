@@ -20,6 +20,13 @@ left: calc(50% - 312px/2);
 top: calc(50% - 383px/2 - 0.5px); */
 
 
+.Cards{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px;
+}
+
  .ProjectCard{
   border: 3px solid grey;
   padding: 20px;
@@ -48,12 +55,6 @@ top: calc(50% - 383px/2 - 0.5px); */
     padding-left: 10px;
   }
 
-  .Cards{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    padding: 20px;
-  }
   .options{
     display: flex;
     justify-content: space-between;
@@ -175,7 +176,7 @@ flex-grow: 0;
 .filters ul:hover{
   border: 2px solid #0275D8;
   cursor: pointer;
-  color: #0275D8;
+  
 }
 
 .filters button{

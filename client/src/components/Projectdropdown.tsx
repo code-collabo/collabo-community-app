@@ -31,13 +31,18 @@ function DropdownProj({
 	required,
 	className,
 	tabIndex,
-}: IDropdownProps) {
+}: IDropdownProps ) {
     const [isOpen, setIsOpen] = useState(false);
-    const toggleDropdown = () => setIsOpen(prevState => !prevState);
+    const toggleDropdown = () => setIsOpen((prevState: any) => !prevState);
     //const [selectedInterest, setSelectedInterest] = useState('');
     //const [selectedSkills, setSelectedSkills] = useState([]);
-    const [selectedProjects, setSelectedProjects] = useState([]);
-  
+    
+    const [selectedOption, setSelectedOption] = useState('');  
+
+    const handleOptionClick = (option: any) => {
+        setSelectedOption('project');
+      //  handleClick();  // Call the handleCLick function passed from the parent
+    };
     // const handleInterestChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     //   setSelectedInterest(event.target.value);
     // };
@@ -50,20 +55,36 @@ function DropdownProj({
     //     setSelectedSkills(prevState => prevState.filter(skill => skill !== value));
     //   }
     // };
+
+    const handleClick = (filter: string) => {
+        if(filter === "interest"){
+         // setInterestDropdownOpen(true);
+        }
+        if(filter === "skill"){
+         //  setInterestDropdownOpen(false);
+         //  setSkillDropdownOpen(true);
+        }if(filter === 'projects'){
+         // setInterestDropdownOpen(false);
+         // setProjectDropdownOpen(true);
+        }
+     }
+
+
+
   
-    const handleProjectChange = (event: { target: { value: any; checked: any; }; }) => {
-      const { value, checked } = event.target;
-      if (checked) {
-        setSelectedProjects(prevState => [...prevState, value]);
-      } else {
-        setSelectedProjects(prevState => prevState.filter(project => project !== value));
-      }
-    };
+    // const handleProjectChange = (event: { target: { value: any; checked: any; }; }) => {
+    //   const { value, checked } = event.target;
+    //   if (checked) {
+    //     setSelectedProjects((prevState: any) => [...prevState, value]);
+    //   } else {
+    //     setSelectedProjects((prevState: any[]) => prevState.filter((project: any) => project !== value));
+    //   }
+    // };
   
     return (
       <div className={styles.filters}>
         <div className={styles.dropdownContainer}>
-          <ul className={styles.dropdownToggle} onClick={toggleDropdown}>
+          <ul className={styles.dropdownToggle} onClick={toggleDropdown}  style={{ borderColor: isOpen ? '#0275D8' : 'white' }}>  
             Project <Image src={arrowdown} width={0} height={0} alt='down button' />
           </ul>
           {isOpen && (
@@ -79,8 +100,7 @@ function DropdownProj({
                     id="setColor"
                     name="color"
                     value={project}
-                    checked={selectedProjects.includes(project)}
-                    onChange={handleProjectChange}
+                    onClick={() => console.log(project)}
                   />
                 </label>
                 ))}              

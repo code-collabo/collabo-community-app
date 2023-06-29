@@ -12,9 +12,67 @@ import arrowdown from "../../../public/Vectordown.svg";
 import DropdownProj from '@/components/Projectdropdown';
 import DropdownIn from '@/components/Interestsdropdown';
 import Dropdown from '@/components/Skilldropdown';
+import { Project } from '@/model/project';
+
 
 export default function InternshipPage() {
   const title = `${app.name} | Internships `;
+
+   const [isOpen, setIsOpen] = useState(false);
+   const toggleDropdown = () => setIsOpen(prevState => !prevState); 
+   const [selectedFilters, setSelectedFilters] = useState({});
+   const [isInterestDropdownOpen, setInterestDropdownOpen] = useState(true);
+   const [isSkillDropdownOpen, setSkillDropdownOpen] = useState(false);
+   const [isProjectDropdownOpen, setProjectDropdownOpen] = useState(false);
+
+    
+
+    
+  const handleInterestDropdownClick = () => {
+    setInterestDropdownOpen(false);
+    setSkillDropdownOpen(true);
+    setProjectDropdownOpen(true);
+  };
+
+  const handleSkillDropdownClick = () => {
+    setInterestDropdownOpen(false);
+    setSkillDropdownOpen(true);
+    setProjectDropdownOpen(true);
+  };
+
+  const handleProjectDropdownClick = () => {
+    setInterestDropdownOpen(true);
+    setSkillDropdownOpen(true);
+    setProjectDropdownOpen(true);
+  };
+
+
+  const handleClick = (filter: string) => {
+    if(filter === "interest"){
+      setInterestDropdownOpen(true);
+    }
+    if(filter === "skill"){
+       setInterestDropdownOpen(false);
+       setSkillDropdownOpen(true);
+    }if(filter === 'projects'){
+     setInterestDropdownOpen(false);
+     setProjectDropdownOpen(true);
+    }
+ }
+
+    
+  const handleFilterSelection = (filterName: any, filterValue: any) => {
+    setSelectedFilters(prevFilters => ({
+      ...prevFilters, 
+      [filterName]: filterValue
+    }));
+  };
+
+  // const filteredProjects = projects.filter(project => {
+
+  // })
+
+
   return (
     <>
       <Head>
@@ -29,11 +87,11 @@ export default function InternshipPage() {
         <div className={styles.filters}>
          <h3>Filter by:</h3> 
          {/* <ul>Interest <Image src={arrowdown} width={0} height={0} alt='down button' /> </ul> */}
-         <DropdownIn options={[]} />
+         <DropdownIn options={[]} isOpen={isOpen} toggleDropdown={toggleDropdown} />
          {/* <ul>Skill Set <Image src={arrowdown} width={0} height={0} alt='down button' /> </ul> */}
-         <Dropdown options={[]} />
+         <Dropdown options={[]} isOpen={isOpen} toggleDropdown={toggleDropdown} />
          {/* <ul>Project <Image src={arrowdown} width={0} height={0} alt='down button' /> </ul> */}
-         <DropdownProj options={[]} />
+         <DropdownProj options={[]} isOpen={isOpen} toggleDropdown={toggleDropdown} />
         </div>
         </div>
 
@@ -44,9 +102,7 @@ export default function InternshipPage() {
         </div>
 
         <div className={styles.Cards}>
-        {/* {projects.map((project) => ( 
-        <ProjectCard  project={project} key={project._id}  />
-        ))} */}
+      
         </div>
         </div>
     </>
