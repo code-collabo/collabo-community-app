@@ -11,6 +11,17 @@ export interface IDropdownOption {
 	labelValue: string | number;
 }
 
+interface input{
+    key: number
+    type: string
+    id: string
+    name: string
+    value: string
+    checked: boolean
+    onClick: Function
+    onChange: Function
+}
+
 interface IDropdownProps {
 	name?: string;
 	options: IDropdownOption[];
@@ -20,6 +31,8 @@ interface IDropdownProps {
 	type?: string;
 	placeholder?: string;
 	labelName?: string;
+    handleCHange: Function;
+    handleSkillChange: Function;
 }
 
 function Dropdown({
@@ -31,7 +44,9 @@ function Dropdown({
 	required,
 	className,
 	tabIndex,
-}: IDropdownProps, selectedSKills: string, props: object) {
+    handleCHange,
+    handleSkillChange
+}: IDropdownProps, selectedSkills: [], props: object) {
     const [isOpen, setIsOpen] = useState(false);
     const toggleDropdown = () => setIsOpen(prevState => !prevState);
     const [selectedOption, setSelectedOption] = useState('');
@@ -62,6 +77,16 @@ function Dropdown({
          //  setInterestDropdownOpen(false);
         }
      }
+
+     const onhandleSkillChange = (event: Event) => {
+        handleSkillChange(event);
+        console.log(skill);
+     }
+
+     const onhandleChange = (e) => {
+       handleCHange(e);
+       //console.log(e.target.value);
+     }
    
     
   
@@ -77,7 +102,7 @@ function Dropdown({
     return (
       <div className={styles.filters}>
         <div className={styles.dropdownContainer}>  
-          <ul className={styles.dropdownToggle} onClick={toggleDropdown}   style={{ borderColor: isOpen ? '#0275D8' : 'white' }}>
+          <ul className={styles.dropdownToggle} onClick={toggleDropdown} style={{ borderColor: isOpen ? '#0275D8' : 'white' }}>
             Skill Set <Image src={arrowdown} width={0} height={0} alt='down button' />
           </ul>
           {isOpen && (
@@ -93,8 +118,9 @@ function Dropdown({
                     id="setColor"
                     name="color"
                     value={skill}
-                
-                    onClick={() => console.log(skill)}
+                    //checked={() => onhandleChange ? true : false}
+                    //onClick={() => onhandleChange}
+                    onChange={(e) => onhandleChange(e)}
                   />
                   
                 </label>

@@ -17,7 +17,7 @@ export default function ProjectsPage(props: { filterValueSelected: () => void; }
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedFilters, setSelectedFilters] = useState('Interests');
   const title = `${app.name} | Projects `;
-  const [selectedSkills, setSelectedSkills] = useState(['All']);
+  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [selectedInterest, setSelectedInterest] = useState('All');
   const [selectedProject, setSelectedProject] = useState([]);
  // const [selectedNav, setSelectedNav] = useState(false);
@@ -46,15 +46,22 @@ export default function ProjectsPage(props: { filterValueSelected: () => void; }
     //setProjectDropdownOpen(false);
   };
 
-
-  const handleSkillsChange = (event: { target: { value: any; checked: any; }; }) => {
-    const { value, checked } = event.target;
-    if (checked) {
+  const handleSkillChange = (value: string) => {
+    setSelectedSkills(prevSkills => prevSkills.filter(skill => skill !== value));
+    console.log(selectedSkills)
+  };
+  
+  const handleCHange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {value, checked } = e.target;
+    console.log(e.target.value);
+    console.log(e.target.checked);
+    if (value && checked) {
       setSelectedSkills(prevState => [...prevState, value]);
     } else {
       setSelectedSkills(prevState => prevState.filter(skill => skill !== value));
     }
   };
+  
 
   const changeFilter = (filter: string) => {
      if(filter === "Interests"){
@@ -106,12 +113,14 @@ useEffect(() => {
 
   
 
-const filteredProjects = projects.filter((project) => {
+  const filteredProjects = projects.filter((project) => {
   const hasInterest = selectedInterest === 'All' ? projects : project.interest.includes(selectedInterest);
   const hasSkillset = selectedSkills.every((skill) => project.skills.includes(skill)); 
   //const hasProjectset = selectedProject.every((project) => project.project.includes(project));  
    console.log(hasInterest);
-   return hasInterest; 
+   console.log(hasSkillset);
+   //console.log(selectedSkills)
+   return hasInterest && hasSkillset; 
 
    
 });
@@ -135,7 +144,7 @@ const filteredProjects = projects.filter((project) => {
         <div className={styles.filters}>
          <h3>Filter by:</h3>
           <DropdownIn options={[]} selectedInterest={selectedInterest} setselectedInterest={setSelectedInterest} handleInterestChange={handleInterestChange} isOpen={isOpen} handleChange={handleChange} filterValueSelected={onFilterValueSelected} />
-          <Dropdown options={[]} selectedSkills={selectedSkills} handleSkillchange={handleSkillsChange} isOpen={isOpen}  />
+          <Dropdown options={[]} selectedSkills={selectedSkills}  isOpen={isOpen} handleCHange={handleCHange} handleSkillChange={handleSkillChange}  />
          {/* <ul>Interest <Image src={arrowdown} width={0} height={0} alt='down button' />   </ul>
          <ul>Skill Set <Image src={arrowdown} width={0} height={0} alt='down button' />  </ul> */}
         </div>
@@ -168,7 +177,7 @@ const filteredProjects = projects.filter((project) => {
         <div className={styles.filters}>
          <h3>Filter by:</h3>
           <DropdownIn options={[]} selectedInterest={selectedInterest} handleInterestChange={handleInterestChange} filterValueSelected={onFilterValueSelected} />
-          <Dropdown options={[]} selectedSkills={selectedSkills} handleSkillchange={handleSkillsChange} />
+          <Dropdown options={[]} selectedSkills={selectedSkills} handleCHange={handleCHange} />
          {/* <ul>Interest <Image src={arrowdown} width={0} height={0} alt='down button' />   </ul>
          <ul>Skill Set <Image src={arrowdown} width={0} height={0} alt='down button' />  </ul> */}
         </div>
