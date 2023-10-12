@@ -2,7 +2,7 @@ import { app } from '@/helpers/common';
 import Head from 'next/head';
 
 export default function ProjectsPage() {
-  const title = `${app.name} | Projects `;
+  const title = `${app.name} | Projects`;
   return (
     <>
       <Head>
