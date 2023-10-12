@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import style from '@/styles/modules/start-here.module.css';
+import style from '@/styles/modules/overview.module.css';
 import { app } from '../../helpers/common';
 
-export default function StartHerePage() {
+export default function OverviewPage() {
   const title = `${app.name} | Overview `;
   return (
     <>
