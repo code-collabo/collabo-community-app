@@ -52,6 +52,7 @@
   /*===========TYPOGRAPHY==============*/
   /*   used with the font property    */
   /* https://www.w3schools.com/cssref/pr_font_font.php */
+  /* --type-style-format: font-weight font-size/line-height font-family */
 
   --type-semi-bold-h1: 600 48px/65.37px 'Open Sans';
   --type-semi-bold-h2: 600 34px/46.30px 'Open Sans';
