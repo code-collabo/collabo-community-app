@@ -6,8 +6,8 @@ The Collabo Community App is an internal project aimed at promoting the Code Col
 
 #
 
-Find out how to use and contribute to this web application project in the [Collabo Web App Contributing Doc](https://code-collabo.gitbook.io/collabo-contributor/collabo-web-app-project/contribute-to-collabo-web-app)
+Find out how to use and contribute to this project in the [Collabo Community App Contributing Doc](https://code-collabo.gitbook.io/collabo-contributor/collabo-web-app-project/contribute-to-collabo-web-app)
 
 #
 
-To learn more about Code Collabo's community and other projects, feel free to visit the official [Code Collabo Documentation](https://code-collabo.gitbook.io/docs)
+To learn more about Collabo Community and other projects, feel free to visit the official [Collabo Community Documentation](https://code-collabo.gitbook.io/docs)
