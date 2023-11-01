@@ -8,7 +8,7 @@
 
 html, body {
   height: 100vh;
-  /* background here from css variables when added */
+  /* choosing not to add background here since we may add dark mode feature and need users to switch later on  */
 }
 
 img {
