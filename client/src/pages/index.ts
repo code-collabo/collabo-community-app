@@ -1,1 +1,1 @@
-export { default } from './code-collabo';
+export { default } from './community';
