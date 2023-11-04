@@ -1,5 +1,5 @@
-import PageHeadElement from "@/components/shared/PageHeadElement";
-import { app } from "@/helpers/common";
+import PageHeadElement from "@/shared/PageHeadElement";
+import { app } from "@/code-collabo/helpers/common";
 
 export default function Custom404() {
   const pageMetaDataObj = {

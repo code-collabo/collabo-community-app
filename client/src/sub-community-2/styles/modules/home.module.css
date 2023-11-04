@@ -1,0 +1,6 @@
+/* For css specific to only Collabo Community's HOME page */
+/* Imported as overview into the overview page when we need it */
+
+.test {
+    color: var(--color-primary-200);
+}
