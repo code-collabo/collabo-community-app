@@ -1,4 +1,4 @@
-import { first_subcommunity, first_subcommunity_home } from '../../helpers/common';
+import { first_subcommunity, first_subcommunity_home } from '../../code-collabo/helpers/common';
 import PageHeadElement from '@/components/shared/PageHeadElement';
 import overview from '@/styles/modules/overview.module.css';
 

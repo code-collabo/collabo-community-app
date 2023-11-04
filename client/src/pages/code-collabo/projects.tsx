@@ -1,5 +1,5 @@
-import PageHeadElement from '@/components/shared/PageHeadElement';
-import { first_subcommunity, first_subcommunity_2nd_page, first_subcommunity_home } from '@/helpers/common';
+import PageHeadElement from '@/code-collabo/components/shared/PageHeadElement';
+import { first_subcommunity, first_subcommunity_2nd_page, first_subcommunity_home } from '@/code-collabo/helpers/common';
 import projects from '@/styles/modules/code-collabo/projects.module.css';
 
 export default function ProjectsPage() {

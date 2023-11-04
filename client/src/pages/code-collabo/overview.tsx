@@ -1,5 +1,5 @@
-import { first_subcommunity, first_subcommunity_home } from '../../helpers/common';
-import PageHeadElement from '@/components/shared/PageHeadElement';
+import PageHeadElement from '@/code-collabo/components/shared/PageHeadElement';
+import { first_subcommunity, first_subcommunity_home } from '../../code-collabo/helpers/common';
 import overview from '@/styles/modules/code-collabo/overview.module.css';
 
 export default function OverviewPage() {

@@ -1,4 +1,4 @@
-import { app, subcommunities } from '@/helpers/common';
+import { app, subcommunities } from '@/code-collabo/helpers/common';
 import Head from 'next/head';
 
 export default function PageHeadElement({ landingPage, subcommunityName, pageName }: { landingPage?: boolean; subcommunityName: string; pageName: string }) {

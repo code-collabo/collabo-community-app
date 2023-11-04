@@ -1,5 +1,5 @@
-import { app } from '../../helpers/common';
-import PageHeadElement from '@/components/shared/PageHeadElement';
+import PageHeadElement from '@/community/components/shared/PageHeadElement';
+import { app } from '../../code-collabo/helpers/common';
 import home from '@/styles/modules/home.module.css';
 
 export default function AppHomePage() {
