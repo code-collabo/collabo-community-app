@@ -1,9 +1,9 @@
 import PageHeadElement from "@/components/shared/PageHeadElement";
-import { first_subcommunity } from "@/helpers/common";
+import { app } from "@/helpers/common";
 
 export default function Custom404() {
   const pageMetaDataObj = {
-    subcommunityName: first_subcommunity.name,
+    subcommunityName: app.name,
     pageName: "404 - Page not found",
   };
   return (

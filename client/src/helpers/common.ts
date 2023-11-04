@@ -1,6 +1,11 @@
 const common = {
   app: {
     name: 'Collabo Community',
+    pages: {
+      home: {
+        name: 'Home',
+      },
+    },
     subcommunities: { // probably use id to identify & check for these things better later?
       one: {
         name: 'Code Collabo',
