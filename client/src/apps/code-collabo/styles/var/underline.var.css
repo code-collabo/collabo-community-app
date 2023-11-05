@@ -1,20 +1,20 @@
 /* CODE-COLLABO SUBCOMMUNITY */
 /* Underline styles: CSS variables */
 
-:root {
+/* :root { */
   /*===========| UNDERLINE (USED WITH TYPOGRAPHY) |==============*/
     /*   used with the text-decoration property    */
     /* https://www.w3schools.com/cssref/pr_text_text-decoration.php */
     /* --underline-style-format: text-decoration-line text-decoration-color */
   /*========================================================*/
 
-  --underline-neutral-50: underline #FDFDFD;
+  /* --underline-neutral-50: underline #FDFDFD;
   --underline-neutral-100: underline #E1E6EA;
   --underline-neutral-150: underline #C1CDD7;
   --underline-neutral-200: underline #889199;
   --underline-neutral-250: underline #616E79;
   --underline-neutral-300: underline #3D4348;
   --underline-neutral-350: underline #1F2428;
-  --underline-neutral-400: underline #121518; /*main*/
+  --underline-neutral-400: underline #121518; main */
 
-}
+/* } */

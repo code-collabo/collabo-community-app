@@ -3,18 +3,22 @@ import { ReactNode } from 'react';
 export default function PageStructure({ children }: { children: ReactNode}) {
   return (
     <>
+      {/* Sidebar */}
       <div>
-        <div>CODE COLLABO SUBCOMMUNITY Sidebar Logo goes here</div>
+        <div><b>CODE COLLABO Sidebar Logo</b> goes here</div>
         <nav>
+          <span><b>Sidebar Nav Menu</b> goes here: </span>
           <button>Overview</button>
           <button>Projects</button>
           <button>Careers</button>
           <button>Donate</button>
         </nav>
       </div>
+
+      {/* Page Content */}
       <div>
         <header>
-            <h1>(Dynamic) Page Name/Title goes here</h1>
+            <span><b>Page Title:</b> (Dynamic) Page Name/Title goes here</span>
         </header>
         <main>
           { children }
