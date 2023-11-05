@@ -1,0 +1,14 @@
+/* CODE-COLLABO SUBCOMMUNITY */
+/* Styles import */
+/* Does not include app.main.globals.css styles and *.module.css styles */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css?family=Open Sans');
+
+/* Variables */
+@import "./var/colors.var.css";
+@import "./var/types.var.css";
+@import "./var/underline.var.css";
+
+/* UI */
+@import "./ui/buttons.ui.css";

@@ -1,0 +1,5 @@
+/* APP-WIDE */
+/* Shared Styles import */
+
+@import "./app/var.css";
+@import "./app/base.css";

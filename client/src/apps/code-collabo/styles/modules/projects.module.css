@@ -1,0 +1,8 @@
+/* CODE-COLLABO SUBCOMMUNITY */
+/* For css specific to only PROJECTS page */
+/* Imported as projects into the projects page when we need it */
+
+.test {
+    background-color: var(--color-neutral-200);
+    color: var(--color-shade-black);
+}
