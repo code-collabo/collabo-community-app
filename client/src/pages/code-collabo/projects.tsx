@@ -1,6 +1,6 @@
-import PageHeadElement from '@/code-collabo/components/shared/PageHeadElement';
-import { first_subcommunity, first_subcommunity_2nd_page, first_subcommunity_home } from '@/code-collabo/helpers/common';
-import projects from '@/styles/modules/code-collabo/projects.module.css';
+import PageHeadElement from '@/apps/shared/components/PageHeadElement';
+import { first_subcommunity, first_subcommunity_2nd_page, first_subcommunity_home } from '@/apps/code-collabo/helpers/app';
+import projects from '@/apps/code-collabo/styles/modules/projects.module.css';
 
 export default function ProjectsPage() {
   const pageMetaDataObj = {

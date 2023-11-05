@@ -1,6 +1,6 @@
 import PageHeadElement from '@/apps/shared/components/PageHeadElement';
-import { first_subcommunity, first_subcommunity_home } from '../../apps/code-collabo/helpers/app';
-import overview from '@/apps/code-collabo/styles/modules/overview.module.css';
+import { first_subcommunity, first_subcommunity_home } from '@/apps/code-collabo/helpers/app';
+import overview from '@/apps/other-subcommunity/styles/modules/overview.module.css';
 
 export default function OverviewPage() {
   const pageMetaDataObj = {

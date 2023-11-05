@@ -1,0 +1,8 @@
+/* COLLABO COMMUNITY */
+/* For css specific to only HOME page */
+/* Imported as home into the home page when we need it */
+
+.test {
+    background-color: var(--color-primary-150);
+    color: var(--color-shade-white)
+}

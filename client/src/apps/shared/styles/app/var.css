@@ -1,0 +1,14 @@
+/* APP-WIDE */
+/* Shared styles: CSS variables */
+
+@import url('https://fonts.googleapis.com/css?family=Open Sans');
+
+:root {
+  /*===========COLORS===============*/
+  /*used with color, background-color,
+   [and so on] properties*/
+
+  /* shades */
+  --color-shade-black: #000000;
+  --color-shade-white: #FFFFFF;
+}
