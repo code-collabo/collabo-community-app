@@ -2,4 +2,4 @@
 /* Styles import */
 /* Does not include main.globals.css styles and *.module.css styles */
 
-@import "./var/colors.css";
+@import "./var/colors.var.css";

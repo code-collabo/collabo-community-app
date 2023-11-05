@@ -1,6 +1,11 @@
 /* CODE-COLLABO SUBCOMMUNITY */
 /* Main global styles */
 
-body {
+/* body {
     background-color: var(--color-shade-white);
+    font: var(  --type-regular-body-text1);
+} */
+
+* {
+    font: var(--type-regular-body-text1);
 }
