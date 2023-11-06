@@ -1,8 +1,21 @@
+import PageHeadElement from '@/apps/shared/components/PageHeadElement';
+import { getPage } from '@/apps/shared/helpers/meta';
+import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
+import { urlStart } from '../helpers/appInfo';
 
 export default function PageStructure({ children }: { children: ReactNode}) {
+  let { pathname } = useRouter();
+  pathname === urlStart ? pathname =  `${urlStart}/overview` : pathname;
+  let { thisPage, pageTitle } = getPage(pathname, urlStart);
+
   return (
     <>
+      <PageHeadElement
+        pageTitle={pageTitle}
+        faviconUrl='/code-collabo/favicon.ico'
+      />
+
       {/* Sidebar */}
       <div>
         <div><b>CODE COLLABO Sidebar Logo</b> goes here</div>
@@ -18,7 +31,7 @@ export default function PageStructure({ children }: { children: ReactNode}) {
       {/* Page Content */}
       <div>
         <header>
-            <span><b>Page Title:</b> (Dynamic) Page Name/Title goes here</span>
+            <h2>{thisPage}</h2>
         </header>
         <main>
           { children }
