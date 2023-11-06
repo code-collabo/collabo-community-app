@@ -3,6 +3,6 @@
 /* Imported as overview into the overview page when we need it */
 
 .test {
-    background-color: var(--color-primary-150);
-    color: var(--color-shade-white)
+    background-color: var(--color-warning-150);
+    color: var(--color-shade-black)
 }
