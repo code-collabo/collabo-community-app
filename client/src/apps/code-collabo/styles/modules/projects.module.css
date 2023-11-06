@@ -3,6 +3,6 @@
 /* Imported as projects into the projects page when we need it */
 
 .test {
-    background-color: var(--color-neutral-200);
-    color: var(--color-shade-black);
+    background-color: var(--color-primary-150);
+    color: var(--color-shade-white)
 }
