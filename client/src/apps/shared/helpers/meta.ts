@@ -1,4 +1,4 @@
-import { capitalizeAllFirstLetters } from './transform';
+import { capitalizeAllFirstLetters } from '@/apps/shared/helpers/transform';
 
 const toPageTitle = (pageName: string, appName: string) => { //not exported only used in this file for now
     return `${pageName} | ${appName}`;
