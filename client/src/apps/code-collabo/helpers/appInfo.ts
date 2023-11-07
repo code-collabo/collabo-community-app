@@ -1,4 +1,4 @@
-import { capitalizeAllFirstLetters, stringToUrlStart } from "@/apps/shared/helpers/transform";
+import { capitalizeAllFirstLetters, stringToUrlStart } from '@/apps/shared/helpers/transform';
 
 const appName = 'code collabo';
 
