@@ -6,7 +6,7 @@ import overview from '@/apps/other-subcommunity/styles/modules/overview.module.c
 const OverviewPageOther: NextPageWithLayout = () => {
   return (
     <>
-      <h2 className={overview.test}>Dummy Page Content: CSS Module Test!</h2>
+      <p className={`${overview.test}`}>Dummy Page Content: CSS Module Test!</p>
     </>
   );
 };

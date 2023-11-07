@@ -3,6 +3,8 @@
 /* Imported as home into the home page when we need it */
 
 .test {
-    background-color: var(--color-neutral-300);
-    color: var(--color-shade-white);
+    background: var(--color-shade-black);
+    color: var(--color-yellow);
+    font-size: 18px;
+    padding: 6px 0;
 }

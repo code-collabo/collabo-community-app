@@ -1,8 +1,8 @@
-/* CODE-COLLABO SUBCOMMUNITY */
+/* CODE-COLLABO SUBCOMMUNITY only */
 /* For css specific to only PROJECTS page */
 /* Imported as projects into the projects page when we need it */
 
 .test {
-    background-color: var(--color-primary-150);
-    color: var(--color-shade-white)
+    background: var(--color-primary-150);
+    color: var(--color-shade-white);
 }

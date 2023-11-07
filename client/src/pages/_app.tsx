@@ -2,18 +2,7 @@ import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 
-import '@/apps/shared/styles/imports.globals.css';
-
-//-----------------------------------------------
-import '@/apps/community/styles/app.imports.css';
-import '@/apps/community/styles/app.main.css';
-
-import '@/apps/code-collabo/styles/app.imports.css';
-import '@/apps/code-collabo/styles/app.main.css';
-
-import '@/apps/other-subcommunity/styles/app.imports.css';
-import '@/apps/other-subcommunity/styles/app.main.css';
-//-----------------------------------------------
+import '@/apps/shared/styles/imports.css';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
