@@ -1,4 +1,4 @@
-import { NextPageWithLayout } from '../_app';
+import { NextPageWithLayout } from '@/pages/_app';
 import { getCommunityLayout } from '@/apps/community/components/AppPageLayout';
 
 import home from '@/apps/community/styles/modules/home.module.css';
