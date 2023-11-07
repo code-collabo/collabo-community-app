@@ -1,12 +1,13 @@
-import { appInfo, urlStart } from '@/apps/community/helpers/appInfo';
-import PageHeadElement from '@/apps/shared/components/PageHeadElement';
-import { getPage } from '@/apps/shared/helpers/meta';
-import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
+import { useRouter } from 'next/router';
+
+import { getPage } from '@/apps/shared/helpers/meta';
+import { appInfo, urlStart } from '@/apps/community/helpers/appInfo';
+
+import PageHeadElement from '@/apps/shared/components/PageHeadElement';
 
 export default function PageStructure({ children }: { children: ReactNode}) {
   let { pathname } = useRouter();
-  console.log(pathname, urlStart)
   pathname === '/' || pathname === urlStart ? pathname = `${urlStart}/home` : pathname;
   let { thisPage, pageTitle } = getPage(pathname, urlStart, appInfo.name);
   return (
