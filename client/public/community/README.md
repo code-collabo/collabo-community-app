@@ -1,0 +1,1 @@
+Images for Collabo Community Main/Home App goes into this folder
