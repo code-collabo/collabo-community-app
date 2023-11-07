@@ -1,4 +1,4 @@
-import { capitalizeAllFirstLetters, stringToUrlStart } from "@/apps/shared/helpers/transform";
+import { capitalizeAllFirstLetters, stringToUrlStart } from '@/apps/shared/helpers/transform';
 
 const appName = 'other subcommunity';
 
@@ -18,8 +18,6 @@ const appInfo: any = {
     },
   }
 };
-
-console.log(appInfo);
 
 export {
   appInfo,
