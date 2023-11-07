@@ -1,0 +1,1 @@
+Images for other subcommunity goes into this folder
