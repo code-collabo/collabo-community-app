@@ -6,6 +6,10 @@ import { appInfo, urlStart } from '@/apps/code-collabo/helpers/appInfo';
 
 import PageHeadElement from '@/apps/shared/components/PageHeadElement';
 
+import { colors, spacing, types } from '@/apps/code-collabo/styles/app.imports';
+import main from '@/apps/code-collabo/styles/app.main';
+
+
 export default function PageStructure({ children }: { children: ReactNode }) {
   let { pathname } = useRouter();
   pathname === urlStart ? pathname =  `${urlStart}/overview` : pathname;
@@ -17,6 +21,12 @@ export default function PageStructure({ children }: { children: ReactNode }) {
         pageTitle={pageTitle}
         faviconUrl='/code-collabo/favicon.ico'
       />
+
+      {/* Global JSX styles for Code Collabo sub-community only */}
+      <style jsx global>{ colors }</style>
+      <style jsx global>{ spacing }</style>
+      <style jsx global>{ types }</style>
+      <style jsx global>{ main }</style>
 
       {/* Sidebar */}
       <div>
@@ -33,7 +43,7 @@ export default function PageStructure({ children }: { children: ReactNode }) {
       {/* Page Content */}
       <div>
         <header>
-            <h2>{thisPage}</h2>
+            <h2 className='page-title'>{thisPage}</h2>
         </header>
         <main>
           { children }

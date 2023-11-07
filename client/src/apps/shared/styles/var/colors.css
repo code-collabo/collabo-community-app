@@ -1,0 +1,23 @@
+/* APP-WIDE */
+/* Shared color styles: CSS variables */
+
+:root {
+  /*===========COLORS===============*/
+  /*used with color, background-color,
+   [and so on] properties*/
+
+  --color-shade-black: #000000;
+  --color-shade-white: #FFFFFF;
+
+  --color-neutral-50: #FDFDFD;
+  --color-neutral-100: #E1E6EA;
+  --color-neutral-150: #C1CDD7;
+  --color-neutral-200: #889199;
+  --color-neutral-250: #616E79;
+  --color-neutral-300: #3D4348;
+  --color-neutral-350: #1F2428;
+  --color-neutral-400: #121518; /*main*/
+
+  /*==================================*/
+
+}

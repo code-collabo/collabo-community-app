@@ -6,7 +6,7 @@ import projects from '@/apps/code-collabo/styles/modules/projects.module.css';
 const ProjectsPageCodeCollabo: NextPageWithLayout = () => {
   return (
     <>
-      <h2 className={projects.test}>Dummy Page Content: CSS Module Test!</h2>
+      <p className={`${projects.test} dummy-module-text`}>Dummy Page Content: CSS Module Test!</p>
     </>
   );
 };

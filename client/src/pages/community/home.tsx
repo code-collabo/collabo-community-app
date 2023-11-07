@@ -6,7 +6,7 @@ import home from '@/apps/community/styles/modules/home.module.css';
 const AppHomePage: NextPageWithLayout = () => {
   return (
     <>
-      <h2 className={home.test}>Dummy Page Content: CSS Module Test!</h2>
+      <p className={home.test}>Dummy Page Content: CSS Module Test!</p>
     </>
   );
 };

@@ -1,0 +1,9 @@
+/* APP-WIDE */
+/* Shared Styles import */
+
+/* Variables */
+@import "./var/colors.css";
+@import "./var/spacing.css";
+
+/* Base styles */
+@import "./base.css";
