@@ -1,4 +1,5 @@
 import PageHeadElement from '@/apps/shared/components/PageHeadElement';
+import Custom404Component from '@/apps/community/components/404component';
 
 export default function Custom404() {
   return (
@@ -7,7 +8,8 @@ export default function Custom404() {
         pageTitle='404 - Page Not found'
         faviconUrl=''
       />
-      <h1>404 - Custom Page Not Found</h1>
+
+      <Custom404Component></Custom404Component>
     </>
   );
 };
