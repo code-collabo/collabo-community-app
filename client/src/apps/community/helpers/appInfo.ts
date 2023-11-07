@@ -1,4 +1,4 @@
-import { capitalizeAllFirstLetters, stringToUrlStart } from "@/apps/shared/helpers/transform";
+import { capitalizeAllFirstLetters, stringToUrlStart } from '@/apps/shared/helpers/transform';
 
 const appName = 'collabo community';
 
@@ -16,10 +16,8 @@ const appInfo: any = {
       name: page[1],
       route: `${urlStart}/${page[1]}`,
     },
-  }
+  },
 };
-
-console.log(appInfo);
 
 export {
   appInfo,
