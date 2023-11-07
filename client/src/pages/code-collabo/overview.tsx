@@ -1,4 +1,4 @@
-import { NextPageWithLayout } from '../_app';
+import { NextPageWithLayout } from '@/pages/_app';
 import { getCodeCollaboSubCommunityLayout } from '@/apps/code-collabo/components/AppPageLayout';
 
 import overview from '@/apps/code-collabo/styles/modules/overview.module.css';

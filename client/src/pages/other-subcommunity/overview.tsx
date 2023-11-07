@@ -1,4 +1,4 @@
-import { NextPageWithLayout } from '../_app';
+import { NextPageWithLayout } from '@/pages/_app';
 import { getOtherSubCommunityLayout } from '@/apps/other-subcommunity/components/AppPageLayout';
 
 import overview from '@/apps/other-subcommunity/styles/modules/overview.module.css';
