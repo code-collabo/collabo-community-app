@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:watch": "npx onchange '**/*.ts' '**/*.tsx' -- npm run lint"
+    "lint:watch": "npx onchange '**/*.{js,ts,jsx,tsx}' -- npm run lint"
   },
   "dependencies": {
     "next": "13.5.4",
