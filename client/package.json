@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:watch": "npx onchange '**/*.ts' '**/*.tsx' -- npm run lint"
   },
   "dependencies": {
     "next": "13.5.4",
@@ -18,7 +19,9 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "eslint": "^8.53.0",
     "eslint-config-next": "13.5.4",
     "typescript": "^5"
   }
