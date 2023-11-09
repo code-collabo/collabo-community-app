@@ -13,7 +13,7 @@ import main from '@/apps/code-collabo/styles/app.main';
 export default function PageStructure({ children }: { children: ReactNode }) {
   let { pathname } = useRouter();
   pathname === urlStart ? pathname =  `${urlStart}/overview` : pathname;
-  let { thisPage, pageTitle } = getPage(pathname, urlStart, appInfo.name);
+  const { thisPage, pageTitle } = getPage(pathname, urlStart, appInfo.name);
 
   return (
     <>
@@ -51,4 +51,4 @@ export default function PageStructure({ children }: { children: ReactNode }) {
       </div>
     </>
   );
-};
+}

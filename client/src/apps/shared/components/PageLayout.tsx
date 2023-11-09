@@ -4,4 +4,4 @@ export default function PageLayout({ children }: { children: ReactNode}) {
   return (
     <>{children}</>
   );
-};
+}

@@ -12,4 +12,4 @@ export default function Custom404() {
       <Custom404Component></Custom404Component>
     </>
   );
-};
+}

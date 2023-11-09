@@ -9,4 +9,4 @@ export function getCodeCollaboSubCommunityLayout(page: ReactElement) {
         <PageStructure>{page}</PageStructure>
       </PageLayout>
     );
-};
+}
