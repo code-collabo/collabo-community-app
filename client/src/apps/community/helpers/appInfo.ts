@@ -6,6 +6,7 @@ const urlStart = stringToUrlStart(appName.replace('collabo ', ''));
 
 const page = {
   1: 'home',
+  2: '404',
 };
 
 const appInfo: any = {
@@ -15,6 +16,10 @@ const appInfo: any = {
     1: {
       name: page[1],
       route: `${urlStart}/${page[1]}`,
+    },
+    2: {
+      name: page[2],
+      route: `${urlStart}/${page[2]}`,
     },
   },
 };
