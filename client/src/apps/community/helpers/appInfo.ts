@@ -1,17 +1,5 @@
 import { capitalizeAllFirstLetters, stringToUrlStart } from '@/apps/shared/helpers/transform';
-
-interface Page {
-  name: string;
-  route: string;
-}
-
-interface AppInfo {
-  id: number;
-  name: string;
-  pages: {
-    [key: number]: Page;
-  };
-}
+import  { AppInfo } from '@/apps/shared/helpers/types';
 
 const appName = 'collabo community';
 
