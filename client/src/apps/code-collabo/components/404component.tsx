@@ -5,4 +5,4 @@ export default function Custom404Component() {
       <h1>Code Collabo Subcommunity 404 page content</h1>
     </>
   );
-};
+}

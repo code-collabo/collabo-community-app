@@ -5,7 +5,7 @@ const toPageTitle = (pageName: string, appName: string) => { //not exported only
 };
 
 const getPage = (pathname: string, urlStart: string, appName: string) => {
-    const thisPage = capitalizeAllFirstLetters(pathname.replace(`${urlStart}/`, ''))
+    const thisPage = capitalizeAllFirstLetters(pathname.replace(`${urlStart}/`, ''));
     const pageTitle = toPageTitle(thisPage, appName);
     return {
         thisPage,
