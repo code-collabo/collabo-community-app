@@ -1,14 +1,15 @@
 import { capitalizeAllFirstLetters, stringToUrlStart } from '@/apps/shared/helpers/transform';
+import  { AppInfo } from '@/apps/shared/helpers/types';
 
 const appName = 'other subcommunity';
 
 const urlStart = stringToUrlStart(appName);
 
-const page = {
+const page: { [key: number]: string } = {
   1: 'overview',
 };
 
-const appInfo: any = {
+const appInfo: AppInfo = {
   id: 1,
   name: capitalizeAllFirstLetters(appName),
   pages: {
