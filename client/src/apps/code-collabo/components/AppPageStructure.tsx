@@ -14,7 +14,6 @@ export default function PageStructure({ children }: { children: ReactNode }) {
   let { pathname } = useRouter();
   pathname === urlStart ? pathname =  `${urlStart}/overview` : pathname;
   let { thisPage, pageTitle } = getPage(pathname, urlStart, appInfo.name);
-  console.log(appInfo)
 
   return (
     <>

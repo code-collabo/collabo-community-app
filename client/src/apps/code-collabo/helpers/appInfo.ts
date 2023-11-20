@@ -7,7 +7,6 @@ const urlStart = stringToUrlStart(appName);
 const page = {
   1: 'overview',
   2: 'projects',
-  3: '404'
 };
 
 const appInfo: any = {
@@ -22,10 +21,6 @@ const appInfo: any = {
       name: page[2],
       route: `${urlStart}/${page[2]}`,
     },
-    3: {
-      name: page[3],
-      route: `${urlStart}/${page[3]}`,
-    }
   }
 };
 

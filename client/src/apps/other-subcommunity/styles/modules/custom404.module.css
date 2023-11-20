@@ -1,6 +1,6 @@
 /* OTHER SUBCOMMUNITY only */
 /* For css specific to only OVERVIEW page */
-/* Imported as custom404 into the custom404 component when we need it */
+/* Imported as secondApp404 into the custom404 component when we need it */
 
 .test {
     background: var(--color-purple);
