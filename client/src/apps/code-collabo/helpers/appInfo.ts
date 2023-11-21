@@ -22,11 +22,7 @@ const appInfo: AppInfo = {
       name: page[2],
       route: `${urlStart}/${page[2]}`,
     },
-<<<<<<< HEAD
-  }
-=======
   },
->>>>>>> develop
 };
 
 export {
