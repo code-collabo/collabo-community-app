@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "esw src --ext .js,.ts,.jsx,.tsx --color",
+    "lint:watch": "npm run lint -- '**/*.{js,ts,jsx,tsx}' --watch"
   },
   "dependencies": {
     "next": "13.5.4",
@@ -18,8 +19,11 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
+    "eslint-watch": "^8.0.0",
     "typescript": "^5"
   }
 }

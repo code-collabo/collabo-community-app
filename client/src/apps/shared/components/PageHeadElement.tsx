@@ -7,4 +7,4 @@ export default function PageHeadElement({ pageTitle, faviconUrl }: { pageTitle: 
         <title>{ pageTitle }</title>
     </Head>
   );
-};
+}

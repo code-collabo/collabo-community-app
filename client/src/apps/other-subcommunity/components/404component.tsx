@@ -6,4 +6,4 @@ export default function Custom404Component() {
       <h1 className={`${secondApp404.test}`}>Other Subcommunity 404 page content</h1>
     </>
   );
-};
+}

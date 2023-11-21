@@ -6,4 +6,4 @@ export default function Custom404Component() {
       <h1 className={`${firstApp404.test} dummy-module-text`}>Code Collabo Subcommunity 404 page content</h1>
     </>
   );
-};
+}

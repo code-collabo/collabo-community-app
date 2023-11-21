@@ -12,7 +12,7 @@ import main from '@/apps/other-subcommunity/styles/app.main';
 export default function PageStructure({ children }: { children: ReactNode}) {
   let { pathname } = useRouter();
   pathname === urlStart ? pathname =  `${urlStart}/overview` : pathname;
-  let { thisPage, pageTitle } = getPage(pathname, urlStart, appInfo.name);
+  const { thisPage, pageTitle } = getPage(pathname, urlStart, appInfo.name);
   return (
     <>
       <PageHeadElement
@@ -32,4 +32,4 @@ export default function PageStructure({ children }: { children: ReactNode}) {
       { children }
     </>
   );
-};
+}

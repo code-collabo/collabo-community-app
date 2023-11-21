@@ -9,4 +9,4 @@ export function getCommunityLayout(page: ReactElement) {
         <PageStructure>{page}</PageStructure>
       </PageLayout>
     );
-};
+}
