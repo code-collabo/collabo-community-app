@@ -1,15 +1,13 @@
-import PageHeadElement from '@/apps/shared/components/PageHeadElement';
-import Custom404Component from '@/apps/community/components/404component';
+import { NextPageWithLayout } from '@/pages/_app';
+import { getCustom404Layout } from '@/apps/shared/components/Custom404PageLayout';
 
-export default function Custom404() {
+const Custom404Page: NextPageWithLayout = () => {
   return (
     <>
-      <PageHeadElement
-        pageTitle='404 - Page Not found'
-        faviconUrl=''
-      />
-
-      <Custom404Component></Custom404Component>
+      {/* 404 page code resides inside the getCustom404Layout component */}
     </>
   );
-}
+};
+
+Custom404Page.getLayout = getCustom404Layout;
+export default Custom404Page;
