@@ -7,9 +7,9 @@ import CommunityPageStructure from '@/apps/community/components/AppPageStructure
 import CodeCollaboPageStructure from '@/apps/code-collabo/components/AppPageStructure';
 import OtherSubcommunityPageStructure from '@/apps/other-subcommunity/components/AppPageStructure';
 
-import Community404Component from '@/apps/community/components/404component'
-import CodeCollabo404Component from '@/apps/code-collabo/components/404component'
-import OtherSubcommunity404Component from '@/apps/other-subcommunity/components/404component'
+import Community404Component from '@/apps/community/components/404component';
+import CodeCollabo404Component from '@/apps/code-collabo/components/404component';
+import OtherSubcommunity404Component from '@/apps/other-subcommunity/components/404component';
 
 import { useRouteraspath } from '@/apps/shared/hooks/useRouteraspath';
 
@@ -44,7 +44,7 @@ export function getCustom404Layout(page: ReactElement) {
         </CodeCollaboPageStructure>
       </PageLayout>
     );
-  };
+  }
 
   // When in 2nd subcommunity route, return this 404 layout and content
   if (is.secondApp404Route) {
@@ -56,7 +56,7 @@ export function getCustom404Layout(page: ReactElement) {
         </OtherSubcommunityPageStructure>
       </PageLayout>
     );
-  };
+  }
 
   // By default: Return Community 404 layout and content
   return (
@@ -67,4 +67,4 @@ export function getCustom404Layout(page: ReactElement) {
       </CommunityPageStructure>
     </PageLayout>
   );
-};
+}

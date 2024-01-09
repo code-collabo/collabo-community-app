@@ -11,7 +11,7 @@ import types from '@/apps/code-collabo/styles/var/types.var';
 // import buttons from '@/apps/code-collabo/styles/ui/buttons.ui';
 
 export {
-    colors,
-    spacing,
-    types,
+  colors,
+  spacing,
+  types,
 };

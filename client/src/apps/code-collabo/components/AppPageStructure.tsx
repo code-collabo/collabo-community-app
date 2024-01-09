@@ -43,7 +43,7 @@ export default function PageStructure({ children }: { children: ReactNode }) {
       {/* Page Content */}
       <div>
         <header>
-            <h2 className='page-title'>{thisPage}</h2>
+          <h2 className='page-title'>{thisPage}</h2>
         </header>
         <main>
           { children }
