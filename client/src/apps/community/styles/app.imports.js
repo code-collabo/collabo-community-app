@@ -6,5 +6,5 @@
 import colors from '@/apps/community/styles/var/colors.var';
 
 export {
-    colors,
+  colors,
 };
