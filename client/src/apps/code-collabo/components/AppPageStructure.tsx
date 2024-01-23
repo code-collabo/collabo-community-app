@@ -8,12 +8,17 @@ import PageHeadElement from '@/apps/shared/components/PageHeadElement';
 
 import { colors, spacing, types } from '@/apps/code-collabo/styles/app.imports';
 import main from '@/apps/code-collabo/styles/app.main';
+import  useScreenDimensions  from '../helpers/useScreenDimensions';
 
 
 export default function PageStructure({ children }: { children: ReactNode }) {
   let { pathname } = useRouter();
   pathname === urlStart ? pathname =  `${urlStart}/overview` : pathname;
   const { thisPage, pageTitle } = getPage(pathname, urlStart, appInfo.name);
+
+  const  { isMobile }  = useScreenDimensions();
+
+
 
   return (
     <>
@@ -28,27 +33,48 @@ export default function PageStructure({ children }: { children: ReactNode }) {
       <style jsx global>{ types }</style>
       <style jsx global>{ main }</style>
 
-      {/* Sidebar */}
-      <div>
-        <div><b>CODE COLLABO Sidebar Logo</b> goes here</div>
-        <nav>
-          <span><b>Sidebar Nav Menu</b> goes here: </span>
-          <button>Overview</button>
-          <button>Projects</button>
-          <button>Careers</button>
-          <button>Donate</button>
-        </nav>
-      </div>
+      { !isMobile ? (
+        // Web
+        <div className='page-structure'>
+          {/* Sidebar */}
+          <div className='sidebar'>
+            <div><b>CODE COLLABO Sidebar Logo</b> goes here</div>
+            <nav>
+              <span><b>Sidebar Nav Menu</b> goes here: </span>
+              <button>Overview</button>
+              <button>Projects</button>
+              <button>Careers</button>
+              <button>Donate</button>
+            </nav>
+          </div>
 
-      {/* Page Content */}
-      <div>
-        <header>
-            <h2 className='page-title'>{thisPage}</h2>
-        </header>
-        <main>
-          { children }
-        </main>
-      </div>
+          {/* Page Content */}
+          <div className='content'>
+            <header>
+              <h2 className='page-title'>{thisPage}</h2>
+            </header>
+            <main>
+              { children }
+            </main>
+          </div>
+        </div>
+      ) : (
+        // mobile
+        <div className='page-structure-mobile'>
+          <header className='header-mobile'>
+            <div className='icon-outline'>
+              HI
+            </div>
+            <h2 className='page-title-mobile'>{thisPage}</h2>
+            <div className='icon-outline'>
+              FI
+            </div>
+          </header>
+          <main>
+            { children }
+          </main>
+        </div>
+      )}
     </>
   );
 }

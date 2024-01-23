@@ -6,3 +6,25 @@
     background: var(--color-primary-150);
     color: var(--color-shade-white);
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.containerMobile {
+    margin-top: var(--spacing-16);
+}
+
+.filter {
+    align-self: flex-end;
+    margin-bottom: var(--spacing-40);
+}
+
+.cardDisplay {
+    margin-bottom: var(--spacing-65);
+}
+
+.pagination {
+    align-self: center;
+}
