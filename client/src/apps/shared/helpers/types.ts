@@ -4,7 +4,7 @@ interface Page {
     route: string;
   }
   
-  export interface AppInfo {
+export interface AppInfo {
     id: number;
     name: string;
     pages: {
