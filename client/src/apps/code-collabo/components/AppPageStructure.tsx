@@ -9,6 +9,7 @@ import PageHeadElement from '@/apps/shared/components/PageHeadElement';
 import { colors, spacing, types } from '@/apps/code-collabo/styles/app.imports';
 import main from '@/apps/code-collabo/styles/app.main';
 import  useScreenDimensions  from '../helpers/useScreenDimensions';
+import * as SolarIconSet from "solar-icon-set";
 
 
 export default function PageStructure({ children }: { children: ReactNode }) {
@@ -63,11 +64,11 @@ export default function PageStructure({ children }: { children: ReactNode }) {
         <div className='page-structure-mobile'>
           <header className='header-mobile'>
             <div className='icon-outline'>
-              HI
+            <SolarIconSet.List2 size={24}/>
             </div>
             <h2 className='page-title-mobile'>{thisPage}</h2>
             <div className='icon-outline'>
-              FI
+              <SolarIconSet.Tuning3 size={24}/>
             </div>
           </header>
           <main>
