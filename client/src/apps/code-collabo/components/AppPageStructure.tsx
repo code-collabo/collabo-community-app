@@ -9,7 +9,7 @@ import PageHeadElement from '@/apps/shared/components/PageHeadElement';
 import { colors, spacing, types } from '@/apps/code-collabo/styles/app.imports';
 import main from '@/apps/code-collabo/styles/app.main';
 import  useScreenDimensions  from '../helpers/useScreenDimensions';
-import * as SolarIconSet from "solar-icon-set";
+import Image from 'next/image';
 
 
 export default function PageStructure({ children }: { children: ReactNode }) {
@@ -64,11 +64,11 @@ export default function PageStructure({ children }: { children: ReactNode }) {
         <div className='page-structure-mobile'>
           <header className='header-mobile'>
             <div className='icon-outline'>
-            <SolarIconSet.List2 size={24}/>
+              <Image src='/code-collabo/hamburger.png' alt='hamburger-icon' width={18} height={11}/>
             </div>
             <h2 className='page-title-mobile'>{thisPage}</h2>
             <div className='icon-outline'>
-              <SolarIconSet.Tuning3 size={24}/>
+              <Image src='/code-collabo/menu.png' alt='hamburger-icon' width={18} height={11}/>
             </div>
           </header>
           <main>
