@@ -28,3 +28,11 @@
 .pagination {
     align-self: center;
 }
+
+/* select elements */
+.select {
+    padding: 12px 26px;
+    border: 1px solid #C1CDD7;
+    border-radius: 10px;
+    margin-left: 10px;
+}

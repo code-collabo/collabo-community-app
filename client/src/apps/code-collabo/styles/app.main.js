@@ -23,19 +23,14 @@ export default css.global`
         padding: var(--spacing-sm) 0px;
     }
 
-    .page-structure {
+    .container {
         margin: 0;
-        display: grid;
-        grid-template-columns: 20% 80%;
-        height: 100vh;
-    }
-
-    .page-structure-mobile {
-        margin: 0;
-        padding: 20px;
+        display: flex;
+        min-height: 100vh;
     }
 
     .sidebar {
+        flex: 1;
         color: #fff;
         padding: 20px;
         border-right: 1px solid #ccc; 
@@ -44,6 +39,7 @@ export default css.global`
     }
       
     .content {
+        flex: 4;
         padding: 50px;
         overflow-y: hidden;
         box-sizing: border-box;
@@ -59,9 +55,15 @@ export default css.global`
         justify-content: center;
     }
 
+    // mobile styles
     .header-mobile {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
+
+    .container-mobile {
+      margin: 0;
+      padding: 20px;
+  }
 `;

@@ -10,6 +10,7 @@ import { colors, spacing, types } from '@/apps/code-collabo/styles/app.imports';
 import main from '@/apps/code-collabo/styles/app.main';
 import  useScreenDimensions  from '../helpers/useScreenDimensions';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 export default function PageStructure({ children }: { children: ReactNode }) {
@@ -36,16 +37,16 @@ export default function PageStructure({ children }: { children: ReactNode }) {
 
       { !isMobile ? (
         // Web
-        <div className='page-structure'>
+        <div className='container'>
           {/* Sidebar */}
           <div className='sidebar'>
             <div><b>CODE COLLABO Sidebar Logo</b> goes here</div>
             <nav>
               <span><b>Sidebar Nav Menu</b> goes here: </span>
-              <button>Overview</button>
-              <button>Projects</button>
-              <button>Careers</button>
-              <button>Donate</button>
+              <Link href='/code-collabo'>Overview</Link>
+              <Link href='/code-collabo/projects'>Projects</Link>
+              <Link href='/code-collabo/careers'>Careers</Link>
+              <Link href='/code-collabo/donate'>Donate</Link>
             </nav>
           </div>
 
@@ -61,7 +62,7 @@ export default function PageStructure({ children }: { children: ReactNode }) {
         </div>
       ) : (
         // mobile
-        <div className='page-structure-mobile'>
+        <div className='container-mobile'>
           <header className='header-mobile'>
             <div className='icon-outline'>
               <Image src='/code-collabo/hamburger.png' alt='hamburger-icon' width={18} height={11}/>
