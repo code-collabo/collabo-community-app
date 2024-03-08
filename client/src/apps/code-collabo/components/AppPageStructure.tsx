@@ -35,7 +35,7 @@ export default function PageStructure({ children }: { children: ReactNode }) {
       <style jsx global>{ types }</style>
       <style jsx global>{ main }</style>
 
-      {/* Sidebar */}
+      {/* Sidebar for Desktop & left side menu for mobile */}
       <div className='page__menubar__nav'>
         <div><b>LOGO HERE</b></div>
         <nav>
@@ -46,18 +46,28 @@ export default function PageStructure({ children }: { children: ReactNode }) {
         </nav>
       </div>
 
-      {/* Page Content */}
+      {/* Page Content area for Desktop & Whole page for mobile */}
       <div>
-        <header>
+        <header className='app__header'>
+          { isMobile && (
+            <button className='app__mobile-menu-btns'>
+              <Image src='/code-collabo/hamburger.png' alt='hamburger-icon' width={25} height={25}/>
+            </button>
+          )}
           <h2 className='page-title'>{thisPage}</h2>
+          { isMobile && (
+            <button className='app__mobile-menu-btns'>
+              <Image src='/code-collabo/menu.png' alt='hamburger-icon' width={25} height={25}/>
+            </button>
+          )}
         </header>
+
+        {/* TODO: Make a filters component - inject one here, and one inside projects page */}
+
         <main>
           { children }
         </main>
       </div>
-
-      {/* TODO: Make a filters component - inject one here, and one inside projects page */}
-      
     </>
   );
 }
