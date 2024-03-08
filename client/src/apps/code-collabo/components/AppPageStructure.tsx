@@ -35,48 +35,29 @@ export default function PageStructure({ children }: { children: ReactNode }) {
       <style jsx global>{ types }</style>
       <style jsx global>{ main }</style>
 
-      { !isMobile ? (
-        // Web
-        <div className='container'>
-          {/* Sidebar */}
-          <div className='sidebar'>
-            <div><b>CODE COLLABO Sidebar Logo</b> goes here</div>
-            <nav>
-              <span><b>Sidebar Nav Menu</b> goes here: </span>
-              <Link href='/code-collabo'>Overview</Link>
-              <Link href='/code-collabo/projects'>Projects</Link>
-              <Link href='/code-collabo/careers'>Careers</Link>
-              <Link href='/code-collabo/donate'>Donate</Link>
-            </nav>
-          </div>
+      {/* Sidebar */}
+      <div className='page__menubar__nav'>
+        <div><b>LOGO HERE</b></div>
+        <nav>
+          <Link href='/code-collabo'>Overview</Link>
+          <Link href='/code-collabo/projects'>Projects</Link>
+          <Link href='/code-collabo/careers'>Careers</Link>
+          <Link href='/code-collabo/donate'>Donate</Link>
+        </nav>
+      </div>
 
-          {/* Page Content */}
-          <div className='content'>
-            <header>
-              <h2 className='page-title'>{thisPage}</h2>
-            </header>
-            <main>
-              { children }
-            </main>
-          </div>
-        </div>
-      ) : (
-        // mobile
-        <div className='container-mobile'>
-          <header className='header-mobile'>
-            <div className='icon-outline'>
-              <Image src='/code-collabo/hamburger.png' alt='hamburger-icon' width={18} height={11}/>
-            </div>
-            <h2 className='page-title-mobile'>{thisPage}</h2>
-            <div className='icon-outline'>
-              <Image src='/code-collabo/menu.png' alt='hamburger-icon' width={18} height={11}/>
-            </div>
-          </header>
-          <main>
-            { children }
-          </main>
-        </div>
-      )}
+      {/* Page Content */}
+      <div>
+        <header>
+          <h2 className='page-title'>{thisPage}</h2>
+        </header>
+        <main>
+          { children }
+        </main>
+      </div>
+
+      {/* TODO: Make a filters component - inject one here, and one inside projects page */}
+      
     </>
   );
 }
