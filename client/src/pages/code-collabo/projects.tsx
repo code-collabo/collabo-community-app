@@ -3,39 +3,26 @@ import { getCodeCollaboSubCommunityLayout } from '@/apps/code-collabo/components
 
 import projects from '@/apps/code-collabo/styles/modules/projects.module.css';
 import useScreenDimensions from '@/apps/code-collabo/helpers/useScreenDimensions';
-import selectStyles from '@/apps/code-collabo/styles/modules/projects.module.css';
+
+import FiltersComponent from '@/apps/code-collabo/components/Filters';
 
 const ProjectsPageCodeCollabo: NextPageWithLayout = () => {
   const  { isMobile }  = useScreenDimensions();
   return (
     <>
-      {
-        !isMobile ? (
-        // web view
-          <div className={projects.container}>
-            {/* No card display component */}
-            {/* --- Filters --- */}
-            <div className={projects.filter}>
-              Filter by:
-              <select className={selectStyles.select}>
-                <option value="interest">Interest</option>
-              </select>
-              <select  className={selectStyles.select}>
-                <option value="skill set">Skill Set</option>
-              </select>
-            </div>
-            {/* --- Card display --- */}
-            <div className={projects.cardDisplay}>Project cards content area</div>
-            {/* --- Pagination --- */}
-            <div className={projects.pagination}>Pagination Component Here</div>
-          </div>
-        ) : (
-        // Mobile view
-          <div className={projects.containerMobile}>
-            Mobile Card display
-          </div>
-        )
-      }
+      { !isMobile && (
+        <div className='lib__flex-right__md'>
+          <FiltersComponent className={projects.selectElem} />
+        </div>
+      )}
+      <div className={projects.cardsArea}>
+        <span>Project cards content area</span>
+      </div>
+      { !isMobile && (
+        <div className={`${projects.paginationArea} lib_margin-auto__sides`}>
+          <span>Pagination</span>
+        </div>
+      )}
     </>
   );
 };
