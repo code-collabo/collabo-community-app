@@ -8,6 +8,7 @@ import PageHeadElement from '@/apps/shared/components/PageHeadElement';
 
 import { colors, spacing, types } from '@/apps/code-collabo/styles/app.imports';
 import main from '@/apps/code-collabo/styles/app.main';
+import lib from '@/apps/code-collabo/styles/app.lib';
 import  useScreenDimensions  from '../helpers/useScreenDimensions';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,9 +20,6 @@ export default function PageStructure({ children }: { children: ReactNode }) {
   const { thisPage, pageTitle } = getPage(pathname, urlStart, appInfo.name);
 
   const  { isMobile }  = useScreenDimensions();
-
-
-
   return (
     <>
       <PageHeadElement
@@ -33,10 +31,12 @@ export default function PageStructure({ children }: { children: ReactNode }) {
       <style jsx global>{ colors }</style>
       <style jsx global>{ spacing }</style>
       <style jsx global>{ types }</style>
+      <style jsx global>{ lib }</style>
       <style jsx global>{ main }</style>
 
+      {/* TODO: Convert sidebar into a component - inject one here, and one after 1st button in header */}
       {/* Sidebar for Desktop & left side menu for mobile */}
-      <div className='page__menubar__nav'>
+      <div className='app__menubar__nav'>
         <div><b>LOGO HERE</b></div>
         <nav>
           <Link href='/code-collabo'>Overview</Link>
@@ -47,14 +47,14 @@ export default function PageStructure({ children }: { children: ReactNode }) {
       </div>
 
       {/* Page Content area for Desktop & Whole page for mobile */}
-      <div>
-        <header className='app__header'>
+      <div  className='app__content-area'>
+        <header className='app__header lib__flex-space-btw__sm'>
           { isMobile && (
             <button className='app__mobile-menu-btns'>
               <Image src='/code-collabo/hamburger.png' alt='hamburger-icon' width={25} height={25}/>
             </button>
           )}
-          <h2 className='page-title'>{thisPage}</h2>
+          <h2 className='app__page-title'>{thisPage}</h2>
           { isMobile && (
             <button className='app__mobile-menu-btns'>
               <Image src='/code-collabo/menu.png' alt='hamburger-icon' width={25} height={25}/>
