@@ -16,10 +16,42 @@ export default css.global`
     #__next {
         // --- spacing ontop & below page
         padding: 30px 0;
+        position: relative;
     }
 
     .app__menubar__nav {
 
+    }
+
+    .app__menubar__nav__mobile {
+        position: fixed;
+        top: 0;
+        margin: 0 auto;
+        width: calc(100% - 60px);
+        height: 100%;
+        background: #e3e3e3;
+    }
+
+    .app__menubar__nav__mobile.open {
+      transform: translateX(-100%); /* Bring sidebar in view */
+    }
+
+    .app__logo {
+        margin: 100px 0px 50px;
+    }
+
+    .app__menubar__nav__items {
+        margin: 0 auto;
+        gap: 10px;
+        width: calc(100% - 60px);
+    }
+
+    .app__menubar__nav__link {
+      text-decoration: none;
+      background: #f9f9f9;
+      padding: 15px 0px;
+      gap: 24px;
+      border-radius: 10px;
     }
 
     app__page-title {
@@ -38,6 +70,26 @@ export default css.global`
     .app__mobile-menu-btns {
         border-radius: 50%;
         padding: 16px;
+    }
+
+    .app__project-filter-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        margin: 0 auto;
+        width: calc(100% - 60px);
+        height: 100%;
+        background: #e3e3e3;
+    }
+
+    .app__project-filter-container.open {
+      transform: translateX(0%); /* Bring Filter in view */
+    }
+
+    .app__project-filter {
+        padding: 67px 0px 20px 0px;
+        margin:0 auto;
+        width: 240px;
     }
 
 
@@ -66,6 +118,19 @@ export default css.global`
 
         .app__menubar__nav {
             border-right: 1px solid var(--color-neutral-200);
+        }
+
+        .app__logo {
+            margin: 12px 0px 82px 0px;
+        }
+        
+        .app__menubar__nav__items {
+            gap: 10px
+        }
+
+        .app__menubar__nav__link {
+            padding: 16px 0px;
+            gap: 30px;
         }
 
         .app__content-area {
