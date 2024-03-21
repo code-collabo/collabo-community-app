@@ -8,6 +8,7 @@ export default function SideBarComponent({ toggleSidebar }: { toggleSidebar?: ()
   return (
     <>
       {/* Sidebar for DESKTOP & left side menu for MOBILE */}
+      {isMobile && <div className='app__menubar-overlay' onClick={toggleSidebar}></div>}
       <div className='app__menubar__nav'>
         {isMobile && <button className='app__menubar__toggle__close' onClick={toggleSidebar}>{'<'}</button>}
         <Link className='app__logo' href='/code-collabo'>

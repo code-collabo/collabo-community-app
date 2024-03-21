@@ -33,6 +33,7 @@ export default css.global`
         background: var(--color-shade-white);
         width: 300px;
         height: 100%;
+        z-index: 999;
     }
 
     .app__menubar__toggle__close {
@@ -42,6 +43,16 @@ export default css.global`
         top: 50px;
         right: 13px;
     }
+
+    .app__menubar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 13, 19, 0.8);
+      z-index: 998; 
+  }
 
     .app__logo {
         display: block;
